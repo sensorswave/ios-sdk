@@ -1,0 +1,11 @@
+.DS_store
+coverage
+output
+dist
+static
+.git
+.build
+build
+.idea
+.swiftpm
+TestResults.xcresult

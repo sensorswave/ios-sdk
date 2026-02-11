@@ -1,0 +1,115 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2.3 effective-5.10 (swiftlang-6.2.3.3.21 clang-1700.6.3.2)
+// swift-module-flags: -target x86_64-apple-ios13-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name SensorswaveSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.3
+import CoreTelephony
+import Foundation
+import ObjectiveC
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@objc public enum LogLevel : Swift.Int {
+  case verbose = 0
+  case debug = 1
+  case info = 2
+  case warning = 3
+  case error = 4
+  case none = 5
+  public var description: Swift.String {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.Int)
+  #endif
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class SensorswaveLogger : ObjectiveC.NSObject {
+  @objc public static func setLogLevel(_ level: SensorswaveSDK.LogLevel)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class Sensorswave : ObjectiveC.NSObject {
+  @objc public static let _shared: SensorswaveSDK.Sensorswave
+  @objc public static func getInstance() -> SensorswaveSDK.Sensorswave
+  @objc deinit
+  @objc @discardableResult
+  public func setup(sourceToken: Swift.String, config: SensorswaveSDK.SensorswaveConfig) -> SensorswaveSDK.Sensorswave
+  @objc public func track(eventData: [Swift.String : Any])
+  @objc public func trackEvent(eventName: Swift.String, properties: [Swift.String : Any] = [:])
+  @objc public func profileSet(_ properties: [Swift.String : Any])
+  @objc public func profileSetOnce(_ properties: [Swift.String : Any])
+  @objc public func profileIncrement(properties: [Swift.String : Any])
+  @objc public func profileAppend(properties: [Swift.String : Any])
+  @objc public func profileUnion(properties: [Swift.String : Any])
+  @objc public func profileUnset(key: Swift.String)
+  @objc public func profileUnset(keys: [Swift.String])
+  @objc public func profileDelete()
+  @objc public func registerCommonProperties(properties: [Swift.String : Any])
+  @objc public func clearCommonProperties(keys: [Swift.String])
+  @objc public func identify(loginId: Swift.String)
+  @objc public func setLoginId(loginId: Swift.String)
+  @objc public func getAnonId() -> Swift.String
+  @objc public func getLoginId() -> Swift.String
+  @objc public func onFeatureFlags(callback: @escaping () -> Swift.Void)
+  @objc public func setCurrentPageTitle(_ pageTitle: Swift.String)
+  @objc public func setReferrerTitle(_ referrerTitle: Swift.String)
+  @objc public func getCurrentPageTitle() -> Swift.String
+  @objc public func getReferrerTitle() -> Swift.String
+  @objc public func checkFeatureGate(key: Swift.String, callback: @escaping (Swift.Bool) -> Swift.Void)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public func getExperiment(key: Swift.String, callback: @escaping ([Swift.String : Any]?) -> Swift.Void)
+  #endif
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class SensorswaveConfig : ObjectiveC.NSObject {
+  @objc public var debug: Swift.Bool
+  @objc public var sourceToken: Swift.String
+  @objc public var apiHost: Swift.String {
+    @objc get
+    @objc set
+  }
+  @objc public var autoCapture: Swift.Bool
+  @objc public var enableAB: Swift.Bool
+  @objc public var abRefreshInterval: Swift.Double {
+    @objc get
+    @objc set
+  }
+  @objc public var batchSend: Swift.Bool
+  @objc public var enableClickTrack: Swift.Bool
+  @objc public var maxQueueSize: Swift.Int {
+    @objc get
+    @objc set
+  }
+  @objc public var requestTimeout: Swift.Double {
+    @objc get
+    @objc set
+  }
+  @objc public func isValid() -> Swift.Bool
+  @objc public func getConfigSummary() -> [Swift.String : Any]
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension Dispatch.DispatchQueue {
+  public class func once(token: Swift.String, block: () -> Swift.Void)
+}
+public protocol SensorswavePlugin {
+  var name: Swift.String { get }
+  func initialize(application: UIKit.UIApplication, config: SensorswaveSDK.SensorswaveConfig)
+  func enable()
+  func disable()
+  var isEnabled: Swift.Bool { get }
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class SensorswaveVersion : ObjectiveC.NSObject {
+  @objc public static let major: Swift.Int
+  @objc public static let minor: Swift.Int
+  @objc public static let patch: Swift.Int
+  @objc public static let string: Swift.String
+  @objc deinit
+}
+extension SensorswaveSDK.LogLevel : Swift.Equatable {}
+extension SensorswaveSDK.LogLevel : Swift.Hashable {}
+extension SensorswaveSDK.LogLevel : Swift.RawRepresentable {}
