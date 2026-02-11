@@ -1,10 +1,8 @@
-# SensorsWave iOS SDK Usage Guide
+# Sensors Wave iOS SDK
 
-[Sensorswave](https://sensorswave.com/) iOS SDK is a powerful mobile app analytics and A/B testing library designed for iOS applications.
+[Sensors Wave](https://sensorswave.com/) iOS SDK is a powerful mobile app analytics and A/B testing library designed for iOS applications.
 
-If you're new to Sensorswave, please visit [sensorswave.com](https://sensorswave.com/) to create an account.
-
-## SDK Usage Guide
+## SDK Usage
 
 ### 1. Install SDK
 

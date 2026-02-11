@@ -1,6 +1,6 @@
-# SensorsWave iOS SDK 使用指南
+# Sensors Wave iOS SDK
 
-[SensorsWave](http://sensorswave.com/) iOS SDK 是专为 iOS 应用设计的客户端数据采集和 A/B 实验工具。
+[Sensors Wave](http://sensorswave.com/) iOS SDK 是专为 iOS 应用设计的客户端数据采集和 A/B 实验工具。
 
 ## SDK 使用指南
 
