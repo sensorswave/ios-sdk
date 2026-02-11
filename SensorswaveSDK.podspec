@@ -26,7 +26,7 @@ Core Features:
   s.swift_version = '5.9'
 
   # Source files - include all Swift and header files
-  s.source_files = 'SensorswaveSDK/**/*.{swift,h}'
+  s.vendored_frameworks = 'SensorswaveSDK/SensorswaveSDK.xcframework'
 
   # System frameworks
   s.frameworks = 'UIKit', 'Foundation', 'CoreTelephony'

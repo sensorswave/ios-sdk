@@ -23,7 +23,7 @@ pod install
 #### 手动集成
 
 1. 从 [GitHub](https://github.com/sensorswave/ios-sdk) 获取 SDK 的二进制包
-将 SensorsAnalyticsSDK > xcframework 目录下的 SensorswaveSDK.xcframework 包拖到 Xcode 项目，并选中 Copy items if needed
+将 SensorswaveSDK > xcframework 目录下的 SensorswaveSDK.xcframework 包拖到 Xcode 项目，并选中 Copy items if needed
 2. 在项目设置中添加以下框架：
    - `Foundation.framework`
    - `UIKit.framework`
