@@ -11,7 +11,7 @@
 Add to your `Podfile`:
 
 ```ruby
-pod 'SensorswaveSDK', :path => './SensorswaveSDK'
+pod 'SensorswaveSDK'
 ```
 
 Then run in terminal:

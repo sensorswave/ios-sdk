@@ -14,7 +14,7 @@
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		a0AeWIaSGchvyt9kpBmWilSW3DQ=
+		SxQmVugtIbZh77ja+/B0X2L0CUk=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -28,13 +28,9 @@
 		<data>
 		G3Secpp98ufXESqxQo4qMaS3Vd8=
 		</data>
-		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
-		<data>
-		QFW8cHlcWhSpe/cIy3EMJw6u3tM=
-		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		a0AeWIaSGchvyt9kpBmWilSW3DQ=
+		SxQmVugtIbZh77ja+/B0X2L0CUk=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -47,10 +43,6 @@
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
 		Yt+cJN2EaZ0uO8sqy0ewPAT/zB4=
-		</data>
-		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
-		<data>
-		HgGefdNzFaIQ+zQ0Jvovzuvnl14=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -70,7 +62,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			QlEqkj2pc3rCFQFU5KFegI6PkdwAIfOtXUylpdApaw0=
+			XjgTnRnNmeEUf4+aqJ5rNyM9JlZoST85NbOzdJkV/jo=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
@@ -96,16 +88,14 @@
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
-			<key>hash2</key>
-			<data>
-			TpzudeMqY2qsolw8MnzFdTdCOjiBlxAdDfWMqkgWyic=
-			</data>
+			<key>symlink</key>
+			<string>arm64-apple-ios-simulator.swiftinterface</string>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			QlEqkj2pc3rCFQFU5KFegI6PkdwAIfOtXUylpdApaw0=
+			XjgTnRnNmeEUf4+aqJ5rNyM9JlZoST85NbOzdJkV/jo=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
@@ -131,10 +121,8 @@
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
-			<key>hash2</key>
-			<data>
-			T86IXpGFUPLnpvYit+goe7R0w6Jo8K+aWrDnO3LLj58=
-			</data>
+			<key>symlink</key>
+			<string>x86_64-apple-ios-simulator.swiftinterface</string>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
