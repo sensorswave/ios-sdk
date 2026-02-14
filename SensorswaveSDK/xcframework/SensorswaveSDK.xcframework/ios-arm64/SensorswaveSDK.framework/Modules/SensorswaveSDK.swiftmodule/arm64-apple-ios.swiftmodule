@@ -33,63 +33,64 @@ import _SwiftConcurrencyShims
   @objc override dynamic public init()
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class Sensorswave : ObjectiveC.NSObject {
-  @objc public static let _shared: SensorswaveSDK.Sensorswave
-  @objc public static func getInstance() -> SensorswaveSDK.Sensorswave
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class Sensorswave : ObjectiveC.NSObject {
+  public static let _shared: SensorswaveSDK.Sensorswave
+  public static func getInstance() -> SensorswaveSDK.Sensorswave
   @objc deinit
-  @objc @discardableResult
+  @discardableResult
   public func setup(sourceToken: Swift.String, config: SensorswaveSDK.SensorswaveConfig) -> SensorswaveSDK.Sensorswave
-  @objc public func track(eventData: [Swift.String : Any])
-  @objc public func trackEvent(eventName: Swift.String, properties: [Swift.String : Any] = [:])
-  @objc public func profileSet(_ properties: [Swift.String : Any])
-  @objc public func profileSetOnce(_ properties: [Swift.String : Any])
-  @objc public func profileIncrement(properties: [Swift.String : Any])
-  @objc public func profileAppend(properties: [Swift.String : Any])
-  @objc public func profileUnion(properties: [Swift.String : Any])
-  @objc public func profileUnset(key: Swift.String)
-  @objc public func profileUnset(keys: [Swift.String])
-  @objc public func profileDelete()
-  @objc public func registerCommonProperties(properties: [Swift.String : Any])
-  @objc public func clearCommonProperties(keys: [Swift.String])
-  @objc public func identify(loginId: Swift.String)
-  @objc public func setLoginId(loginId: Swift.String)
-  @objc public func getAnonId() -> Swift.String
-  @objc public func getLoginId() -> Swift.String
-  @objc public func onFeatureFlags(callback: @escaping () -> Swift.Void)
-  @objc public func setCurrentPageTitle(_ pageTitle: Swift.String)
-  @objc public func setReferrerTitle(_ referrerTitle: Swift.String)
-  @objc public func getCurrentPageTitle() -> Swift.String
-  @objc public func getReferrerTitle() -> Swift.String
-  @objc public func checkFeatureGate(key: Swift.String, callback: @escaping (Swift.Bool) -> Swift.Void)
+  @objc(setup:config:) public func setup(_ sourceToken: Swift.String, config: SensorswaveSDK.SensorswaveConfig) -> SensorswaveSDK.Sensorswave
+  @objc(track:) public func track(eventData: [Swift.String : Any])
+  @objc(trackEvent:properties:) public func trackEvent(eventName: Swift.String, properties: [Swift.String : Any] = [:])
+  @objc(profileSet:) public func profileSet(properties: [Swift.String : Any])
+  @objc(profileSetOnce:) public func profileSetOnce(properties: [Swift.String : Any])
+  @objc(profileIncrement:) public func profileIncrement(properties: [Swift.String : Any])
+  @objc(profileAppend:) public func profileAppend(properties: [Swift.String : Any])
+  @objc(profileUnion:) public func profileUnion(properties: [Swift.String : Any])
+  @objc(profileUnsetKey:) public func profileUnset(key: Swift.String)
+  @objc(profileUnsetKeys:) public func profileUnset(keys: [Swift.String])
+  @objc(profileDelete) public func profileDelete()
+  @objc(registerCommonProperties:) public func registerCommonProperties(properties: [Swift.String : Any])
+  @objc(clearCommonProperties:) public func clearCommonProperties(keys: [Swift.String])
+  @objc(identify:) public func identify(loginId: Swift.String)
+  @objc(setLoginId:) public func setLoginId(loginId: Swift.String)
+  @objc(getAnonId) public func getAnonId() -> Swift.String
+  @objc(getLoginId) public func getLoginId() -> Swift.String
+  public func onFeatureFlags(callback: @escaping () -> Swift.Void)
+  @objc(setCurrentPageTitle:) public func setCurrentPageTitle(_ pageTitle: Swift.String)
+  @objc(setReferrerTitle:) public func setReferrerTitle(_ referrerTitle: Swift.String)
+  @objc(getCurrentPageTitle) public func getCurrentPageTitle() -> Swift.String
+  @objc(getReferrerTitle) public func getReferrerTitle() -> Swift.String
+  @objc(checkFeatureGate:callback:) public func checkFeatureGate(key: Swift.String, callback: @escaping (Swift.Bool) -> Swift.Void)
   #if compiler(>=5.3) && $NonescapableTypes
-  @objc public func getExperiment(key: Swift.String, callback: @escaping ([Swift.String : Any]?) -> Swift.Void)
+  @objc(getExperiment:callback:) public func getExperiment(key: Swift.String, callback: @escaping ([Swift.String : Any]?) -> Swift.Void)
   #endif
 }
-@objc @_inheritsConvenienceInitializers @objcMembers public class SensorswaveConfig : ObjectiveC.NSObject {
-  @objc public var debug: Swift.Bool
-  @objc public var sourceToken: Swift.String
-  @objc public var apiHost: Swift.String {
-    @objc get
-    @objc set
+@_inheritsConvenienceInitializers @objc public class SensorswaveConfig : ObjectiveC.NSObject {
+  public var debug: Swift.Bool
+  public var sourceToken: Swift.String
+  public var apiHost: Swift.String {
+    get
+    set
   }
-  @objc public var autoCapture: Swift.Bool
-  @objc public var enableAB: Swift.Bool
-  @objc public var abRefreshInterval: Swift.Double {
-    @objc get
-    @objc set
+  public var autoCapture: Swift.Bool
+  public var enableAB: Swift.Bool
+  public var abRefreshInterval: Swift.Double {
+    get
+    set
   }
-  @objc public var batchSend: Swift.Bool
-  @objc public var enableClickTrack: Swift.Bool
-  @objc public var maxQueueSize: Swift.Int {
-    @objc get
-    @objc set
+  public var batchSend: Swift.Bool
+  public var enableClickTrack: Swift.Bool
+  public var maxQueueSize: Swift.Int {
+    get
+    set
   }
-  @objc public var requestTimeout: Swift.Double {
-    @objc get
-    @objc set
+  public var requestTimeout: Swift.Double {
+    get
+    set
   }
-  @objc public func isValid() -> Swift.Bool
-  @objc public func getConfigSummary() -> [Swift.String : Any]
+  public func isValid() -> Swift.Bool
+  public func getConfigSummary() -> [Swift.String : Any]
   @objc override dynamic public init()
   @objc deinit
 }

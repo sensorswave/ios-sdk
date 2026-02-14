@@ -90,8 +90,6 @@ Sensorswave.getInstance().trackEvent(eventName: "button_click", properties: [
 | `enableClickTrack` | Bool | false | Enable automatic click tracking |
 | `enableAB` | Bool | false | Enable A/B testing functionality |
 | `abRefreshInterval` | TimeInterval | 600000 (10 minutes) | A/B test config refresh interval (ms), minimum 30 seconds |
-| `maxQueueSize` | Int | 100 | Maximum queue size (10-1000), default 100 |
-| `requestTimeout` | TimeInterval | 30000 (30 seconds) | Request timeout (ms), range 5-120 seconds |
 | `batchSend` | Bool | true | Enable batch sending (collect 10 events or send every 5 seconds) |
 
 **Configuration Example:**

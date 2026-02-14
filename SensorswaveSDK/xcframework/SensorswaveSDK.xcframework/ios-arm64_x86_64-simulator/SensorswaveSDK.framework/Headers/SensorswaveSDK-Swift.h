@@ -321,34 +321,28 @@ typedef SWIFT_ENUM(NSInteger, LogLevel, open) {
 /// 提供事件追踪、用户识别等核心功能
 SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
 @interface Sensorswave : NSObject
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Sensorswave * _Nonnull _shared;)
-+ (Sensorswave * _Nonnull)_shared SWIFT_WARN_UNUSED_RESULT;
-/// 获取Sensorswave实例
-///
-/// returns:
-/// Sensorswave单例实例
-+ (Sensorswave * _Nonnull)getInstance SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-/// 初始化SDK
+/// 简化的SDK初始化方法（Objective-C兼容）
+/// Objective-C可使用简化方法名setup:config:
 /// \param sourceToken API令牌
 ///
 /// \param config 配置信息
 ///
 ///
 /// returns:
-/// Sensorswave实例（告诉编译器这个方法的返回值可以被忽略）
-- (Sensorswave * _Nonnull)setupWithSourceToken:(NSString * _Nonnull)sourceToken config:(SensorswaveConfig * _Nonnull)config;
+/// Sensorswave实例
+- (Sensorswave * _Nonnull)setup:(NSString * _Nonnull)sourceToken config:(SensorswaveConfig * _Nonnull)config SWIFT_WARN_UNUSED_RESULT;
 /// 高级上报方式 - 完整事件对象
 /// \param eventData 完整的事件对象
 ///
-- (void)trackWithEventData:(NSDictionary<NSString *, id> * _Nonnull)eventData;
+- (void)track:(NSDictionary<NSString *, id> * _Nonnull)eventData;
 /// 追踪自定义事件
 /// \param eventName 事件名称
 ///
 /// \param properties 事件属性
 ///
-- (void)trackEventWithEventName:(NSString * _Nonnull)eventName properties:(NSDictionary<NSString *, id> * _Nonnull)properties;
+- (void)trackEvent:(NSString * _Nonnull)eventName properties:(NSDictionary<NSString *, id> * _Nonnull)properties;
 /// 设置用户属性（如果存在则覆盖）
 /// \param properties 用户属性
 ///
@@ -360,41 +354,41 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Sensorswave 
 /// 对数值用户属性值进行累加
 /// \param properties 用户属性键值对，值必须为数值类型
 ///
-- (void)profileIncrementWithProperties:(NSDictionary<NSString *, id> * _Nonnull)properties;
+- (void)profileIncrement:(NSDictionary<NSString *, id> * _Nonnull)properties;
 /// 对List类型的用户属性进行追加新的属性值，不会进行去重操作
 /// \param properties 用户属性键值对，值必须为列表类型
 ///
-- (void)profileAppendWithProperties:(NSDictionary<NSString *, id> * _Nonnull)properties;
+- (void)profileAppend:(NSDictionary<NSString *, id> * _Nonnull)properties;
 /// 对List类型的用户属性进行追加新的属性值并进行去重操作
 /// \param properties 用户属性键值对，值必须为列表类型
 ///
-- (void)profileUnionWithProperties:(NSDictionary<NSString *, id> * _Nonnull)properties;
+- (void)profileUnion:(NSDictionary<NSString *, id> * _Nonnull)properties;
 /// 将对应用户的属性值置为NULL
 /// \param key 要置空的属性键
 ///
-- (void)profileUnsetWithKey:(NSString * _Nonnull)key;
+- (void)profileUnsetKey:(NSString * _Nonnull)key;
 /// 将对应用户的属性值置为NULL
 /// \param keys 要置空的属性键列表
 ///
-- (void)profileUnsetWithKeys:(NSArray<NSString *> * _Nonnull)keys;
+- (void)profileUnsetKeys:(NSArray<NSString *> * _Nonnull)keys;
 /// 删除一条完整的用户属性信息
 - (void)profileDelete;
 /// 注册公共属性
 /// \param properties 公共属性
 ///
-- (void)registerCommonPropertiesWithProperties:(NSDictionary<NSString *, id> * _Nonnull)properties;
+- (void)registerCommonProperties:(NSDictionary<NSString *, id> * _Nonnull)properties;
 /// 清除公共属性
 /// \param keys 要清除的属性键列表
 ///
-- (void)clearCommonPropertiesWithKeys:(NSArray<NSString *> * _Nonnull)keys;
+- (void)clearCommonProperties:(NSArray<NSString *> * _Nonnull)keys;
 /// 设置登录用户ID并发送绑定事件
 /// \param loginId 登录用户ID
 ///
-- (void)identifyWithLoginId:(NSString * _Nonnull)loginId;
+- (void)identify:(NSString * _Nonnull)loginId;
 /// 只设置登录用户ID，不发送绑定事件
 /// \param loginId 登录用户ID
 ///
-- (void)setLoginIdWithLoginId:(NSString * _Nonnull)loginId;
+- (void)setLoginId:(NSString * _Nonnull)loginId;
 /// 获取匿名ID
 ///
 /// returns:
@@ -405,10 +399,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Sensorswave 
 /// returns:
 /// 登录用户ID
 - (NSString * _Nonnull)getLoginId SWIFT_WARN_UNUSED_RESULT;
-/// 确保功能标志准备就绪
-/// \param callback 功能标志就绪后的回调函数
-///
-- (void)onFeatureFlagsWithCallback:(void (^ _Nonnull)(void))callback;
 /// 手动设置当前页面标题
 /// \param pageTitle 页面标题
 ///
@@ -432,49 +422,19 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Sensorswave 
 ///
 /// \param callback 回调函数，返回功能开关的状态（true=启用，false=禁用）
 ///
-- (void)checkFeatureGateWithKey:(NSString * _Nonnull)key callback:(void (^ _Nonnull)(BOOL))callback;
+- (void)checkFeatureGate:(NSString * _Nonnull)key callback:(void (^ _Nonnull)(BOOL))callback;
 /// 获取实验配置（A/B 测试）
 /// \param key 实验的键名
 ///
 /// \param callback 回调函数，返回实验配置（字典）或 nil
 ///
-- (void)getExperimentWithKey:(NSString * _Nonnull)key callback:(void (^ _Nonnull)(NSDictionary<NSString *, id> * _Nullable))callback;
+- (void)getExperiment:(NSString * _Nonnull)key callback:(void (^ _Nonnull)(NSDictionary<NSString *, id> * _Nullable))callback;
 @end
 
 /// Sensorswave SDK 配置类
 /// 提供SDK初始化所需的各种配置参数
 SWIFT_CLASS("_TtC14SensorswaveSDK17SensorswaveConfig")
 @interface SensorswaveConfig : NSObject
-/// 是否开启调试模式
-@property (nonatomic) BOOL debug;
-/// Source令牌
-@property (nonatomic, copy) NSString * _Nonnull sourceToken;
-/// API主机地址
-@property (nonatomic, copy) NSString * _Nonnull apiHost;
-/// 是否自动采集数据
-@property (nonatomic) BOOL autoCapture;
-/// 是否启用 AB
-@property (nonatomic) BOOL enableAB;
-/// 实验刷新间隔（毫秒）
-@property (nonatomic) NSTimeInterval abRefreshInterval;
-/// 是否启用批量发送
-@property (nonatomic) BOOL batchSend;
-/// 是否启用点击追踪
-@property (nonatomic) BOOL enableClickTrack;
-/// 最大队列大小
-@property (nonatomic) NSInteger maxQueueSize;
-/// 请求超时时间（毫秒）
-@property (nonatomic) NSTimeInterval requestTimeout;
-/// 验证配置是否有效
-///
-/// returns:
-/// 配置是否有效
-- (BOOL)isValid SWIFT_WARN_UNUSED_RESULT;
-/// 获取配置摘要信息
-///
-/// returns:
-/// 配置摘要字典
-- (NSDictionary<NSString *, id> * _Nonnull)getConfigSummary SWIFT_WARN_UNUSED_RESULT;
 /// 初始化方法
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
@@ -839,34 +799,28 @@ typedef SWIFT_ENUM(NSInteger, LogLevel, open) {
 /// 提供事件追踪、用户识别等核心功能
 SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
 @interface Sensorswave : NSObject
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Sensorswave * _Nonnull _shared;)
-+ (Sensorswave * _Nonnull)_shared SWIFT_WARN_UNUSED_RESULT;
-/// 获取Sensorswave实例
-///
-/// returns:
-/// Sensorswave单例实例
-+ (Sensorswave * _Nonnull)getInstance SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-/// 初始化SDK
+/// 简化的SDK初始化方法（Objective-C兼容）
+/// Objective-C可使用简化方法名setup:config:
 /// \param sourceToken API令牌
 ///
 /// \param config 配置信息
 ///
 ///
 /// returns:
-/// Sensorswave实例（告诉编译器这个方法的返回值可以被忽略）
-- (Sensorswave * _Nonnull)setupWithSourceToken:(NSString * _Nonnull)sourceToken config:(SensorswaveConfig * _Nonnull)config;
+/// Sensorswave实例
+- (Sensorswave * _Nonnull)setup:(NSString * _Nonnull)sourceToken config:(SensorswaveConfig * _Nonnull)config SWIFT_WARN_UNUSED_RESULT;
 /// 高级上报方式 - 完整事件对象
 /// \param eventData 完整的事件对象
 ///
-- (void)trackWithEventData:(NSDictionary<NSString *, id> * _Nonnull)eventData;
+- (void)track:(NSDictionary<NSString *, id> * _Nonnull)eventData;
 /// 追踪自定义事件
 /// \param eventName 事件名称
 ///
 /// \param properties 事件属性
 ///
-- (void)trackEventWithEventName:(NSString * _Nonnull)eventName properties:(NSDictionary<NSString *, id> * _Nonnull)properties;
+- (void)trackEvent:(NSString * _Nonnull)eventName properties:(NSDictionary<NSString *, id> * _Nonnull)properties;
 /// 设置用户属性（如果存在则覆盖）
 /// \param properties 用户属性
 ///
@@ -878,41 +832,41 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Sensorswave 
 /// 对数值用户属性值进行累加
 /// \param properties 用户属性键值对，值必须为数值类型
 ///
-- (void)profileIncrementWithProperties:(NSDictionary<NSString *, id> * _Nonnull)properties;
+- (void)profileIncrement:(NSDictionary<NSString *, id> * _Nonnull)properties;
 /// 对List类型的用户属性进行追加新的属性值，不会进行去重操作
 /// \param properties 用户属性键值对，值必须为列表类型
 ///
-- (void)profileAppendWithProperties:(NSDictionary<NSString *, id> * _Nonnull)properties;
+- (void)profileAppend:(NSDictionary<NSString *, id> * _Nonnull)properties;
 /// 对List类型的用户属性进行追加新的属性值并进行去重操作
 /// \param properties 用户属性键值对，值必须为列表类型
 ///
-- (void)profileUnionWithProperties:(NSDictionary<NSString *, id> * _Nonnull)properties;
+- (void)profileUnion:(NSDictionary<NSString *, id> * _Nonnull)properties;
 /// 将对应用户的属性值置为NULL
 /// \param key 要置空的属性键
 ///
-- (void)profileUnsetWithKey:(NSString * _Nonnull)key;
+- (void)profileUnsetKey:(NSString * _Nonnull)key;
 /// 将对应用户的属性值置为NULL
 /// \param keys 要置空的属性键列表
 ///
-- (void)profileUnsetWithKeys:(NSArray<NSString *> * _Nonnull)keys;
+- (void)profileUnsetKeys:(NSArray<NSString *> * _Nonnull)keys;
 /// 删除一条完整的用户属性信息
 - (void)profileDelete;
 /// 注册公共属性
 /// \param properties 公共属性
 ///
-- (void)registerCommonPropertiesWithProperties:(NSDictionary<NSString *, id> * _Nonnull)properties;
+- (void)registerCommonProperties:(NSDictionary<NSString *, id> * _Nonnull)properties;
 /// 清除公共属性
 /// \param keys 要清除的属性键列表
 ///
-- (void)clearCommonPropertiesWithKeys:(NSArray<NSString *> * _Nonnull)keys;
+- (void)clearCommonProperties:(NSArray<NSString *> * _Nonnull)keys;
 /// 设置登录用户ID并发送绑定事件
 /// \param loginId 登录用户ID
 ///
-- (void)identifyWithLoginId:(NSString * _Nonnull)loginId;
+- (void)identify:(NSString * _Nonnull)loginId;
 /// 只设置登录用户ID，不发送绑定事件
 /// \param loginId 登录用户ID
 ///
-- (void)setLoginIdWithLoginId:(NSString * _Nonnull)loginId;
+- (void)setLoginId:(NSString * _Nonnull)loginId;
 /// 获取匿名ID
 ///
 /// returns:
@@ -923,10 +877,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Sensorswave 
 /// returns:
 /// 登录用户ID
 - (NSString * _Nonnull)getLoginId SWIFT_WARN_UNUSED_RESULT;
-/// 确保功能标志准备就绪
-/// \param callback 功能标志就绪后的回调函数
-///
-- (void)onFeatureFlagsWithCallback:(void (^ _Nonnull)(void))callback;
 /// 手动设置当前页面标题
 /// \param pageTitle 页面标题
 ///
@@ -950,49 +900,19 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Sensorswave 
 ///
 /// \param callback 回调函数，返回功能开关的状态（true=启用，false=禁用）
 ///
-- (void)checkFeatureGateWithKey:(NSString * _Nonnull)key callback:(void (^ _Nonnull)(BOOL))callback;
+- (void)checkFeatureGate:(NSString * _Nonnull)key callback:(void (^ _Nonnull)(BOOL))callback;
 /// 获取实验配置（A/B 测试）
 /// \param key 实验的键名
 ///
 /// \param callback 回调函数，返回实验配置（字典）或 nil
 ///
-- (void)getExperimentWithKey:(NSString * _Nonnull)key callback:(void (^ _Nonnull)(NSDictionary<NSString *, id> * _Nullable))callback;
+- (void)getExperiment:(NSString * _Nonnull)key callback:(void (^ _Nonnull)(NSDictionary<NSString *, id> * _Nullable))callback;
 @end
 
 /// Sensorswave SDK 配置类
 /// 提供SDK初始化所需的各种配置参数
 SWIFT_CLASS("_TtC14SensorswaveSDK17SensorswaveConfig")
 @interface SensorswaveConfig : NSObject
-/// 是否开启调试模式
-@property (nonatomic) BOOL debug;
-/// Source令牌
-@property (nonatomic, copy) NSString * _Nonnull sourceToken;
-/// API主机地址
-@property (nonatomic, copy) NSString * _Nonnull apiHost;
-/// 是否自动采集数据
-@property (nonatomic) BOOL autoCapture;
-/// 是否启用 AB
-@property (nonatomic) BOOL enableAB;
-/// 实验刷新间隔（毫秒）
-@property (nonatomic) NSTimeInterval abRefreshInterval;
-/// 是否启用批量发送
-@property (nonatomic) BOOL batchSend;
-/// 是否启用点击追踪
-@property (nonatomic) BOOL enableClickTrack;
-/// 最大队列大小
-@property (nonatomic) NSInteger maxQueueSize;
-/// 请求超时时间（毫秒）
-@property (nonatomic) NSTimeInterval requestTimeout;
-/// 验证配置是否有效
-///
-/// returns:
-/// 配置是否有效
-- (BOOL)isValid SWIFT_WARN_UNUSED_RESULT;
-/// 获取配置摘要信息
-///
-/// returns:
-/// 配置摘要字典
-- (NSDictionary<NSString *, id> * _Nonnull)getConfigSummary SWIFT_WARN_UNUSED_RESULT;
 /// 初始化方法
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end

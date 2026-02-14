@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/SensorswaveSDK-Swift.h</key>
 		<data>
-		AacsiBygHHTZFhU1c4A//wmWFJM=
+		TZo15htZZWrYmZYoVroheWQ8GN8=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -14,35 +14,35 @@
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		SxQmVugtIbZh77ja+/B0X2L0CUk=
+		JpN5fi/Wdw4xcSDkGpdjoN6t7r0=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		G3Secpp98ufXESqxQo4qMaS3Vd8=
+		kkpx9ctFyeofgFzxeYHsmjF94io=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		jf/+IjIs/phkEL8H/XR7oEEpPlM=
+		2IVLJFBFTTFEP5H+d+gT7SLNiGs=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		G3Secpp98ufXESqxQo4qMaS3Vd8=
+		kkpx9ctFyeofgFzxeYHsmjF94io=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		SxQmVugtIbZh77ja+/B0X2L0CUk=
+		JpN5fi/Wdw4xcSDkGpdjoN6t7r0=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		Yt+cJN2EaZ0uO8sqy0ewPAT/zB4=
+		xi/um+guRy+gBHVk15DV41F8EmE=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		BY33ZpEPwvOku8nUsQ7t6Q//RNM=
+		4NAtdFpINXupXO/p70pEbnwQG7A=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		Yt+cJN2EaZ0uO8sqy0ewPAT/zB4=
+		xi/um+guRy+gBHVk15DV41F8EmE=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -55,35 +55,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			3jMxRyOTth4sqzFDoU/rg3sqzl2I0vjNcfSeKStTuZU=
+			zVGshknmeoMGRvMLOeL1mKc3kf+aC2AEdNVyLTcHVX4=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XjgTnRnNmeEUf4+aqJ5rNyM9JlZoST85NbOzdJkV/jo=
+			1ykzMhSg4Ch00tjQuXsb4Yl6d3KrvJPA14eB1K85F1w=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			tcVDKexGkupW3TNoPQv9MZHtAT2DMliE+kzTtO4viT4=
+			GkbMuSpMfoPdGv/6pPwZ334VdsaLo2EKZfV2v7iTPis=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3PA1TljDoOoFKf8fGZmI3HAuAhhi/LJehFlPlR39Tko=
+			NNotoztEC0uuU+qJXgsmStg7qNbI5rWwXqmGuLAcVW4=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			tcVDKexGkupW3TNoPQv9MZHtAT2DMliE+kzTtO4viT4=
+			GkbMuSpMfoPdGv/6pPwZ334VdsaLo2EKZfV2v7iTPis=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
@@ -95,28 +95,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			XjgTnRnNmeEUf4+aqJ5rNyM9JlZoST85NbOzdJkV/jo=
+			1ykzMhSg4Ch00tjQuXsb4Yl6d3KrvJPA14eB1K85F1w=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3gww8C6leaiY8u0Nct6ltfWpZpWR6eDtEJZNMQgR89I=
+			YN2Tx0HrkNOK6Vkf13XL7IEKs88JMIN5lGOsVISAKhs=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			aRcttoXIsPN5WhLH66UYY8dvsLEH5gWcIhaajMt63o0=
+			c4u5I5EsmN/BrKeu3vEe6JjaFjIahCIeV+NDrzGOXz4=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3gww8C6leaiY8u0Nct6ltfWpZpWR6eDtEJZNMQgR89I=
+			YN2Tx0HrkNOK6Vkf13XL7IEKs88JMIN5lGOsVISAKhs=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
