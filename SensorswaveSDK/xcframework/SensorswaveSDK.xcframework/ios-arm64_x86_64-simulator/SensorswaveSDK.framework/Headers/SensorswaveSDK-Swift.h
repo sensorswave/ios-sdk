@@ -321,6 +321,11 @@ typedef SWIFT_ENUM(NSInteger, LogLevel, open) {
 /// 提供事件追踪、用户识别等核心功能
 SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
 @interface Sensorswave : NSObject
+/// 获取Sensorswave实例
+///
+/// returns:
+/// Sensorswave单例实例
++ (Sensorswave * _Nonnull)getInstance SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 /// 简化的SDK初始化方法（Objective-C兼容）
@@ -399,6 +404,10 @@ SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
 /// returns:
 /// 登录用户ID
 - (NSString * _Nonnull)getLoginId SWIFT_WARN_UNUSED_RESULT;
+/// 确保功能标志准备就绪
+/// \param callback 功能标志就绪后的回调函数
+///
+- (void)onFeatureFlags:(void (^ _Nonnull)(void))callback;
 /// 手动设置当前页面标题
 /// \param pageTitle 页面标题
 ///
@@ -435,6 +444,28 @@ SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
 /// 提供SDK初始化所需的各种配置参数
 SWIFT_CLASS("_TtC14SensorswaveSDK17SensorswaveConfig")
 @interface SensorswaveConfig : NSObject
+@property (nonatomic) BOOL debug;
+@property (nonatomic, copy) NSString * _Nonnull sourceToken;
+@property (nonatomic, copy) NSString * _Nonnull apiHost;
+@property (nonatomic) BOOL autoCapture;
+@property (nonatomic) BOOL enableAB;
+@property (nonatomic) NSTimeInterval abRefreshInterval;
+@property (nonatomic) BOOL batchSend;
+@property (nonatomic) BOOL enableClickTrack;
+/// 最大队列大小
+@property (nonatomic) NSInteger maxQueueSize;
+/// 请求超时时间（毫秒）
+@property (nonatomic) NSTimeInterval requestTimeout;
+/// 验证配置是否有效
+///
+/// returns:
+/// 配置是否有效
+- (BOOL)isValid SWIFT_WARN_UNUSED_RESULT;
+/// 获取配置摘要信息
+///
+/// returns:
+/// 配置摘要字典
+- (NSDictionary<NSString *, id> * _Nonnull)getConfigSummary SWIFT_WARN_UNUSED_RESULT;
 /// 初始化方法
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
@@ -447,6 +478,26 @@ SWIFT_CLASS("_TtC14SensorswaveSDK17SensorswaveLogger")
 ///
 + (void)setLogLevel:(enum LogLevel)level;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class UIApplication;
+/// 插件协议，所有插件必须实现此协议
+SWIFT_PROTOCOL("_TtP14SensorswaveSDK17SensorswavePlugin_")
+@protocol SensorswavePlugin <NSObject>
+/// 插件名称
+@property (nonatomic, readonly, copy) NSString * _Nonnull name;
+/// 初始化插件
+/// \param application 应用程序实例
+///
+/// \param config 配置选项
+///
+- (void)initializeWithApplication:(UIApplication * _Nonnull)application config:(SensorswaveConfig * _Nonnull)config;
+/// 启用插件
+- (void)enable;
+/// 禁用插件
+- (void)disable;
+/// 插件是否已启用
+@property (nonatomic, readonly) BOOL isEnabled;
 @end
 
 /// Sensorswave SDK Version
@@ -799,6 +850,11 @@ typedef SWIFT_ENUM(NSInteger, LogLevel, open) {
 /// 提供事件追踪、用户识别等核心功能
 SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
 @interface Sensorswave : NSObject
+/// 获取Sensorswave实例
+///
+/// returns:
+/// Sensorswave单例实例
++ (Sensorswave * _Nonnull)getInstance SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 /// 简化的SDK初始化方法（Objective-C兼容）
@@ -877,6 +933,10 @@ SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
 /// returns:
 /// 登录用户ID
 - (NSString * _Nonnull)getLoginId SWIFT_WARN_UNUSED_RESULT;
+/// 确保功能标志准备就绪
+/// \param callback 功能标志就绪后的回调函数
+///
+- (void)onFeatureFlags:(void (^ _Nonnull)(void))callback;
 /// 手动设置当前页面标题
 /// \param pageTitle 页面标题
 ///
@@ -913,6 +973,28 @@ SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
 /// 提供SDK初始化所需的各种配置参数
 SWIFT_CLASS("_TtC14SensorswaveSDK17SensorswaveConfig")
 @interface SensorswaveConfig : NSObject
+@property (nonatomic) BOOL debug;
+@property (nonatomic, copy) NSString * _Nonnull sourceToken;
+@property (nonatomic, copy) NSString * _Nonnull apiHost;
+@property (nonatomic) BOOL autoCapture;
+@property (nonatomic) BOOL enableAB;
+@property (nonatomic) NSTimeInterval abRefreshInterval;
+@property (nonatomic) BOOL batchSend;
+@property (nonatomic) BOOL enableClickTrack;
+/// 最大队列大小
+@property (nonatomic) NSInteger maxQueueSize;
+/// 请求超时时间（毫秒）
+@property (nonatomic) NSTimeInterval requestTimeout;
+/// 验证配置是否有效
+///
+/// returns:
+/// 配置是否有效
+- (BOOL)isValid SWIFT_WARN_UNUSED_RESULT;
+/// 获取配置摘要信息
+///
+/// returns:
+/// 配置摘要字典
+- (NSDictionary<NSString *, id> * _Nonnull)getConfigSummary SWIFT_WARN_UNUSED_RESULT;
 /// 初始化方法
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
@@ -925,6 +1007,26 @@ SWIFT_CLASS("_TtC14SensorswaveSDK17SensorswaveLogger")
 ///
 + (void)setLogLevel:(enum LogLevel)level;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class UIApplication;
+/// 插件协议，所有插件必须实现此协议
+SWIFT_PROTOCOL("_TtP14SensorswaveSDK17SensorswavePlugin_")
+@protocol SensorswavePlugin <NSObject>
+/// 插件名称
+@property (nonatomic, readonly, copy) NSString * _Nonnull name;
+/// 初始化插件
+/// \param application 应用程序实例
+///
+/// \param config 配置选项
+///
+- (void)initializeWithApplication:(UIApplication * _Nonnull)application config:(SensorswaveConfig * _Nonnull)config;
+/// 启用插件
+- (void)enable;
+/// 禁用插件
+- (void)disable;
+/// 插件是否已启用
+@property (nonatomic, readonly) BOOL isEnabled;
 @end
 
 /// Sensorswave SDK Version

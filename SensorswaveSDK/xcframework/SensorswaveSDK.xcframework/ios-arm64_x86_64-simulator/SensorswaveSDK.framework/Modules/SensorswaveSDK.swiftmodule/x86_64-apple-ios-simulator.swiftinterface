@@ -35,7 +35,7 @@ import _SwiftConcurrencyShims
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class Sensorswave : ObjectiveC.NSObject {
   public static let _shared: SensorswaveSDK.Sensorswave
-  public static func getInstance() -> SensorswaveSDK.Sensorswave
+  @objc(getInstance) public static func getInstance() -> SensorswaveSDK.Sensorswave
   @objc deinit
   @discardableResult
   public func setup(sourceToken: Swift.String, config: SensorswaveSDK.SensorswaveConfig) -> SensorswaveSDK.Sensorswave
@@ -56,7 +56,7 @@ import _SwiftConcurrencyShims
   @objc(setLoginId:) public func setLoginId(loginId: Swift.String)
   @objc(getAnonId) public func getAnonId() -> Swift.String
   @objc(getLoginId) public func getLoginId() -> Swift.String
-  public func onFeatureFlags(callback: @escaping () -> Swift.Void)
+  @objc(onFeatureFlags:) public func onFeatureFlags(callback: @escaping () -> Swift.Void)
   @objc(setCurrentPageTitle:) public func setCurrentPageTitle(_ pageTitle: Swift.String)
   @objc(setReferrerTitle:) public func setReferrerTitle(_ referrerTitle: Swift.String)
   @objc(getCurrentPageTitle) public func getCurrentPageTitle() -> Swift.String
@@ -67,42 +67,60 @@ import _SwiftConcurrencyShims
   #endif
 }
 @_inheritsConvenienceInitializers @objc public class SensorswaveConfig : ObjectiveC.NSObject {
-  public var debug: Swift.Bool
-  public var sourceToken: Swift.String
-  public var apiHost: Swift.String {
-    get
-    set
+  @objc public var debug: Swift.Bool {
+    @objc get
+    @objc set
   }
-  public var autoCapture: Swift.Bool
-  public var enableAB: Swift.Bool
-  public var abRefreshInterval: Swift.Double {
-    get
-    set
+  @objc public var sourceToken: Swift.String {
+    @objc get
+    @objc set
   }
-  public var batchSend: Swift.Bool
-  public var enableClickTrack: Swift.Bool
-  public var maxQueueSize: Swift.Int {
-    get
-    set
+  @objc public var apiHost: Swift.String {
+    @objc get
+    @objc set
   }
-  public var requestTimeout: Swift.Double {
-    get
-    set
+  @objc public var autoCapture: Swift.Bool {
+    @objc get
+    @objc set
   }
-  public func isValid() -> Swift.Bool
-  public func getConfigSummary() -> [Swift.String : Any]
+  @objc public var enableAB: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var abRefreshInterval: Foundation.TimeInterval {
+    @objc get
+    @objc set
+  }
+  @objc public var batchSend: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var enableClickTrack: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var maxQueueSize: Swift.Int {
+    @objc get
+    @objc set
+  }
+  @objc public var requestTimeout: Swift.Double {
+    @objc get
+    @objc set
+  }
+  @objc public func isValid() -> Swift.Bool
+  @objc public func getConfigSummary() -> [Swift.String : Any]
   @objc override dynamic public init()
   @objc deinit
 }
 extension Dispatch.DispatchQueue {
   public class func once(token: Swift.String, block: () -> Swift.Void)
 }
-public protocol SensorswavePlugin {
-  var name: Swift.String { get }
-  func initialize(application: UIKit.UIApplication, config: SensorswaveSDK.SensorswaveConfig)
-  func enable()
-  func disable()
-  var isEnabled: Swift.Bool { get }
+@objc public protocol SensorswavePlugin : ObjectiveC.NSObjectProtocol {
+  @objc var name: Swift.String { get }
+  @objc func initialize(application: UIKit.UIApplication, config: SensorswaveSDK.SensorswaveConfig)
+  @objc func enable()
+  @objc func disable()
+  @objc var isEnabled: Swift.Bool { get }
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class SensorswaveVersion : ObjectiveC.NSObject {
   @objc public static let major: Swift.Int

@@ -712,13 +712,15 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14SensorswaveSDK0A0C11getInstanceACyFZ",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)Sensorswave(cm)getInstance",
             "mangledName": "$s14SensorswaveSDK0A0C11getInstanceACyFZ",
             "moduleName": "SensorswaveSDK",
             "static": true,
+            "objc_name": "getInstance",
             "declAttributes": [
               "Final",
               "AccessControl",
+              "ObjC",
               "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
@@ -1398,11 +1400,13 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14SensorswaveSDK0A0C14onFeatureFlags8callbackyyyc_tF",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)Sensorswave(im)onFeatureFlags:",
             "mangledName": "$s14SensorswaveSDK0A0C14onFeatureFlags8callbackyyyc_tF",
             "moduleName": "SensorswaveSDK",
+            "objc_name": "onFeatureFlags:",
             "declAttributes": [
               "AccessControl",
+              "ObjC",
               "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
@@ -1738,16 +1742,13 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:14SensorswaveSDK0A6ConfigC5debugSbvp",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(py)debug",
             "mangledName": "$s14SensorswaveSDK0A6ConfigC5debugSbvp",
             "moduleName": "SensorswaveSDK",
             "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
               "AccessControl",
-              "RawDocComment"
+              "ObjC"
             ],
-            "hasStorage": true,
             "accessors": [
               {
                 "kind": "Accessor",
@@ -1762,10 +1763,12 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC5debugSbvg",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)debug",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC5debugSbvg",
                 "moduleName": "SensorswaveSDK",
-                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "get"
               },
               {
@@ -1786,10 +1789,12 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC5debugSbvs",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)setDebug:",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC5debugSbvs",
                 "moduleName": "SensorswaveSDK",
-                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "set"
               },
               {
@@ -1825,16 +1830,13 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:14SensorswaveSDK0A6ConfigC11sourceTokenSSvp",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(py)sourceToken",
             "mangledName": "$s14SensorswaveSDK0A6ConfigC11sourceTokenSSvp",
             "moduleName": "SensorswaveSDK",
             "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
               "AccessControl",
-              "RawDocComment"
+              "ObjC"
             ],
-            "hasStorage": true,
             "accessors": [
               {
                 "kind": "Accessor",
@@ -1849,10 +1851,12 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC11sourceTokenSSvg",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)sourceToken",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC11sourceTokenSSvg",
                 "moduleName": "SensorswaveSDK",
-                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "get"
               },
               {
@@ -1873,10 +1877,12 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC11sourceTokenSSvs",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)setSourceToken:",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC11sourceTokenSSvs",
                 "moduleName": "SensorswaveSDK",
-                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "set"
               },
               {
@@ -1912,16 +1918,13 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:14SensorswaveSDK0A6ConfigC7apiHostSSvp",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(py)apiHost",
             "mangledName": "$s14SensorswaveSDK0A6ConfigC7apiHostSSvp",
             "moduleName": "SensorswaveSDK",
             "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
               "AccessControl",
-              "RawDocComment"
+              "ObjC"
             ],
-            "hasStorage": true,
             "accessors": [
               {
                 "kind": "Accessor",
@@ -1936,10 +1939,12 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC7apiHostSSvg",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)apiHost",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC7apiHostSSvg",
                 "moduleName": "SensorswaveSDK",
-                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "get"
               },
               {
@@ -1960,10 +1965,12 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC7apiHostSSvs",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)setApiHost:",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC7apiHostSSvs",
                 "moduleName": "SensorswaveSDK",
-                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "set"
               },
               {
@@ -1999,16 +2006,13 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:14SensorswaveSDK0A6ConfigC11autoCaptureSbvp",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(py)autoCapture",
             "mangledName": "$s14SensorswaveSDK0A6ConfigC11autoCaptureSbvp",
             "moduleName": "SensorswaveSDK",
             "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
               "AccessControl",
-              "RawDocComment"
+              "ObjC"
             ],
-            "hasStorage": true,
             "accessors": [
               {
                 "kind": "Accessor",
@@ -2023,10 +2027,12 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC11autoCaptureSbvg",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)autoCapture",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC11autoCaptureSbvg",
                 "moduleName": "SensorswaveSDK",
-                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "get"
               },
               {
@@ -2047,10 +2053,12 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC11autoCaptureSbvs",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)setAutoCapture:",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC11autoCaptureSbvs",
                 "moduleName": "SensorswaveSDK",
-                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "set"
               },
               {
@@ -2086,16 +2094,13 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:14SensorswaveSDK0A6ConfigC8enableABSbvp",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(py)enableAB",
             "mangledName": "$s14SensorswaveSDK0A6ConfigC8enableABSbvp",
             "moduleName": "SensorswaveSDK",
             "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
               "AccessControl",
-              "RawDocComment"
+              "ObjC"
             ],
-            "hasStorage": true,
             "accessors": [
               {
                 "kind": "Accessor",
@@ -2110,10 +2115,12 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC8enableABSbvg",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)enableAB",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC8enableABSbvg",
                 "moduleName": "SensorswaveSDK",
-                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "get"
               },
               {
@@ -2134,10 +2141,12 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC8enableABSbvs",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)setEnableAB:",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC8enableABSbvs",
                 "moduleName": "SensorswaveSDK",
-                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "set"
               },
               {
@@ -2173,16 +2182,14 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:14SensorswaveSDK0A6ConfigC17abRefreshIntervalSdvp",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(py)abRefreshInterval",
             "mangledName": "$s14SensorswaveSDK0A6ConfigC17abRefreshIntervalSdvp",
             "moduleName": "SensorswaveSDK",
             "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
               "AccessControl",
+              "ObjC",
               "RawDocComment"
             ],
-            "hasStorage": true,
             "accessors": [
               {
                 "kind": "Accessor",
@@ -2197,10 +2204,12 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC17abRefreshIntervalSdvg",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)abRefreshInterval",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC17abRefreshIntervalSdvg",
                 "moduleName": "SensorswaveSDK",
-                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "get"
               },
               {
@@ -2221,10 +2230,12 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC17abRefreshIntervalSdvs",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)setAbRefreshInterval:",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC17abRefreshIntervalSdvs",
                 "moduleName": "SensorswaveSDK",
-                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "set"
               },
               {
@@ -2260,16 +2271,13 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:14SensorswaveSDK0A6ConfigC9batchSendSbvp",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(py)batchSend",
             "mangledName": "$s14SensorswaveSDK0A6ConfigC9batchSendSbvp",
             "moduleName": "SensorswaveSDK",
             "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
               "AccessControl",
-              "RawDocComment"
+              "ObjC"
             ],
-            "hasStorage": true,
             "accessors": [
               {
                 "kind": "Accessor",
@@ -2284,10 +2292,12 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC9batchSendSbvg",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)batchSend",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC9batchSendSbvg",
                 "moduleName": "SensorswaveSDK",
-                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "get"
               },
               {
@@ -2308,10 +2318,12 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC9batchSendSbvs",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)setBatchSend:",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC9batchSendSbvs",
                 "moduleName": "SensorswaveSDK",
-                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "set"
               },
               {
@@ -2347,16 +2359,13 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:14SensorswaveSDK0A6ConfigC16enableClickTrackSbvp",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(py)enableClickTrack",
             "mangledName": "$s14SensorswaveSDK0A6ConfigC16enableClickTrackSbvp",
             "moduleName": "SensorswaveSDK",
             "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
               "AccessControl",
-              "RawDocComment"
+              "ObjC"
             ],
-            "hasStorage": true,
             "accessors": [
               {
                 "kind": "Accessor",
@@ -2371,10 +2380,12 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC16enableClickTrackSbvg",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)enableClickTrack",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC16enableClickTrackSbvg",
                 "moduleName": "SensorswaveSDK",
-                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "get"
               },
               {
@@ -2395,10 +2406,12 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC16enableClickTrackSbvs",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)setEnableClickTrack:",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC16enableClickTrackSbvs",
                 "moduleName": "SensorswaveSDK",
-                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "set"
               },
               {
@@ -2434,13 +2447,14 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:14SensorswaveSDK0A6ConfigC12maxQueueSizeSivp",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(py)maxQueueSize",
             "mangledName": "$s14SensorswaveSDK0A6ConfigC12maxQueueSizeSivp",
             "moduleName": "SensorswaveSDK",
             "declAttributes": [
               "HasInitialValue",
               "HasStorage",
               "AccessControl",
+              "ObjC",
               "RawDocComment"
             ],
             "hasStorage": true,
@@ -2458,10 +2472,13 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC12maxQueueSizeSivg",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)maxQueueSize",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC12maxQueueSizeSivg",
                 "moduleName": "SensorswaveSDK",
                 "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "get"
               },
               {
@@ -2482,10 +2499,13 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC12maxQueueSizeSivs",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)setMaxQueueSize:",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC12maxQueueSizeSivs",
                 "moduleName": "SensorswaveSDK",
                 "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "set"
               },
               {
@@ -2521,13 +2541,14 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:14SensorswaveSDK0A6ConfigC14requestTimeoutSdvp",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(py)requestTimeout",
             "mangledName": "$s14SensorswaveSDK0A6ConfigC14requestTimeoutSdvp",
             "moduleName": "SensorswaveSDK",
             "declAttributes": [
               "HasInitialValue",
               "HasStorage",
               "AccessControl",
+              "ObjC",
               "RawDocComment"
             ],
             "hasStorage": true,
@@ -2545,10 +2566,13 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC14requestTimeoutSdvg",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)requestTimeout",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC14requestTimeoutSdvg",
                 "moduleName": "SensorswaveSDK",
                 "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "get"
               },
               {
@@ -2569,10 +2593,13 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6ConfigC14requestTimeoutSdvs",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)setRequestTimeout:",
                 "mangledName": "$s14SensorswaveSDK0A6ConfigC14requestTimeoutSdvs",
                 "moduleName": "SensorswaveSDK",
                 "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "accessorKind": "set"
               },
               {
@@ -2608,11 +2635,12 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14SensorswaveSDK0A6ConfigC7isValidSbyF",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)isValid",
             "mangledName": "$s14SensorswaveSDK0A6ConfigC7isValidSbyF",
             "moduleName": "SensorswaveSDK",
             "declAttributes": [
               "AccessControl",
+              "ObjC",
               "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
@@ -2643,11 +2671,12 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14SensorswaveSDK0A6ConfigC03getC7SummarySDySSypGyF",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)getConfigSummary",
             "mangledName": "$s14SensorswaveSDK0A6ConfigC03getC7SummarySDySSypGyF",
             "moduleName": "SensorswaveSDK",
             "declAttributes": [
               "AccessControl",
+              "ObjC",
               "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
@@ -2951,11 +2980,12 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:14SensorswaveSDK0A6PluginP4nameSSvp",
+            "usr": "c:@M@SensorswaveSDK@objc(pl)SensorswavePlugin(py)name",
             "mangledName": "$s14SensorswaveSDK0A6PluginP4nameSSvp",
             "moduleName": "SensorswaveSDK",
             "protocolReq": true,
             "declAttributes": [
+              "ObjC",
               "RawDocComment"
             ],
             "accessors": [
@@ -2972,12 +3002,15 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6PluginP4nameSSvg",
+                "usr": "c:@M@SensorswaveSDK@objc(pl)SensorswavePlugin(im)name",
                 "mangledName": "$s14SensorswaveSDK0A6PluginP4nameSSvg",
                 "moduleName": "SensorswaveSDK",
                 "genericSig": "<τ_0_0 where τ_0_0 : SensorswaveSDK.SensorswavePlugin>",
                 "sugared_genericSig": "<Self where Self : SensorswaveSDK.SensorswavePlugin>",
                 "protocolReq": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "reqNewWitnessTableEntry": true,
                 "accessorKind": "get"
               }
@@ -3007,13 +3040,15 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14SensorswaveSDK0A6PluginP10initialize11application6configySo13UIApplicationC_AA0A6ConfigCtF",
+            "usr": "c:@M@SensorswaveSDK@objc(pl)SensorswavePlugin(im)initializeWithApplication:config:",
             "mangledName": "$s14SensorswaveSDK0A6PluginP10initialize11application6configySo13UIApplicationC_AA0A6ConfigCtF",
             "moduleName": "SensorswaveSDK",
             "genericSig": "<τ_0_0 where τ_0_0 : SensorswaveSDK.SensorswavePlugin>",
             "sugared_genericSig": "<Self where Self : SensorswaveSDK.SensorswavePlugin>",
             "protocolReq": true,
+            "objc_name": "initializeWithApplication:config:",
             "declAttributes": [
+              "ObjC",
               "RawDocComment"
             ],
             "reqNewWitnessTableEntry": true,
@@ -3031,13 +3066,14 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14SensorswaveSDK0A6PluginP6enableyyF",
+            "usr": "c:@M@SensorswaveSDK@objc(pl)SensorswavePlugin(im)enable",
             "mangledName": "$s14SensorswaveSDK0A6PluginP6enableyyF",
             "moduleName": "SensorswaveSDK",
             "genericSig": "<τ_0_0 where τ_0_0 : SensorswaveSDK.SensorswavePlugin>",
             "sugared_genericSig": "<Self where Self : SensorswaveSDK.SensorswavePlugin>",
             "protocolReq": true,
             "declAttributes": [
+              "ObjC",
               "RawDocComment"
             ],
             "reqNewWitnessTableEntry": true,
@@ -3055,13 +3091,14 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14SensorswaveSDK0A6PluginP7disableyyF",
+            "usr": "c:@M@SensorswaveSDK@objc(pl)SensorswavePlugin(im)disable",
             "mangledName": "$s14SensorswaveSDK0A6PluginP7disableyyF",
             "moduleName": "SensorswaveSDK",
             "genericSig": "<τ_0_0 where τ_0_0 : SensorswaveSDK.SensorswavePlugin>",
             "sugared_genericSig": "<Self where Self : SensorswaveSDK.SensorswavePlugin>",
             "protocolReq": true,
             "declAttributes": [
+              "ObjC",
               "RawDocComment"
             ],
             "reqNewWitnessTableEntry": true,
@@ -3080,11 +3117,12 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:14SensorswaveSDK0A6PluginP9isEnabledSbvp",
+            "usr": "c:@M@SensorswaveSDK@objc(pl)SensorswavePlugin(py)isEnabled",
             "mangledName": "$s14SensorswaveSDK0A6PluginP9isEnabledSbvp",
             "moduleName": "SensorswaveSDK",
             "protocolReq": true,
             "declAttributes": [
+              "ObjC",
               "RawDocComment"
             ],
             "accessors": [
@@ -3101,12 +3139,15 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:14SensorswaveSDK0A6PluginP9isEnabledSbvg",
+                "usr": "c:@M@SensorswaveSDK@objc(pl)SensorswavePlugin(im)isEnabled",
                 "mangledName": "$s14SensorswaveSDK0A6PluginP9isEnabledSbvg",
                 "moduleName": "SensorswaveSDK",
                 "genericSig": "<τ_0_0 where τ_0_0 : SensorswaveSDK.SensorswavePlugin>",
                 "sugared_genericSig": "<Self where Self : SensorswaveSDK.SensorswavePlugin>",
                 "protocolReq": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
                 "reqNewWitnessTableEntry": true,
                 "accessorKind": "get"
               }
@@ -3114,11 +3155,14 @@
           }
         ],
         "declKind": "Protocol",
-        "usr": "s:14SensorswaveSDK0A6PluginP",
+        "usr": "c:@M@SensorswaveSDK@objc(pl)SensorswavePlugin",
         "mangledName": "$s14SensorswaveSDK0A6PluginP",
         "moduleName": "SensorswaveSDK",
+        "genericSig": "<τ_0_0 : ObjectiveC.NSObjectProtocol>",
+        "sugared_genericSig": "<Self : ObjectiveC.NSObjectProtocol>",
         "declAttributes": [
           "AccessControl",
+          "ObjC",
           "RawDocComment"
         ],
         "conformances": [
@@ -4065,322 +4109,238 @@
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "BooleanLiteral",
-      "offset": 604,
+      "offset": 627,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "Dictionary",
-      "offset": 681,
+      "offset": 704,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "BooleanLiteral",
-      "offset": 781,
+      "offset": 804,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "Array",
-      "offset": 901,
+      "offset": 924,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "StringLiteral",
-      "offset": 7127,
+      "offset": 7150,
       "length": 7,
       "value": "\"Value\""
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "Dictionary",
-      "offset": 8565,
+      "offset": 8588,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 306,
+      "offset": 308,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "StringLiteral",
-      "offset": 371,
+      "offset": 480,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "StringLiteral",
-      "offset": 591,
-      "length": 4,
-      "value": "\"\/$\""
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 603,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 711,
-      "length": 19,
-      "value": "\"SensorswaveConfig\""
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 741,
-      "length": 26,
-      "value": "\"API Host cannot be empty\""
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 810,
-      "length": 9,
-      "value": "\"http:\/\/\""
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 843,
-      "length": 10,
-      "value": "\"https:\/\/\""
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 899,
-      "length": 19,
-      "value": "\"SensorswaveConfig\""
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 929,
-      "length": 48,
-      "value": "\"API Host should start with http:\/\/ or https:\/\/\""
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 432,
+      "offset": 668,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 1078,
+      "offset": 1419,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 1140,
+      "offset": 1606,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 1316,
-      "length": 5,
-      "value": "30000"
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 1366,
-      "length": 19,
-      "value": "\"SensorswaveConfig\""
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 1396,
-      "length": 65,
-      "value": "\"Experiment refresh interval too short, using minimum 30 seconds\""
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1499,
-      "length": 5,
-      "value": "30000"
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1235,
+      "offset": 1817,
       "length": 2,
       "value": "10"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 1240,
+      "offset": 1822,
       "length": 2,
       "value": "60"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 1245,
+      "offset": 1827,
       "length": 4,
       "value": "1000"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 1602,
+      "offset": 2322,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 1681,
+      "offset": 2520,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 1803,
+      "offset": 2786,
       "length": 2,
       "value": "10"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "StringLiteral",
-      "offset": 1850,
+      "offset": 2833,
       "length": 19,
       "value": "\"SensorswaveConfig\""
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "StringLiteral",
-      "offset": 1880,
+      "offset": 2863,
       "length": 44,
       "value": "\"Max queue size too small, using minimum 10\""
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 1957,
+      "offset": 2940,
       "length": 2,
       "value": "10"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 1997,
+      "offset": 2980,
       "length": 4,
       "value": "1000"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "StringLiteral",
-      "offset": 2046,
+      "offset": 3029,
       "length": 19,
       "value": "\"SensorswaveConfig\""
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "StringLiteral",
-      "offset": 2076,
+      "offset": 3059,
       "length": 46,
       "value": "\"Max queue size too large, using maximum 1000\""
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 2155,
+      "offset": 3138,
       "length": 4,
       "value": "1000"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 1750,
+      "offset": 2733,
       "length": 3,
       "value": "100"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 2342,
+      "offset": 3331,
       "length": 4,
       "value": "5000"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "StringLiteral",
-      "offset": 2391,
+      "offset": 3380,
       "length": 19,
       "value": "\"SensorswaveConfig\""
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "StringLiteral",
-      "offset": 2421,
+      "offset": 3410,
       "length": 52,
       "value": "\"Request timeout too short, using minimum 5 seconds\""
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 2508,
+      "offset": 3497,
       "length": 4,
       "value": "5000"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 2552,
+      "offset": 3541,
       "length": 6,
       "value": "120000"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "StringLiteral",
-      "offset": 2603,
+      "offset": 3592,
       "length": 19,
       "value": "\"SensorswaveConfig\""
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "StringLiteral",
-      "offset": 2633,
+      "offset": 3622,
       "length": 53,
       "value": "\"Request timeout too long, using maximum 120 seconds\""
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 2721,
+      "offset": 3710,
       "length": 6,
       "value": "120000"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 2276,
+      "offset": 3265,
       "length": 5,
       "value": "30000"
     },
@@ -4816,7 +4776,7 @@
       "kind": "IntegerLiteral",
       "offset": 417,
       "length": 1,
-      "value": "2"
+      "value": "3"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/Version.swift",
