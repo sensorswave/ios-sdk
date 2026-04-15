@@ -6,47 +6,47 @@
 	<dict>
 		<key>Headers/SensorswaveSDK-Swift.h</key>
 		<data>
-		Wcy1boaYFaRTXyjUGeGjt8/x4+o=
+		nX42zVoXbIlEkxFpPp90DQYT8Uk=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		UdI7tADXzJM+/FIwI+u04bjpCB8=
+		jNxe1mNs7HNf6CK4zJrkB8i+SVU=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		pJoFSR1SLa0eVCnfaxN891Bn+00=
+		PSZ7LzJwDt1zLdZ8QgEHh2uue1s=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		p2KtGLRC2zzF5qgmbMoEjIxmhXE=
+		L/2T16Bg1m/2lnq6RubUwq+ms58=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		ad0s3Rhs+eol4F+C1Av5LbHZLuc=
+		3Fj07MwmsKhBvId8m2ZCP5rzPjI=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		p2KtGLRC2zzF5qgmbMoEjIxmhXE=
+		L/2T16Bg1m/2lnq6RubUwq+ms58=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		pJoFSR1SLa0eVCnfaxN891Bn+00=
+		PSZ7LzJwDt1zLdZ8QgEHh2uue1s=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		zL8QOjS0H6MA4TM9evBZpCTPBvw=
+		f7uPBzFGNXqA454CM2yakxGsnvI=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		OZ0XYEKaRH/6WyUAO+zHefFVVrs=
+		kRJFwp7GmRbHzFlM2D+ndNWNcuk=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		zL8QOjS0H6MA4TM9evBZpCTPBvw=
+		f7uPBzFGNXqA454CM2yakxGsnvI=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		nURWV5Xj/kwVEeXZjN8o07iRAuk=
+		p/ijuPiE7C72UjyM5vWQjLPFKfA=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -55,35 +55,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			KM3MaR4kD0zeL3GWRbsHrV7UQNEwa0ixYJyBoqf8hN8=
+			BcJp6IEirxpMixKJk2oF3KvT8KSQITjHT7k4hXHxwTw=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1ZtfXqDHCVyk7JHdGlFZ6majrasHSX9lFA/YQ2mFrmw=
+			dKP1X+qxSoT8Ik9N31LCkS4hbr/MApuULxdkVeCK3HE=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			P1FNTJdz8pSiVpDdQ+9UjqMaw0E1SHNOkRVHvWxh9Xg=
+			coA2fNFkOEx2QKt2AMkwasA70c9QmKCkl10ZbfNgjdM=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KS8jIdozVIiT6EwVF2+cojbE7Ou1O7VFZ8tSVxQDonM=
+			Yd4p5UcMLskGsf+esmt0bVvXWLNsuHZ85ry9Ipxnkhg=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			P1FNTJdz8pSiVpDdQ+9UjqMaw0E1SHNOkRVHvWxh9Xg=
+			coA2fNFkOEx2QKt2AMkwasA70c9QmKCkl10ZbfNgjdM=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
@@ -95,28 +95,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1ZtfXqDHCVyk7JHdGlFZ6majrasHSX9lFA/YQ2mFrmw=
+			dKP1X+qxSoT8Ik9N31LCkS4hbr/MApuULxdkVeCK3HE=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FuFJ0/q3tdsTdpru7GcG6eGyOhAJ2LaEoWvKagnOMHU=
+			YuRxc+H0ucyl3N2UUV60Fi7IhetJZXjiRlW7ipaCOns=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0kCO6RiiVR6yqgH7v+lCxYxtR08R2Ug08ywDALH4UHE=
+			ytFin9mI0bp+iPmQYWvhHjo3WaC8VyKkQ7tC+3Uidcc=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FuFJ0/q3tdsTdpru7GcG6eGyOhAJ2LaEoWvKagnOMHU=
+			YuRxc+H0ucyl3N2UUV60Fi7IhetJZXjiRlW7ipaCOns=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
@@ -128,7 +128,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			4egM0PIjUqMZfUw3nbxI0q8/2bS+qugDnaNV9l2ozMo=
+			4K/IdV+1smXJDHPZB1qtrJ/V7aGZzuQpuMLpjtViRlQ=
 			</data>
 		</dict>
 	</dict>

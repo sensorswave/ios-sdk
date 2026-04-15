@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.2.3 effective-5.10 (swiftlang-6.2.3.3.21 clang-1700.6.3.2)
-// swift-module-flags: -target arm64-apple-ios13 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name SensorswaveSDK
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.3
+// swift-compiler-version: Apple Swift version 6.3 effective-5.10 (swiftlang-6.3.0.123.5 clang-2100.0.123.102)
+// swift-module-flags: -target arm64-apple-ios13 -enable-objc-interop -enable-library-evolution -swift-version 5 -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name SensorswaveSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3
 import CoreTelephony
 import Foundation
 import ObjectiveC
@@ -20,9 +20,7 @@ import _SwiftConcurrencyShims
   public var description: Swift.String {
     get
   }
-  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
-  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -62,9 +60,7 @@ import _SwiftConcurrencyShims
   @objc(getCurrentPageTitle) public func getCurrentPageTitle() -> Swift.String
   @objc(getReferrerTitle) public func getReferrerTitle() -> Swift.String
   @objc(checkFeatureGate:callback:) public func checkFeatureGate(key: Swift.String, callback: @escaping (Swift.Bool) -> Swift.Void)
-  #if compiler(>=5.3) && $NonescapableTypes
   @objc(getExperiment:callback:) public func getExperiment(key: Swift.String, callback: @escaping ([Swift.String : Any]?) -> Swift.Void)
-  #endif
 }
 @_inheritsConvenienceInitializers @objc public class SensorswaveConfig : ObjectiveC.NSObject {
   @objc public var debug: Swift.Bool {
@@ -121,6 +117,9 @@ extension Dispatch.DispatchQueue {
   @objc func enable()
   @objc func disable()
   @objc var isEnabled: Swift.Bool { get }
+}
+extension Foundation.NSNotification.Name {
+  public static let sensorswaveOpenURL: Foundation.Notification.Name
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class SensorswaveVersion : ObjectiveC.NSObject {
   @objc public static let major: Swift.Int

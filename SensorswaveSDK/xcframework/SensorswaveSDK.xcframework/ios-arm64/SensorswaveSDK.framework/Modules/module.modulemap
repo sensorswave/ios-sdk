@@ -1,4 +1,3 @@
 framework module SensorswaveSDK {
   header "SensorswaveSDK-Swift.h"
-  requires objc
 }
