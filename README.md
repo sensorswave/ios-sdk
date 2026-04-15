@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.enableClickTrack = true           // Enable click tracking
         config.enableAB = true                  // Enable A/B testing
         config.abRefreshInterval = 5 * 60 * 1000  // 5 minute refresh interval
-        config.batchSend = true                 // Enable batch sending
+        config.batchSend = false                // Enable batch sending (disabled by default)
 
         // Initialize SDK
         Sensorswave.getInstance().setup(
@@ -90,7 +90,7 @@ Sensorswave.getInstance().trackEvent(eventName: "button_click", properties: [
 | `enableClickTrack` | Bool | false | Enable automatic click tracking |
 | `enableAB` | Bool | false | Enable A/B testing functionality |
 | `abRefreshInterval` | TimeInterval | 600000 (10 minutes) | A/B test config refresh interval (ms), minimum 30 seconds |
-| `batchSend` | Bool | true | Enable batch sending (collect 10 events or send every 5 seconds) |
+| `batchSend` | Bool | false | Enable batch sending (collect 10 events or send every 5 seconds) |
 
 **Configuration Example:**
 
@@ -102,7 +102,7 @@ config.autoCapture = true
 config.enableClickTrack = true
 config.enableAB = true
 config.abRefreshInterval = 5 * 60 * 1000  // 5 minutes
-config.batchSend = true
+config.batchSend = false  // Disabled by default, set to true to enable
 ```
 
 ## API Methods
@@ -163,7 +163,7 @@ Sensorswave.getInstance().track(event: [
     ],
     "time": Int64(Date().timeIntervalSince1970 * 1000),
     "trace_id": UUID().uuidString,
-    "login_id": "user@example.com"
+    "login_id": "user_12345"
 ])
 ```
 
@@ -183,7 +183,6 @@ Set user properties. If a property already exists, it will be overwritten.
 ```swift
 Sensorswave.getInstance().profileSet([
     "name": "Zhang San",
-    "email": "zhangsan@example.com",
     "age": 30,
     "plan": "premium"
 ])
@@ -317,7 +316,7 @@ Set the current user's login ID and send a binding event ($Identify), associatin
 **Example:**
 
 ```swift
-Sensorswave.getInstance().identify(loginId: "user@example.com")
+Sensorswave.getInstance().identify(loginId: "user_12345")
 ```
 
 #### setLoginId
@@ -332,7 +331,7 @@ Set the current user's login ID, but does NOT send the binding event.
 **Example:**
 
 ```swift
-Sensorswave.getInstance().setLoginId(loginId: "user@example.com")
+Sensorswave.getInstance().setLoginId(loginId: "user_12345")
 ```
 
 ### Common Properties
@@ -469,7 +468,7 @@ All SDK operations are thread-safe:
 Enabling batch sending can reduce the number of network requests and improve performance:
 
 ```swift
-config.batchSend = true
+config.batchSend = true  // Disabled by default
 ```
 
 **Batch Sending Behavior:**
@@ -590,7 +589,7 @@ func application(_ application: UIApplication,
     let config = SensorswaveConfig()
     config.debug = false           // Disable debug in production
     config.apiHost = "https://api.example.com"
-    config.batchSend = true          // Enable batch sending
+    config.batchSend = true          // Enable batch sending (disabled by default)
 
     Sensorswave.getInstance().setup(
         sourceToken: "your-source-token",
@@ -633,7 +632,7 @@ Sensorswave.getInstance().trackEvent(eventName: "event", properties: [
 // Production environment configuration
 let config = SensorswaveConfig()
 config.debug = false           // Disable debug
-config.batchSend = true          // Enable batch sending
+config.batchSend = true          // Enable batch sending (disabled by default)
 ```
 
 ## License

@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.enableClickTrack = true           // 启用点击追踪
         config.enableAB = true                  // 启用 A/B 测试
         config.abRefreshInterval = 5 * 60 * 1000  // 5 分钟刷新间隔
-        config.batchSend = true                 // 启用批量发送
+        config.batchSend = false                // 启用批量发送（默认关闭）
 
         // 初始化 SDK
         Sensorswave.getInstance().setup(
@@ -89,6 +89,7 @@ Sensorswave.getInstance().trackEvent(eventName: "ButtonClick", properties: [
 | `enableClickTrack` | Bool | false | 是否启用自动点击追踪 |
 | `enableAB` | Bool | false | 是否启用 A/B 测试功能 |
 | `abRefreshInterval` | TimeInterval | 600000 (10分钟) | A/B 测试配置刷新间隔（毫秒），最小 30 秒 |
+| `batchSend` | Bool | false | 是否启用批量发送（收集10条事件后发送或每5秒发送一次） |
 
 **配置示例：**
 
@@ -100,7 +101,7 @@ config.autoCapture = true
 config.enableClickTrack = true
 config.enableAB = true
 config.abRefreshInterval = 5 * 60 * 1000  // 5 分钟
-config.batchSend = true
+config.batchSend = true  // 默认为 false，启用可减少网络请求
 ```
 
 ## API 方法
@@ -160,7 +161,7 @@ Sensorswave.getInstance().track(event: [
     ],
     "time": Int64(Date().timeIntervalSince1970 * 1000),
     "trace_id": UUID().uuidString,
-    "login_id": "user@example.com"
+    "login_id": "user_12345"
 ])
 ```
 
@@ -180,7 +181,6 @@ Sensorswave.getInstance().track(event: [
 ```swift
 Sensorswave.getInstance().profileSet([
     "name": "张三",
-    "email": "zhangsan@example.com",
     "age": 30,
     "plan": "premium"
 ])
@@ -314,7 +314,7 @@ Sensorswave.getInstance().profileDelete()
 **示例：**
 
 ```swift
-Sensorswave.getInstance().identify(loginId: "user@example.com")
+Sensorswave.getInstance().identify(loginId: "user_12345")
 ```
 
 #### setLoginId
@@ -329,7 +329,7 @@ Sensorswave.getInstance().identify(loginId: "user@example.com")
 **示例：**
 
 ```swift
-Sensorswave.getInstance().setLoginId(loginId: "user@example.com")
+Sensorswave.getInstance().setLoginId(loginId: "user_12345")
 ```
 
 ### 公共属性
@@ -465,7 +465,7 @@ SDK 中的所有操作都是线程安全的：
 启用批量发送可以减少网络请求次数，提高性能：
 
 ```swift
-config.batchSend = true
+config.batchSend = true  // 默认为 false
 ```
 
 **批量发送行为：**
@@ -621,7 +621,7 @@ Sensorswave.getInstance().trackEvent(eventName: "Event", properties: [
 // 生产环境配置
 let config = SensorswaveConfig()
 config.debug = false           // 关闭调试
-config.batchSend = true          // 启用批量发送
+config.batchSend = false         // 启用批量发送（默认关闭）
 ```
 
 ## 许可证
