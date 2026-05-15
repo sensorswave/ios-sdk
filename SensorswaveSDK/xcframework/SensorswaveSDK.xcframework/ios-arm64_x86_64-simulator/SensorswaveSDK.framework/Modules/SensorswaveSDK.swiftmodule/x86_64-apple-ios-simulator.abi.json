@@ -1583,7 +1583,7 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "([Swift.String : Any]?) -> ()",
+                "printedName": "([Swift.String : Any]) -> ()",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -1592,39 +1592,77 @@
                   },
                   {
                     "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "[Swift.String : Any]?",
+                    "name": "Dictionary",
+                    "printedName": "[Swift.String : Any]",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "Dictionary",
-                        "printedName": "[Swift.String : Any]",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "String",
-                            "printedName": "Swift.String",
-                            "usr": "s:SS"
-                          },
-                          {
-                            "kind": "TypeNominal",
-                            "name": "ProtocolComposition",
-                            "printedName": "Any"
-                          }
-                        ],
-                        "usr": "s:SD"
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ProtocolComposition",
+                        "printedName": "Any"
                       }
                     ],
-                    "usr": "s:Sq"
+                    "usr": "s:SD"
                   }
                 ]
               }
             ],
             "declKind": "Func",
             "usr": "c:@M@SensorswaveSDK@objc(cs)Sensorswave(im)getExperiment:callback:",
-            "mangledName": "$s14SensorswaveSDK0A0C13getExperiment3key8callbackySS_ySDySSypGSgctF",
+            "mangledName": "$s14SensorswaveSDK0A0C13getExperiment3key8callbackySS_ySDySSypGctF",
             "moduleName": "SensorswaveSDK",
             "objc_name": "getExperiment:callback:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getFeatureConfig",
+            "printedName": "getFeatureConfig(key:callback:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Any) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)Sensorswave(im)getFeatureConfig:callback:",
+            "mangledName": "$s14SensorswaveSDK0A0C16getFeatureConfig3key8callbackySS_yypctF",
+            "moduleName": "SensorswaveSDK",
+            "objc_name": "getFeatureConfig:callback:",
             "declAttributes": [
               "AccessControl",
               "ObjC",
@@ -4343,14 +4381,14 @@
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "StringLiteral",
-      "offset": 7046,
+      "offset": 6649,
       "length": 7,
       "value": "\"Value\""
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "Dictionary",
-      "offset": 8110,
+      "offset": 7624,
       "length": 3,
       "value": "[]"
     },
@@ -4378,175 +4416,119 @@
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 1419,
+      "offset": 1059,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 1606,
+      "offset": 1246,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 1817,
+      "offset": 1457,
       "length": 2,
       "value": "10"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 1822,
+      "offset": 1462,
       "length": 2,
       "value": "60"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 1827,
+      "offset": 1467,
       "length": 4,
       "value": "1000"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 2322,
+      "offset": 1823,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 2521,
+      "offset": 2022,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 2787,
-      "length": 2,
-      "value": "10"
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 2834,
-      "length": 19,
-      "value": "\"SensorswaveConfig\""
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 2864,
-      "length": 44,
-      "value": "\"Max queue size too small, using minimum 10\""
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2941,
+      "offset": 2288,
       "length": 2,
       "value": "10"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 2981,
-      "length": 4,
-      "value": "1000"
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 3030,
-      "length": 19,
-      "value": "\"SensorswaveConfig\""
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 3060,
-      "length": 46,
-      "value": "\"Max queue size too large, using maximum 1000\""
+      "offset": 2324,
+      "length": 2,
+      "value": "10"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 3139,
+      "offset": 2364,
       "length": 4,
       "value": "1000"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 2734,
+      "offset": 2402,
+      "length": 4,
+      "value": "1000"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2235,
       "length": 3,
       "value": "100"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 3332,
-      "length": 4,
-      "value": "5000"
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 3381,
-      "length": 19,
-      "value": "\"SensorswaveConfig\""
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 3411,
-      "length": 52,
-      "value": "\"Request timeout too short, using minimum 5 seconds\""
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "IntegerLiteral",
-      "offset": 3498,
+      "offset": 2595,
       "length": 4,
       "value": "5000"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 3542,
-      "length": 6,
-      "value": "120000"
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 3593,
-      "length": 19,
-      "value": "\"SensorswaveConfig\""
-    },
-    {
-      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
-      "kind": "StringLiteral",
-      "offset": 3623,
-      "length": 53,
-      "value": "\"Request timeout too long, using maximum 120 seconds\""
+      "offset": 2635,
+      "length": 4,
+      "value": "5000"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 3711,
+      "offset": 2679,
       "length": 6,
       "value": "120000"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 3266,
+      "offset": 2721,
+      "length": 6,
+      "value": "120000"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2529,
       "length": 5,
       "value": "30000"
     },
@@ -4566,10 +4548,73 @@
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveSend.swift",
+      "kind": "Dictionary",
+      "offset": 7238,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveSend.swift",
+      "kind": "Dictionary",
+      "offset": 10533,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveSend.swift",
+      "kind": "Dictionary",
+      "offset": 10920,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveSend.swift",
+      "kind": "Dictionary",
+      "offset": 11303,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveSend.swift",
+      "kind": "Dictionary",
+      "offset": 11653,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveSend.swift",
+      "kind": "Dictionary",
+      "offset": 12064,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveSend.swift",
+      "kind": "Dictionary",
+      "offset": 12536,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveSend.swift",
+      "kind": "Dictionary",
+      "offset": 17496,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveSend.swift",
       "kind": "BooleanLiteral",
-      "offset": 19759,
+      "offset": 20315,
       "length": 4,
       "value": "true"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveSend.swift",
+      "kind": "Dictionary",
+      "offset": 24275,
+      "length": 3,
+      "value": "[]"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Store.swift",
@@ -4658,35 +4703,35 @@
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/plugins\/ABTestPlugin.swift",
       "kind": "StringLiteral",
-      "offset": 993,
+      "offset": 1083,
       "length": 14,
       "value": "\"ABTestPlugin\""
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/plugins\/ABTestPlugin.swift",
       "kind": "BooleanLiteral",
-      "offset": 1037,
+      "offset": 1127,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/plugins\/ABTestPlugin.swift",
       "kind": "BooleanLiteral",
-      "offset": 1214,
+      "offset": 1304,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/plugins\/ABTestPlugin.swift",
       "kind": "IntegerLiteral",
-      "offset": 1271,
+      "offset": 1361,
       "length": 5,
       "value": "30000"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/plugins\/ABTestPlugin.swift",
       "kind": "StringLiteral",
-      "offset": 1336,
+      "offset": 1426,
       "length": 14,
       "value": "\"ABTestPlugin\""
     },
@@ -5059,7 +5104,7 @@
       "kind": "IntegerLiteral",
       "offset": 357,
       "length": 1,
-      "value": "2"
+      "value": "3"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/Version.swift",

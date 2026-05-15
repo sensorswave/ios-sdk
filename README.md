@@ -66,6 +66,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 **Note:** Please replace `https://api.example.com` and `your-source-token` with your actual values.
 
+#### Initialize SDK (Objective-C)
+
+Initialize the SDK in the `application:didFinishLaunchingWithOptions:` method in `AppDelegate.m`:
+
+```objc
+#import <UIKit/UIKit.h>
+#import <SensorswaveSDK/SensorswaveSDK-Swift.h>
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@end
+
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    // Create configuration
+    SensorswaveConfig *config = [[SensorswaveConfig alloc] init];
+    config.debug = NO;                     // Disable debug in production
+    config.apiHost = @"https://api.example.com";  // Replace with your API Host
+    config.autoCapture = YES;              // Enable automatic collection
+    config.enableClickTrack = YES;         // Enable click tracking
+    config.enableAB = YES;                 // Enable A/B testing
+    config.abRefreshInterval = 5 * 60 * 1000;  // 5 minute refresh interval
+    config.batchSend = NO;                // Enable batch sending (disabled by default)
+
+    // Initialize SDK
+    [[Sensorswave getInstance] setup:@"your-source-token" config:config];
+
+    return YES;
+}
+
+@end
+```
+
 ### 3. Track Custom Events
 
 ```swift
@@ -78,6 +113,19 @@ Sensorswave.getInstance().trackEvent(eventName: "button_click", properties: [
     "page": "home",
     "category": "user_action"
 ])
+```
+
+```objc
+// Track simple event
+[[Sensorswave getInstance] trackEvent:@"button_click" properties:nil];
+
+// Track event with properties
+[[Sensorswave getInstance] trackEvent:@"button_click"
+                                     properties:@{
+                                         @"buttonName": @"submit",
+                                         @"page": @"home",
+                                         @"category": @"user_action"
+                                     }];
 ```
 
 ## Configuration Options
@@ -103,6 +151,17 @@ config.enableClickTrack = true
 config.enableAB = true
 config.abRefreshInterval = 5 * 60 * 1000  // 5 minutes
 config.batchSend = false  // Disabled by default, set to true to enable
+```
+
+```objc
+SensorswaveConfig *config = [[SensorswaveConfig alloc] init];
+config.debug = YES;
+config.apiHost = @"https://api.example.com";
+config.autoCapture = YES;
+config.enableClickTrack = YES;
+config.enableAB = YES;
+config.abRefreshInterval = 5 * 60 * 1000;  // 5 minutes
+config.batchSend = NO;  // Disabled by default, set to YES to enable
 ```
 
 ## API Methods
@@ -132,6 +191,20 @@ Sensorswave.getInstance().trackEvent(eventName: "purchase_completed", properties
     "currency": "USD",
     "category": "ecommerce"
 ])
+```
+
+```objc
+// Simple event
+[[Sensorswave getInstance] trackEvent:@"user_login" properties:nil];
+
+// Event with properties
+[[Sensorswave getInstance] trackEvent:@"purchase_completed"
+                                     properties:@{
+                                         @"product_id": @"12345",
+                                         @"amount": @99.99,
+                                         @"currency": @"USD",
+                                         @"category": @"ecommerce"
+                                     }];
 ```
 
 #### track
@@ -167,6 +240,20 @@ Sensorswave.getInstance().track(event: [
 ])
 ```
 
+```objc
+// Using complete event object
+[[Sensorswave getInstance] track:@{
+    @"event": @"custom_event",
+    @"properties": @{
+        @"key1": @"value1",
+        @"key2": @"value2"
+    },
+    @"time": @([[NSDate date] timeIntervalSince1970] * 1000),
+    @"trace_id": [[NSUUID UUID] UUIDString],
+    @"login_id": @"user_12345"
+}];
+```
+
 ### User Properties
 
 #### profileSet
@@ -188,6 +275,14 @@ Sensorswave.getInstance().profileSet([
 ])
 ```
 
+```objc
+[[Sensorswave getInstance] profileSet:@{
+    @"name": @"Zhang San",
+    @"age": @30,
+    @"plan": @"premium"
+}];
+```
+
 #### profileSetOnce
 
 Set one-time user properties. If a property doesn't exist, it will be set. If it already exists, it will be ignored.
@@ -205,6 +300,14 @@ Sensorswave.getInstance().profileSetOnce([
     "initial_referrer": "google",
     "initial_campaign": "spring_sale"
 ])
+```
+
+```objc
+[[Sensorswave getInstance] profileSetOnce:@{
+    @"signup_date": @"2024-01-15",
+    @"initial_referrer": @"google",
+    @"initial_campaign": @"spring_sale"
+}];
 ```
 
 #### profileIncrement
@@ -232,6 +335,18 @@ Sensorswave.getInstance().profileIncrement(properties: [
 ])
 ```
 
+```objc
+// Increment single property
+[[Sensorswave getInstance] profileIncrement:@{@"login_count": @1}];
+
+// Increment multiple properties
+[[Sensorswave getInstance] profileIncrement:@{
+    @"login_count": @1,
+    @"points_earned": @100,
+    @"purchases_count": @1
+}];
+```
+
 #### profileAppend
 
 Append values to list-type user properties. Does NOT remove duplicates.
@@ -250,6 +365,13 @@ Sensorswave.getInstance().profileAppend(properties: [
 ])
 ```
 
+```objc
+[[Sensorswave getInstance] profileAppend:@{
+    @"categories_viewed": @[@"electronics", @"mobile_phones"],
+    @"tags": @[@"new_customer", @"q1_2024"]
+}];
+```
+
 #### profileUnion
 
 Append values to list-type user properties. DOES remove duplicates.
@@ -266,6 +388,13 @@ Sensorswave.getInstance().profileUnion(properties: [
     "interests": ["technology", "gaming"],
     "newsletter_subscriptions": ["tech_news"]
 ])
+```
+
+```objc
+[[Sensorswave getInstance] profileUnion:@{
+    @"interests": @[@"technology", @"gaming"],
+    @"newsletter_subscriptions": @[@"tech_news"]
+}];
 ```
 
 #### profileUnset
@@ -288,6 +417,14 @@ Sensorswave.getInstance().profileUnset(key: "temporary_campaign")
 Sensorswave.getInstance().profileUnset(keys: ["old_plan", "expired_flag", "temp_id"])
 ```
 
+```objc
+// Clear single property
+[[Sensorswave getInstance] profileUnsetKey:@"temporary_campaign"];
+
+// Clear multiple properties
+[[Sensorswave getInstance] profileUnsetKeys:@[@"old_plan", @"expired_flag", @"temp_id"]];
+```
+
 #### profileDelete
 
 Delete all user properties data. This operation cannot be undone.
@@ -300,6 +437,10 @@ Delete all user properties data. This operation cannot be undone.
 
 ```swift
 Sensorswave.getInstance().profileDelete()
+```
+
+```objc
+[[Sensorswave getInstance] profileDelete];
 ```
 
 ### User Identification
@@ -319,6 +460,10 @@ Set the current user's login ID and send a binding event ($Identify), associatin
 Sensorswave.getInstance().identify(loginId: "user_12345")
 ```
 
+```objc
+[[Sensorswave getInstance] identify:@"user_12345"];
+```
+
 #### setLoginId
 
 Set the current user's login ID, but does NOT send the binding event.
@@ -332,6 +477,10 @@ Set the current user's login ID, but does NOT send the binding event.
 
 ```swift
 Sensorswave.getInstance().setLoginId(loginId: "user_12345")
+```
+
+```objc
+[[Sensorswave getInstance] setLoginId:@"user_12345"];
 ```
 
 ### Common Properties
@@ -356,6 +505,15 @@ Sensorswave.getInstance().registerCommonProperties(properties: [
 ])
 ```
 
+```objc
+[[Sensorswave getInstance] registerCommonProperties:@{
+    // Static properties
+    @"app_version": @"1.0.0",
+    @"environment": @"production",
+    @"user_role": @"guest"
+}];
+```
+
 **Note:** The iOS SDK currently only supports static properties. For dynamic properties, please update them before each event send.
 
 #### clearCommonProperties
@@ -371,6 +529,10 @@ Clear specific registered common properties.
 
 ```swift
 Sensorswave.getInstance().clearCommonProperties(keys: ["app_version", "user_role"])
+```
+
+```objc
+[[Sensorswave getInstance] clearCommonProperties:@[@"app_version", @"user_role"]];
 ```
 
 ### A/B Testing
@@ -402,13 +564,28 @@ Sensorswave.getInstance().checkFeatureGate(key: "new_checkout_flow") { isEnabled
 }
 ```
 
+```objc
+// Check feature gate
+[[Sensorswave getInstance] checkFeatureGate:@"new_checkout_flow" callback:^(BOOL isEnabled) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (isEnabled) {
+            // Enable new feature
+            [self showNewCheckout];
+        } else {
+            // Use old feature
+            [self showOldCheckout];
+        }
+    });
+}];
+```
+
 #### getExperiment
 
 Get the current user's experiment configuration.
 
 **Parameters:**
 - `key` (String, required): Experiment key name
-- `callback` ([String: Any]? -> Void, required): Callback function that returns experiment configuration
+- `callback` ([String: Any] -> Void, required): Callback function that returns experiment configuration
 
 **Returns:** None
 
@@ -418,7 +595,7 @@ Get the current user's experiment configuration.
 // Get experiment configuration
 Sensorswave.getInstance().getExperiment(key: "homepage_layout") { config in
     DispatchQueue.main.async {
-        guard let config = config else {
+        if config.isEmpty {
             // Default configuration
             self.applyDefaultLayout()
             return
@@ -432,6 +609,85 @@ Sensorswave.getInstance().getExperiment(key: "homepage_layout") { config in
 }
 ```
 
+```objc
+// Get experiment configuration
+[[Sensorswave getInstance] getExperiment:@"homepage_layout" callback:^(NSDictionary<NSString *,id> *config) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (config.count > 0) {
+            // Apply experiment configuration
+            NSString *layoutType = config[@"layout_type"];
+            [self applyLayout:layoutType];
+        } else {
+            // Default configuration
+            [self applyDefaultLayout];
+        }
+    });
+}];
+```
+
+#### getFeatureConfig
+
+Get the current user's feature configuration (returns dynamic type).
+
+**Parameters:**
+- `key` (String, required): Feature configuration key name
+- `callback` (Any -> Void, required): Callback function that returns feature configuration
+
+**Returns:** None
+
+**Example:**
+
+```swift
+// Get feature configuration
+Sensorswave.getInstance().getFeatureConfig(key: "app_settings") { config in
+    DispatchQueue.main.async {
+        // Handle different return types
+        if let dictConfig = config as? [String: Any] {
+            // JSON object: {"theme": "dark", "max_size": 100}
+            if let theme = dictConfig["theme"] as? String {
+                self.applyTheme(theme)
+            }
+            if let maxSize = dictConfig["max_size"] as? Int {
+                self.updateMaxSize(maxSize)
+            }
+        } else if let stringConfig = config as? String {
+            // Raw string value
+            self.applyRawConfig(stringConfig)
+        } else if let dictConfig = config as? [String: Any], dictConfig.isEmpty {
+            // Empty config - use defaults
+            self.applyDefaultConfig()
+        }
+    }
+}
+```
+
+```objc
+// Get feature configuration
+[[Sensorswave getInstance] getFeatureConfig:@"app_settings" callback:^(id config) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([config isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dictConfig = (NSDictionary *)config;
+            if (dictConfig.count > 0) {
+                // Apply feature configuration
+                NSString *theme = dictConfig[@"theme"];
+                NSNumber *maxSize = dictConfig[@"max_size"];
+                [self applyTheme:theme];
+                [self updateMaxSize:[maxSize integerValue]];
+            } else {
+                // Empty config - use defaults
+                [self applyDefaultConfig];
+            }
+        } else if ([config isKindOfClass:[NSString class]]) {
+            // Raw string value
+            NSString *stringConfig = (NSString *)config;
+            [self applyRawConfig:stringConfig];
+        }
+    });
+}];
+```
+
+**Note:** This method returns a dynamic type (`Any`). The value from server may be a JSON string that will be automatically parsed to a dictionary. If parsing fails, the raw value (string) is returned. If the config is not found, an empty dictionary is returned.
+
 **Configuration Notes:**
 
 A/B testing needs to be enabled first in the configuration:
@@ -439,6 +695,13 @@ A/B testing needs to be enabled first in the configuration:
 ```swift
 config.enableAB = true
 config.abRefreshInterval = 10 * 60 * 1000  // 10 minute refresh interval
+```
+
+**Configuration Notes (Objective-C):**
+
+```objc
+config.enableAB = YES;
+config.abRefreshInterval = 10 * 60 * 1000;  // 10 minute refresh interval
 ```
 
 ## Automatic Events
@@ -469,6 +732,12 @@ Enabling batch sending can reduce the number of network requests and improve per
 
 ```swift
 config.batchSend = true  // Disabled by default
+```
+
+**Objective-C:**
+
+```objc
+config.batchSend = YES;  // Disabled by default
 ```
 
 **Batch Sending Behavior:**
@@ -503,6 +772,13 @@ let config = SensorswaveConfig()
 config.debug = true
 ```
 
+**Objective-C:**
+
+```objc
+SensorswaveConfig *config = [[SensorswaveConfig alloc] init];
+config.debug = YES;
+```
+
 When enabled, detailed log information will be output to console for debugging.
 
 ### 2. How to track user behavior?
@@ -524,6 +800,26 @@ Sensorswave.getInstance().profileSet([
 ])
 ```
 
+**Objective-C:**
+
+```objc
+// User login
+[[Sensorswave getInstance] identify:@"user123"];
+
+// Track purchase behavior
+[[Sensorswave getInstance] trackEvent:@"purchase"
+                                     properties:@{
+                                         @"product_id": @"12345",
+                                         @"amount": @99.99
+                                     }];
+
+// Set user properties
+[[Sensorswave getInstance] profileSet:@{
+    @"total_spent": @999.99,
+    @"purchase_count": @15
+}];
+```
+
 ### 3. How to use A/B testing?
 
 ```swift
@@ -542,12 +838,59 @@ Sensorswave.getInstance().checkFeatureGate(key: "new_feature") { isEnabled in
 // 3. Get experiment configuration
 Sensorswave.getInstance().getExperiment(key: "pricing_display") { config in
     DispatchQueue.main.async {
-        if let config = config,
-           let price = config["price"] as? Double {
+        if let price = config["price"] as? Double {
             self.updatePrice(price)
         }
     }
 }
+
+// 4. Get feature configuration
+Sensorswave.getInstance().getFeatureConfig(key: "app_settings") { config in
+    DispatchQueue.main.async {
+        if let dictConfig = config as? [String: Any], let theme = dictConfig["theme"] as? String {
+            self.applyTheme(theme)
+        }
+    }
+}
+```
+
+**Objective-C:**
+
+```objc
+// 1. Enable A/B testing
+config.enableAB = YES;
+
+// 2. Check feature gate
+[[Sensorswave getInstance] checkFeatureGate:@"new_feature" callback:^(BOOL isEnabled) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (isEnabled) {
+            [self enableNewFeature];
+        }
+    });
+}];
+
+// 3. Get experiment configuration
+[[Sensorswave getInstance] getExperiment:@"pricing_display" callback:^(NSDictionary<NSString *,id> *config) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSNumber *price = config[@"price"];
+        if (price) {
+            [self updatePrice:[price doubleValue]];
+        }
+    });
+}];
+
+// 4. Get feature configuration
+[[Sensorswave getInstance] getFeatureConfig:@"app_settings" callback:^(id config) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([config isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dictConfig = (NSDictionary *)config;
+            NSString *theme = dictConfig[@"theme"];
+            if (theme) {
+                [self applyTheme:theme];
+            }
+        }
+    });
+}];
 ```
 
 ### 4. How to handle network failures?
@@ -569,11 +912,27 @@ Sensorswave.getInstance().setCurrentPageTitle("Product Details")
 // SDK will automatically send $AppPageView event
 ```
 
+**Objective-C:**
+
+```objc
+// Set current page title
+[[Sensorswave getInstance] setCurrentPageTitle:@"Product Details"];
+
+// SDK will automatically send $AppPageView event
+```
+
 ### 6. How to clear user data?
 
 ```swift
 // Delete user properties
 Sensorswave.getInstance().profileDelete()
+```
+
+**Objective-C:**
+
+```objc
+// Delete user properties
+[[Sensorswave getInstance] profileDelete];
 ```
 
 ## Best Practices
@@ -600,6 +959,22 @@ func application(_ application: UIApplication,
 }
 ```
 
+**Objective-C:**
+
+```objc
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Initialize SDK as early as possible
+    SensorswaveConfig *config = [[SensorswaveConfig alloc] init];
+    config.debug = NO;           // Disable debug in production
+    config.apiHost = @"https://api.example.com";
+    config.batchSend = YES;       // Enable batch sending (disabled by default)
+
+    [[Sensorswave getInstance] setup:@"your-source-token" config:config];
+
+    return YES;
+}
+```
+
 ### 2. Event Property Guidelines
 
 **Recommended:**
@@ -621,6 +996,27 @@ Sensorswave.getInstance().trackEvent(eventName: "event", properties: [
 ])
 ```
 
+**Objective-C:**
+
+```objc
+// ✅ Recommended: Use meaningful property names
+[[Sensorswave getInstance] trackEvent:@"product_view"
+                                     properties:@{
+                                         @"product_id": @"12345",
+                                         @"product_name": @"iPhone 15 Pro",
+                                         @"category": @"electronics",
+                                         @"price": @999.99,
+                                         @"in_stock": @YES
+                                     }];
+
+// ❌ Not Recommended: Property name unclear
+[[Sensorswave getInstance] trackEvent:@"event"
+                                     properties:@{
+                                         @"data": @"some data",
+                                         @"info": @"test"
+                                     }];
+```
+
 **Property Naming Guidelines:**
 - Use snake_case naming: `button_name` not `buttonName`
 - Use meaningful names: `product_id` not `id`
@@ -633,6 +1029,15 @@ Sensorswave.getInstance().trackEvent(eventName: "event", properties: [
 let config = SensorswaveConfig()
 config.debug = false           // Disable debug
 config.batchSend = true          // Enable batch sending (disabled by default)
+```
+
+**Objective-C:**
+
+```objc
+// Production environment configuration
+SensorswaveConfig *config = [[SensorswaveConfig alloc] init];
+config.debug = NO;           // Disable debug
+config.batchSend = YES;       // Enable batch sending (disabled by default)
 ```
 
 ## License
