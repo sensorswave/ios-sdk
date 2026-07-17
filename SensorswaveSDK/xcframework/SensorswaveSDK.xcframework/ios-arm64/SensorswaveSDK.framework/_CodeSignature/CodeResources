@@ -6,27 +6,27 @@
 	<dict>
 		<key>Headers/SensorswaveSDK-Swift.h</key>
 		<data>
-		mmKzBst3G0tHafsivOSwqk/ELJc=
+		7lHQEu9W/xGAv+mxy8eV3ahvPgA=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		9cSZ+RrenLeSaO8r2EOTlcQuqes=
+		lqX1vVVWJonJMa0L/V3vP0fEx0g=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		paMhqd1YAroRB9MrFbnKiZ9oaww=
+		TOcPVSPeDeI4G34s3ITVR5n3GvE=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		xc3V97/NCUU9RrdVRXF07bG1PDE=
+		69hQqCqMWio+fyi7hKcG4KZNvOA=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		D2nx4ruTEPeSKIk/Y/kVL14Gclc=
+		at6MKO+UrpomCCwnweGb8wn34Zg=
 		</data>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		xc3V97/NCUU9RrdVRXF07bG1PDE=
+		69hQqCqMWio+fyi7hKcG4KZNvOA=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -39,35 +39,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			84Ve8uqCCkE8bT2l3RSY769TKlg2ngdM221po8qDVZQ=
+			5EZyeVrtoRv5e9mZtzlSQMn8YnGSxUos7RnG71pbI0E=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			UB8TeiWfOnRHYbHut0XwNLXdNnhK4lQDdLNAucneH6c=
+			uYnoMWqGxC3BcEFjFv1vPSiiV9tbFX0BW3mm17dlNfo=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			g3LOhHgfSiwzKTqMVkCm74LFvqThXAPH3D8GJyc2i44=
+			gjwsZXR+HwRS1HAgOIrsuNksV4Ubtc4xOurycT+TcgI=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ViJquDgIzgLDdKHZs3fAqkcUYh+bHs6q8KKEKl7+dew=
+			y723l//GnVElT4bd163guLaj3lNxkERN12qy+Ma8D/U=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			g3LOhHgfSiwzKTqMVkCm74LFvqThXAPH3D8GJyc2i44=
+			gjwsZXR+HwRS1HAgOIrsuNksV4Ubtc4xOurycT+TcgI=
 			</data>
 		</dict>
 		<key>Modules/SensorswaveSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
