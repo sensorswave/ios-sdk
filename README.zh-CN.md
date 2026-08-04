@@ -481,6 +481,52 @@ Sensorswave.getInstance().setLoginId(loginId: "user_12345")
 [[Sensorswave getInstance] setLoginId:@"user_12345"];
 ```
 
+#### getLoginId
+
+获取当前用户的登录 ID。如果用户未登录（即未通过 `identify` 或 `setLoginId` 设置登录 ID），返回空字符串。
+
+**参数：** 无
+
+**返回值：** `String` - 当前登录 ID，未设置时为空字符串
+
+**示例：**
+
+```swift
+let loginId = Sensorswave.getInstance().getLoginId()
+if loginId.isEmpty {
+    // 用户未登录
+} else {
+    // 使用 loginId
+}
+```
+
+```objc
+NSString *loginId = [[Sensorswave getInstance] getLoginId];
+if (loginId.length == 0) {
+    // 用户未登录
+} else {
+    // 使用 loginId
+}
+```
+
+#### getAnonId
+
+获取当前设备的匿名 ID。匿名 ID 在首次访问时生成并持久化保存，因此该方法始终返回非空字符串。
+
+**参数：** 无
+
+**返回值：** `String` - 匿名 ID（始终非空）
+
+**示例：**
+
+```swift
+let anonId = Sensorswave.getInstance().getAnonId()
+```
+
+```objc
+NSString *anonId = [[Sensorswave getInstance] getAnonId];
+```
+
 ### 公共属性
 
 #### registerCommonProperties

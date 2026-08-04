@@ -483,6 +483,52 @@ Sensorswave.getInstance().setLoginId(loginId: "user_12345")
 [[Sensorswave getInstance] setLoginId:@"user_12345"];
 ```
 
+#### getLoginId
+
+Get the current user's login ID. Returns an empty string if the user is not logged in (i.e., no login ID has been set via `identify` or `setLoginId`).
+
+**Parameters:** None
+
+**Returns:** `String` - The current login ID, or an empty string if not set
+
+**Example:**
+
+```swift
+let loginId = Sensorswave.getInstance().getLoginId()
+if loginId.isEmpty {
+    // User is not logged in
+} else {
+    // Use loginId
+}
+```
+
+```objc
+NSString *loginId = [[Sensorswave getInstance] getLoginId];
+if (loginId.length == 0) {
+    // User is not logged in
+} else {
+    // Use loginId
+}
+```
+
+#### getAnonId
+
+Get the current device's anonymous ID. The anonymous ID is generated on first access and persisted, so this method always returns a non-empty string.
+
+**Parameters:** None
+
+**Returns:** `String` - The anonymous ID (always non-empty)
+
+**Example:**
+
+```swift
+let anonId = Sensorswave.getInstance().getAnonId()
+```
+
+```objc
+NSString *anonId = [[Sensorswave getInstance] getAnonId];
+```
+
 ### Common Properties
 
 #### registerCommonProperties
