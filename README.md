@@ -139,6 +139,8 @@ Sensorswave.getInstance().trackEvent(eventName: "button_click", properties: [
 | `enableAB` | Bool | false | Enable A/B testing functionality |
 | `abRefreshInterval` | TimeInterval | 600000 (10 minutes) | A/B test config refresh interval (ms), minimum 30 seconds |
 | `batchSend` | Bool | false | Enable batch sending (collect 10 events or send every 5 seconds) |
+| `optOutCapturing` | Bool | false | Disable data collection by default (compliance switch). The SDK will not collect, send, or persist any events |
+| `persistOptOut` | Bool | false | Persist the opt-out consent state across app restarts via UserDefaults |
 
 **Configuration Example:**
 
@@ -808,6 +810,72 @@ The SDK has built-in intelligent error handling and retry mechanisms:
 
 - **HTTPS Encrypted Transfer** - All data is transmitted via HTTPS encryption
 - **Local Storage Security** - Sensitive data is stored in UserDefaults
+
+## Data Privacy & Opt-Out
+
+The SDK provides compliance controls that let you respect user consent and disable all data collection at runtime. This is useful for GDPR / privacy regulations where you must wait for — or honor a refusal of — user consent.
+
+### Configuration
+
+You can start the SDK in a fully disabled state and optionally remember the user's choice across app restarts:
+
+```swift
+let config = SensorswaveConfig()
+config.optOutCapturing = true     // Start with collection disabled
+config.persistOptOut = true       // Remember the choice across app restarts
+```
+
+**Objective-C:**
+
+```objc
+SensorswaveConfig *config = [[SensorswaveConfig alloc] init];
+config.optOutCapturing = YES;     // Start with collection disabled
+config.persistOptOut = YES;       // Remember the choice across app restarts
+```
+
+### Runtime API
+
+| Method | Description |
+|--------|-------------|
+| `optOutCapturing()` | Disable all data collection immediately |
+| `optInCapturing()` | Re-enable data collection |
+| `hasOptedOutCapturing()` | Returns whether collection is currently disabled |
+
+```swift
+// Disable collection (e.g., user declined consent)
+Sensorswave.getInstance().optOutCapturing()
+
+// Re-enable collection (e.g., user granted consent)
+Sensorswave.getInstance().optInCapturing()
+
+// Check the current state
+if Sensorswave.getInstance().hasOptedOutCapturing() {
+    // Collection is disabled
+}
+```
+
+**Objective-C:**
+
+```objc
+// Disable collection
+[[Sensorswave getInstance] optOutCapturing];
+
+// Re-enable collection
+[[Sensorswave getInstance] optInCapturing];
+
+// Check the current state
+if ([[Sensorswave getInstance] hasOptedOutCapturing]) {
+    // Collection is disabled
+}
+```
+
+### State persistence
+
+When `persistOptOut = true`, the consent state is written to UserDefaults and restored on the next app launch, so the user's choice survives restarts. On `setup()`, the initial state is resolved with this priority:
+
+1. An explicit `optInCapturing()` / `optOutCapturing()` call made **before** `setup()`
+2. The `optOutCapturing` config value
+3. The persisted value from UserDefaults (only when `persistOptOut = true`)
 
 ## Common Issues
 

@@ -37,6 +37,9 @@ import _SwiftConcurrencyShims
   @objc deinit
   @discardableResult
   public func setup(sourceToken: Swift.String, config: SensorswaveSDK.SensorswaveConfig) -> SensorswaveSDK.Sensorswave
+  @objc public func optOutCapturing()
+  @objc public func optInCapturing()
+  @objc public func hasOptedOutCapturing() -> Swift.Bool
   @objc(setup:config:) public func setup(_ sourceToken: Swift.String, config: SensorswaveSDK.SensorswaveConfig) -> SensorswaveSDK.Sensorswave
   @objc(track:) public func track(eventData: [Swift.String : Any])
   @objc(trackEvent:properties:) public func trackEvent(eventName: Swift.String, properties: [Swift.String : Any] = [:])
@@ -96,6 +99,14 @@ import _SwiftConcurrencyShims
     @objc get
     @objc set
   }
+  @objc public var optOutCapturing: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var persistOptOut: Swift.Bool {
+    @objc get
+    @objc set
+  }
   @objc public var maxQueueSize: Swift.Int {
     @objc get
     @objc set
@@ -118,6 +129,7 @@ extension Dispatch.DispatchQueue {
   @objc func enable()
   @objc func disable()
   @objc var isEnabled: Swift.Bool { get }
+  @objc optional var isAutoCapture: Swift.Bool { get }
 }
 extension Foundation.NSNotification.Name {
   public static let sensorswaveOpenURL: Foundation.Notification.Name

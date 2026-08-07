@@ -138,6 +138,8 @@ Sensorswave.getInstance().trackEvent(eventName: "ButtonClick", properties: [
 | `enableAB` | Bool | false | 是否启用 A/B 测试功能 |
 | `abRefreshInterval` | TimeInterval | 600000 (10分钟) | A/B 测试配置刷新间隔（毫秒），最小 30 秒 |
 | `batchSend` | Bool | false | 是否启用批量发送（收集10条事件后发送或每5秒发送一次） |
+| `optOutCapturing` | Bool | false | 是否默认禁用采集（合规开关）。启用后 SDK 不会采集、发送或持久化任何事件 |
+| `persistOptOut` | Bool | false | 是否将 opt-out 状态持久化到 UserDefaults，使其在 App 重启后保留 |
 
 **配置示例：**
 
@@ -805,6 +807,72 @@ SDK 内置了智能的错误处理和重试机制：
 
 - **HTTPS 加密传输** - 所有数据通过 HTTPS 加密传输
 - **本地存储安全** - 敏感数据存储在 UserDefaults 中
+
+## 数据合规与 Opt-Out
+
+SDK 提供合规采集开关，支持在运行时根据用户授权情况禁用全部数据采集。适用于 GDPR 等隐私合规场景：在取得用户授权前，或用户拒绝授权时，关闭采集。
+
+### 配置选项
+
+可以让 SDK 以默认禁用的状态启动，并可选地将用户的选择持久化、跨 App 重启保留：
+
+```swift
+let config = SensorswaveConfig()
+config.optOutCapturing = true     // 默认禁用采集启动
+config.persistOptOut = true       // 记住用户的选择，跨 App 重启保留
+```
+
+**Objective-C：**
+
+```objc
+SensorswaveConfig *config = [[SensorswaveConfig alloc] init];
+config.optOutCapturing = YES;     // 默认禁用采集启动
+config.persistOptOut = YES;       // 记住用户的选择，跨 App 重启保留
+```
+
+### 运行时 API
+
+| 方法 | 说明 |
+|------|------|
+| `optOutCapturing()` | 立即禁用全部数据采集 |
+| `optInCapturing()` | 恢复数据采集 |
+| `hasOptedOutCapturing()` | 查询当前是否已禁用采集 |
+
+```swift
+// 禁用采集（例如用户拒绝授权）
+Sensorswave.getInstance().optOutCapturing()
+
+// 恢复采集（例如用户已授权）
+Sensorswave.getInstance().optInCapturing()
+
+// 查询当前状态
+if Sensorswave.getInstance().hasOptedOutCapturing() {
+    // 当前采集已禁用
+}
+```
+
+**Objective-C：**
+
+```objc
+// 禁用采集
+[[Sensorswave getInstance] optOutCapturing];
+
+// 恢复采集
+[[Sensorswave getInstance] optInCapturing];
+
+// 查询当前状态
+if ([[Sensorswave getInstance] hasOptedOutCapturing]) {
+    // 当前采集已禁用
+}
+```
+
+### 状态持久化
+
+当 `persistOptOut = true` 时，授权状态会写入 UserDefaults，并在下次启动 App 时恢复，从而使用户的选择跨重启保留。`setup()` 时的初始状态按以下优先级判定：
+
+1. 在 `setup()` **之前**显式调用 `optInCapturing()` / `optOutCapturing()`
+2. 配置项 `optOutCapturing` 的值
+3. UserDefaults 中持久化的值（仅当 `persistOptOut = true` 时生效）
 
 ## 常见问题
 

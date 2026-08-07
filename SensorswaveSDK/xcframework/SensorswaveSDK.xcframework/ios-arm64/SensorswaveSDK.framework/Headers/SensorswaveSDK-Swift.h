@@ -393,6 +393,15 @@ SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
 + (Sensorswave * _Nonnull)getInstance SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+/// 禁用采集
+- (void)optOutCapturing;
+/// 允许采集
+- (void)optInCapturing;
+/// 查询当前是否已禁用采集
+///
+/// returns:
+/// true=已禁用，false=允许采集
+- (BOOL)hasOptedOutCapturing SWIFT_WARN_UNUSED_RESULT;
 /// 简化的SDK初始化方法（Objective-C兼容）
 /// Objective-C可使用简化方法名setup:config:
 /// \param sourceToken API令牌
@@ -445,10 +454,13 @@ SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
 - (void)profileDelete;
 /// 注册公共属性
 /// \param properties 公共属性
+/// 合规：opt-out 期间仍允许注册（仅写入内存，不上报），
+/// 以便开启采集后首条事件即可携带。
 ///
 - (void)registerCommonProperties:(NSDictionary<NSString *, id> * _Nonnull)properties;
 /// 清除公共属性
 /// \param keys 要清除的属性键列表
+/// 合规：opt-out 期间仍允许清除（仅操作内存）。
 ///
 - (void)clearCommonProperties:(NSArray<NSString *> * _Nonnull)keys;
 /// 设置登录用户ID并发送绑定事件
@@ -523,6 +535,8 @@ SWIFT_CLASS("_TtC14SensorswaveSDK17SensorswaveConfig")
 @property (nonatomic) NSTimeInterval abRefreshInterval;
 @property (nonatomic) BOOL batchSend;
 @property (nonatomic) BOOL enableClickTrack;
+@property (nonatomic) BOOL optOutCapturing;
+@property (nonatomic) BOOL persistOptOut;
 /// 最大队列大小
 @property (nonatomic) NSInteger maxQueueSize;
 /// 请求超时时间（毫秒）
@@ -569,6 +583,9 @@ SWIFT_PROTOCOL("_TtP14SensorswaveSDK17SensorswavePlugin_")
 - (void)disable;
 /// 插件是否已启用
 @property (nonatomic, readonly) BOOL isEnabled;
+@optional
+/// 是否为自动采集插件（opt-out 期间需要被禁用）
+@property (nonatomic, readonly) BOOL isAutoCapture;
 @end
 
 /// Sensorswave SDK Version
