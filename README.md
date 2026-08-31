@@ -50,6 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.autoCapture = true              // Enable automatic collection
         config.enableClickTrack = true           // Enable click tracking
         config.enableAB = true                  // Enable A/B testing
+        config.enableCrashTrack = true           // Enable crash tracking (fatal)
+        config.enableErrorTrack = true           // Enable error-level tracking
         config.abRefreshInterval = 5 * 60 * 1000  // 5 minute refresh interval
         config.batchSend = false                // Enable batch sending (disabled by default)
 
@@ -89,6 +91,8 @@ Initialize the SDK in the `application:didFinishLaunchingWithOptions:` method in
     config.autoCapture = YES;              // Enable automatic collection
     config.enableClickTrack = YES;         // Enable click tracking
     config.enableAB = YES;                 // Enable A/B testing
+    config.enableCrashTrack = YES;         // Enable crash tracking (fatal)
+    config.enableErrorTrack = YES;         // Enable error-level tracking
     config.abRefreshInterval = 5 * 60 * 1000;  // 5 minute refresh interval
     config.batchSend = NO;                // Enable batch sending (disabled by default)
 
@@ -137,6 +141,8 @@ Sensorswave.getInstance().trackEvent(eventName: "button_click", properties: [
 | `autoCapture` | Bool | true | Enable automatic event collection (page views, app starts, etc.) |
 | `enableClickTrack` | Bool | false | Enable automatic click tracking |
 | `enableAB` | Bool | false | Enable A/B testing functionality |
+| `enableCrashTrack` | Bool | false | Enable crash tracking (fatal `$Exception` events). Independent of `autoCapture`. Reports are sent on the next launch after a crash. Not installed while a debugger is attached |
+| `enableErrorTrack` | Bool | false | Enable error-level collection (enables the manual `trackException` API). Independent of `autoCapture` |
 | `abRefreshInterval` | TimeInterval | 600000 (10 minutes) | A/B test config refresh interval (ms), minimum 30 seconds |
 | `batchSend` | Bool | false | Enable batch sending (collect 10 events or send every 5 seconds) |
 | `optOutCapturing` | Bool | false | Disable data collection by default (compliance switch). The SDK will not collect, send, or persist any events |
@@ -151,6 +157,8 @@ config.apiHost = "https://api.example.com"
 config.autoCapture = true
 config.enableClickTrack = true
 config.enableAB = true
+config.enableCrashTrack = true
+config.enableErrorTrack = true
 config.abRefreshInterval = 5 * 60 * 1000  // 5 minutes
 config.batchSend = false  // Disabled by default, set to true to enable
 ```
@@ -162,6 +170,8 @@ config.apiHost = @"https://api.example.com";
 config.autoCapture = YES;
 config.enableClickTrack = YES;
 config.enableAB = YES;
+config.enableCrashTrack = YES;
+config.enableErrorTrack = YES;
 config.abRefreshInterval = 5 * 60 * 1000;  // 5 minutes
 config.batchSend = NO;  // Disabled by default, set to YES to enable
 ```
@@ -485,6 +495,33 @@ Sensorswave.getInstance().setLoginId(loginId: "user_12345")
 [[Sensorswave getInstance] setLoginId:@"user_12345"];
 ```
 
+#### reset
+
+Called when the user logs out. Unbinds the login ID from the device. By default the anonymous ID is preserved, so subsequent events are attributed to the same anonymous ID.
+
+**Parameters:**
+- `resetAnonId` (Bool, optional): Pass `true` to also reset the anonymous ID and generate a new one (e.g., for shared/public devices). Defaults to `false`.
+
+**Returns:** None
+
+**Example:**
+
+```swift
+// On user logout (keeps the anonymous ID)
+Sensorswave.getInstance().reset()
+
+// Also reset the anonymous ID (e.g., shared device scenario)
+Sensorswave.getInstance().reset(true)
+```
+
+```objc
+// On user logout (keeps the anonymous ID)
+[[Sensorswave getInstance] reset:NO];
+
+// Also reset the anonymous ID (e.g., shared device scenario)
+[[Sensorswave getInstance] reset:YES];
+```
+
 #### getLoginId
 
 Get the current user's login ID. Returns an empty string if the user is not logged in (i.e., no login ID has been set via `identify` or `setLoginId`).
@@ -752,6 +789,67 @@ config.enableAB = YES;
 config.abRefreshInterval = 10 * 60 * 1000;  // 10 minute refresh interval
 ```
 
+## Exception Tracking
+
+The SDK reports exceptions via the preset `$Exception` event, which has the following properties:
+
+| Property | Type | Description |
+|---|---|---|
+| `$exception_level` | String | `"fatal"` (uncaught exception/signal terminated the process) or `"error"` (a caught error, reported manually) |
+| `$exception_type` | String | Exception class name, e.g. `NSRangeException`, `SIGSEGV`, or an NSError domain |
+| `$exception_message` | String | Message only, no stack |
+| `$exception_frames` | Array&lt;Object&gt; | Structured stack frames (unified multi-platform format, max 30 frames). Each frame has `platform` (`ios`), `module` (binary image), `function` and `instruction_addr` (absolute runtime address, PAC-stripped, 16-digit zero-padded hex); frames that resolve to an image also carry `image_addr` (image load address), `debug_id` (Mach-O UUID, uppercase hyphenated) and `in_app`; `filename`/`lineno`/`colno` are included only when debug symbols provide them |
+
+**Server-side symbolication (dSYM)**: frames are self-contained — match the uploaded dSYM by `debug_id`, then `atos -arch arm64 -o <dSYM/DWARF/binary> -l <image_addr> <instruction_addr>` resolves file:line (offset = `instruction_addr - image_addr`; both are captured together — for fatal crashes, at crash time). ASLR changes every launch, so `image_addr` must never be recomputed across launches.
+
+Two independent switches control exception tracking (both default to `false` and neither is affected by `autoCapture`):
+
+```swift
+config.enableCrashTrack = true  // fatal: uncaught NSException + fatal signals (SIGABRT/SIGSEGV/SIGFPE/SIGBUS/SIGILL/SIGTRAP, covering Swift fatalError)
+config.enableErrorTrack = true  // error: enables the manual trackException API
+```
+
+```objc
+config.enableCrashTrack = YES;
+config.enableErrorTrack = YES;
+```
+
+### Manual Error Reporting
+
+Use `trackException` to report errors you have already caught (requires `enableErrorTrack = true`):
+
+```swift
+// Swift Error (or NSError)
+Sensorswave.getInstance().trackException(
+    NSError(domain: "com.example.app", code: -1009,
+            userInfo: [NSLocalizedDescriptionKey: "Network unavailable"]),
+    properties: ["scene": "checkout"]
+)
+
+// NSException
+Sensorswave.getInstance().trackException(
+    NSException(name: NSExceptionName("NSRangeException"),
+                reason: "index 5 beyond bounds", userInfo: nil)
+)
+```
+
+```objc
+// NSError: trackExceptionError:properties:
+[[Sensorswave getInstance] trackExceptionError:error properties:@{@"scene": @"checkout"}];
+
+// NSException: trackException:properties:
+[[Sensorswave getInstance] trackException:exception properties:nil];
+```
+
+Custom `properties` are merged into the event and reported with level `"error"`.
+
+### Crash Reporting Behavior (fatal)
+
+- Crash reports (uncaught `NSException` and fatal signals) are written synchronously to disk when the crash occurs, then reported as `$Exception` with level `"fatal"` **on the next app launch**, using the crash timestamp as the event `time`. Failed sends are retried through the SDK's existing queue/retry mechanism.
+- Crash handlers are **not installed while a debugger is attached** (to avoid interfering with breakpoints). To verify crash reporting, run the app without Xcode attached (e.g. launch it directly from the home screen).
+- If the user has opted out (`optOutCapturing`), pending crash reports are deleted without being sent.
+- Existing crash handlers installed by other SDKs are preserved and chained.
+
 ## Automatic Events
 
 When `autoCapture` is enabled, the SDK will automatically collect the following events:
@@ -765,6 +863,8 @@ When `autoCapture` is enabled, the SDK will automatically collect the following 
 When `enableClickTrack` is enabled, the SDK will also automatically collect:
 
 - **$AppClick** - Click event
+
+When `enableCrashTrack` / `enableErrorTrack` are enabled, the SDK also collects **$Exception** events (see [Exception Tracking](#exception-tracking)).
 
 ## Thread Safety
 

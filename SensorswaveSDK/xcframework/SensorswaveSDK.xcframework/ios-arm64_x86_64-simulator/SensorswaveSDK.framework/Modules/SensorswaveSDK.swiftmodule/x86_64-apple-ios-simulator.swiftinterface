@@ -4,6 +4,7 @@
 // swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.3
 import CoreTelephony
 import Foundation
+import MachO
 import ObjectiveC
 import Swift
 import UIKit
@@ -40,9 +41,14 @@ import _SwiftConcurrencyShims
   @objc public func optOutCapturing()
   @objc public func optInCapturing()
   @objc public func hasOptedOutCapturing() -> Swift.Bool
+  @objc public var isInited: Swift.Bool {
+    @objc get
+  }
   @objc(setup:config:) public func setup(_ sourceToken: Swift.String, config: SensorswaveSDK.SensorswaveConfig) -> SensorswaveSDK.Sensorswave
   @objc(track:) public func track(eventData: [Swift.String : Any])
   @objc(trackEvent:properties:) public func trackEvent(eventName: Swift.String, properties: [Swift.String : Any] = [:])
+  @objc(trackException:properties:) public func trackException(_ exception: Foundation.NSException, properties: [Swift.String : Any] = [:])
+  @objc(trackExceptionError:properties:) public func trackException(_ error: any Swift.Error, properties: [Swift.String : Any] = [:])
   @objc(profileSet:) public func profileSet(properties: [Swift.String : Any])
   @objc(profileSetOnce:) public func profileSetOnce(properties: [Swift.String : Any])
   @objc(profileIncrement:) public func profileIncrement(properties: [Swift.String : Any])
@@ -57,6 +63,7 @@ import _SwiftConcurrencyShims
   @objc(setLoginId:) public func setLoginId(loginId: Swift.String)
   @objc(getAnonId) public func getAnonId() -> Swift.String
   @objc(getLoginId) public func getLoginId() -> Swift.String
+  @objc(reset:) public func reset(_ resetAnonId: Swift.Bool = false)
   @objc(onFeatureFlags:) public func onFeatureFlags(callback: @escaping () -> Swift.Void)
   @objc(setCurrentPageTitle:) public func setCurrentPageTitle(_ pageTitle: Swift.String)
   @objc(setReferrerTitle:) public func setReferrerTitle(_ referrerTitle: Swift.String)
@@ -92,6 +99,14 @@ import _SwiftConcurrencyShims
     @objc set
   }
   @objc public var batchSend: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var enableCrashTrack: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var enableErrorTrack: Swift.Bool {
     @objc get
     @objc set
   }

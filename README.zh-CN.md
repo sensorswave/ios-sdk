@@ -49,6 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.autoCapture = true              // 启用自动采集
         config.enableClickTrack = true           // 启用点击追踪
         config.enableAB = true                  // 启用 A/B 测试
+        config.enableCrashTrack = true           // 启用 Crash 采集（fatal）
+        config.enableErrorTrack = true           // 启用 error 级别采集
         config.abRefreshInterval = 5 * 60 * 1000  // 5 分钟刷新间隔
         config.batchSend = false                // 启用批量发送（默认关闭）
 
@@ -88,6 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     config.autoCapture = YES;              // 启用自动采集
     config.enableClickTrack = YES;         // 启用点击追踪
     config.enableAB = YES;                 // 启用 A/B 测试
+    config.enableCrashTrack = YES;         // 启用 Crash 采集（fatal）
+    config.enableErrorTrack = YES;         // 启用 error 级别采集
     config.abRefreshInterval = 5 * 60 * 1000;  // 5 分钟刷新间隔
     config.batchSend = NO;                 // 启用批量发送（默认关闭）
 
@@ -136,6 +140,8 @@ Sensorswave.getInstance().trackEvent(eventName: "ButtonClick", properties: [
 | `autoCapture` | Bool | true | 是否自动采集事件（页面浏览、应用启动等） |
 | `enableClickTrack` | Bool | false | 是否启用自动点击追踪 |
 | `enableAB` | Bool | false | 是否启用 A/B 测试功能 |
+| `enableCrashTrack` | Bool | false | 是否启用 Crash 采集（fatal 级别 `$Exception` 事件）。独立于 `autoCapture`；崩溃后下次启动补报；调试器挂载时不安装 hook |
+| `enableErrorTrack` | Bool | false | 是否启用 error 级别采集（开通手动 `trackException` API）。独立于 `autoCapture` |
 | `abRefreshInterval` | TimeInterval | 600000 (10分钟) | A/B 测试配置刷新间隔（毫秒），最小 30 秒 |
 | `batchSend` | Bool | false | 是否启用批量发送（收集10条事件后发送或每5秒发送一次） |
 | `optOutCapturing` | Bool | false | 是否默认禁用采集（合规开关）。启用后 SDK 不会采集、发送或持久化任何事件 |
@@ -150,6 +156,8 @@ config.apiHost = "https://api.example.com"
 config.autoCapture = true
 config.enableClickTrack = true
 config.enableAB = true
+config.enableCrashTrack = true
+config.enableErrorTrack = true
 config.abRefreshInterval = 5 * 60 * 1000  // 5 分钟
 config.batchSend = true  // 默认为 false，启用可减少网络请求
 ```
@@ -161,6 +169,8 @@ config.apiHost = @"https://api.example.com";
 config.autoCapture = YES;
 config.enableClickTrack = YES;
 config.enableAB = YES;
+config.enableCrashTrack = YES;
+config.enableErrorTrack = YES;
 config.abRefreshInterval = 5 * 60 * 1000;  // 5 分钟
 config.batchSend = YES;  // 默认为 NO，启用可减少网络请求
 ```
@@ -483,6 +493,33 @@ Sensorswave.getInstance().setLoginId(loginId: "user_12345")
 [[Sensorswave getInstance] setLoginId:@"user_12345"];
 ```
 
+#### reset
+
+用户登出时调用，解除登录 ID 与设备的绑定。默认保留匿名 ID，登出后的事件继续归属到同一匿名 ID。
+
+**参数：**
+- `resetAnonId` (Bool, 可选): 传 `true` 时同时重置匿名 ID 并生成新的匿名 ID（如公共设备场景）。默认 `false`。
+
+**返回值：** 无
+
+**示例：**
+
+```swift
+// 用户登出时（默认保留匿名 ID）
+Sensorswave.getInstance().reset()
+
+// 同时重置匿名 ID（如公共设备场景）
+Sensorswave.getInstance().reset(true)
+```
+
+```objc
+// 用户登出时（默认保留匿名 ID）
+[[Sensorswave getInstance] reset:NO];
+
+// 同时重置匿名 ID（如公共设备场景）
+[[Sensorswave getInstance] reset:YES];
+```
+
 #### getLoginId
 
 获取当前用户的登录 ID。如果用户未登录（即未通过 `identify` 或 `setLoginId` 设置登录 ID），返回空字符串。
@@ -750,6 +787,67 @@ config.enableAB = YES;
 config.abRefreshInterval = 10 * 60 * 1000;  // 10 分钟刷新间隔
 ```
 
+## 异常捕获上报
+
+SDK 通过预置事件 `$Exception` 上报异常，属性如下：
+
+| 属性 | 类型 | 说明 |
+|---|---|---|
+| `$exception_level` | String | `"fatal"`（未捕获异常/信号导致进程终止）/ `"error"`（已捕获的错误，手动上报） |
+| `$exception_type` | String | 异常类全名，如 `NSRangeException`、`SIGSEGV`、NSError 的 domain |
+| `$exception_message` | String | 仅 message，不含堆栈 |
+| `$exception_frames` | Array&lt;Object&gt; | 结构化堆栈帧（多端统一格式，最多 30 帧）。每帧含 `platform`（`ios`）、`module`（二进制镜像名）、`function`、`instruction_addr`（运行时绝对地址，PAC 已剥，16 位补零 hex）；帧命中镜像时附 `image_addr`（镜像加载基址）、`debug_id`（Mach-O UUID，大写连字符）、`in_app`；`filename`/`lineno`/`colno` 仅调试符号带源码信息时包含 |
+
+**服务端符号化（dSYM）**：帧自包含符号化原料——按 `debug_id` 匹配上传的 dSYM，`atos -arch arm64 -o <dSYM/DWARF/二进制> -l <image_addr> <instruction_addr>` 即可还原 file:line（偏移 = `instruction_addr - image_addr`，两者同场采集，fatal 场景为崩溃时刻值）。ASLR 每次启动不同，不能跨启动重算 `image_addr`。
+
+异常采集由两个独立开关控制（默认均为 `false`，均不受 `autoCapture` 影响）：
+
+```swift
+config.enableCrashTrack = true  // fatal：未捕获 NSException + 致命信号（SIGABRT/SIGSEGV/SIGFPE/SIGBUS/SIGILL/SIGTRAP，覆盖 Swift fatalError）
+config.enableErrorTrack = true  // error：开通手动 trackException API
+```
+
+```objc
+config.enableCrashTrack = YES;
+config.enableErrorTrack = YES;
+```
+
+### 手动上报已捕获错误
+
+调用 `trackException` 上报已捕获的错误（需 `enableErrorTrack = true`）：
+
+```swift
+// Swift Error（或 NSError）
+Sensorswave.getInstance().trackException(
+    NSError(domain: "com.example.app", code: -1009,
+            userInfo: [NSLocalizedDescriptionKey: "网络连接已断开"]),
+    properties: ["scene": "checkout"]
+)
+
+// NSException
+Sensorswave.getInstance().trackException(
+    NSException(name: NSExceptionName("NSRangeException"),
+                reason: "index 5 beyond bounds", userInfo: nil)
+)
+```
+
+```objc
+// NSError：trackExceptionError:properties:
+[[Sensorswave getInstance] trackExceptionError:error properties:@{@"scene": @"checkout"}];
+
+// NSException：trackException:properties:
+[[Sensorswave getInstance] trackException:exception properties:nil];
+```
+
+自定义 `properties` 会合并进事件，事件以 level = `"error"` 上报。
+
+### Crash 上报行为（fatal）
+
+- 崩溃报告（未捕获 `NSException` 与致命信号）在崩溃发生时同步落盘，**下次启动 App 时**以 `$Exception`（level = `"fatal"`）补报，事件 `time` 为崩溃发生时刻；发送失败走 SDK 既有的队列重试机制。
+- **调试器挂载时不安装 crash hook**（避免干扰断点调试）。验证 crash 上报请脱离 Xcode 运行（例如直接从主屏幕启动 App）。
+- 用户已 opt-out（`optOutCapturing`）时，遗留崩溃报告只删除、不发送。
+- 已被其他 SDK 安装的 crash handler 会被保存并链式转发，不冲突。
+
 ## 自动采集的事件
 
 当 `autoCapture` 启用时，SDK 会自动采集以下事件：
@@ -762,6 +860,8 @@ config.abRefreshInterval = 10 * 60 * 1000;  // 10 分钟刷新间隔
 
 当 `enableClickTrack` 启用时，还会自动采集：
 - **$AppClick** - 点击事件
+
+当 `enableCrashTrack` / `enableErrorTrack` 启用时，还会采集 **$Exception** 事件（见[异常捕获上报](#异常捕获上报)）。
 
 ## 线程安全
 

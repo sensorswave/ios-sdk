@@ -382,6 +382,7 @@ typedef SWIFT_ENUM(NSInteger, LogLevel, open) {
 
 @class NSString;
 @class SensorswaveConfig;
+@class NSException;
 /// Sensorswave iOS SDK 主类
 /// 提供事件追踪、用户识别等核心功能
 SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
@@ -402,6 +403,11 @@ SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
 /// returns:
 /// true=已禁用，false=允许采集
 - (BOOL)hasOptedOutCapturing SWIFT_WARN_UNUSED_RESULT;
+/// 查询 SDK 是否已完成初始化
+///
+/// returns:
+/// true=setup 已执行完成（含 opt-out 场景的最小化初始化）
+@property (nonatomic, readonly) BOOL isInited;
 /// 简化的SDK初始化方法（Objective-C兼容）
 /// Objective-C可使用简化方法名setup:config:
 /// \param sourceToken API令牌
@@ -422,6 +428,20 @@ SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
 /// \param properties 事件属性
 ///
 - (void)trackEvent:(NSString * _Nonnull)eventName properties:(NSDictionary<NSString *, id> * _Nonnull)properties;
+/// 上报已捕获的 NSException（level = error）
+/// 手动上报 API，不受 enableErrorTrack / autoCapture 限制（opt-out 期间除外）
+/// \param exception 已捕获的异常对象（堆栈使用异常真实抛出点）
+///
+/// \param properties 附加事件属性
+///
+- (void)trackException:(NSException * _Nonnull)exception properties:(NSDictionary<NSString *, id> * _Nonnull)properties;
+/// 上报已捕获的 Error（level = error）
+/// 手动上报 API，不受 enableErrorTrack / autoCapture 限制（opt-out 期间除外）
+/// \param error 已捕获的错误对象
+///
+/// \param properties 附加事件属性
+///
+- (void)trackExceptionError:(NSError * _Nonnull)error properties:(NSDictionary<NSString *, id> * _Nonnull)properties;
 /// 设置用户属性（如果存在则覆盖）
 /// \param properties 用户属性
 ///
@@ -481,6 +501,11 @@ SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
 /// returns:
 /// 登录用户ID
 - (NSString * _Nonnull)getLoginId SWIFT_WARN_UNUSED_RESULT;
+/// 用户登出时调用：解除登录 ID 与设备的绑定（默认保留匿名 ID）
+/// \param resetAnonId 传 true 时同时重置匿名 ID，生成新的匿名 ID（如公共设备场景）
+/// 注：登出属于删除本地身份数据的操作，opt-out 期间仍生效
+///
+- (void)reset:(BOOL)resetAnonId;
 /// 确保功能标志准备就绪
 /// \param callback 功能标志就绪后的回调函数
 ///
@@ -534,6 +559,8 @@ SWIFT_CLASS("_TtC14SensorswaveSDK17SensorswaveConfig")
 @property (nonatomic) BOOL enableAB;
 @property (nonatomic) NSTimeInterval abRefreshInterval;
 @property (nonatomic) BOOL batchSend;
+@property (nonatomic) BOOL enableCrashTrack;
+@property (nonatomic) BOOL enableErrorTrack;
 @property (nonatomic) BOOL enableClickTrack;
 @property (nonatomic) BOOL optOutCapturing;
 @property (nonatomic) BOOL persistOptOut;
