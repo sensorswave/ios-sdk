@@ -380,6 +380,47 @@ typedef SWIFT_ENUM(NSInteger, LogLevel, open) {
   LogLevelNone = 5,
 };
 
+/// 动态公共属性标记类型
+/// 包裹一个求值闭包，注册到 <code>registerCommonProperties(properties:)</code> 后，
+/// 每次<em>事件发送时</em>都会重新求值（而非注册时快照），适合值经常变化的属性
+/// （如当前时间戳、金币余额、页面路径等）。
+/// \code
+/// Sensorswave.getInstance().registerCommonProperties(properties: [
+///     "app_version": "1.0.0",   // 静态属性：注册时快照
+///     "current_time": SWDynamicProperty {
+///         Int64(Date().timeIntervalSince1970 * 1000)
+///     }
+/// ])
+///
+/// \endcode契约：
+/// <ul>
+///   <li>
+///     闭包在事件发送路径上同步执行（调用方线程），必须快速返回、不得阻塞；
+///   </li>
+///   <li>
+///     返回 <code>nil</code> → 本次事件省略该 key（可实现条件属性）；
+///   </li>
+///   <li>
+///     返回值必须可被 JSONSerialization 序列化，否则该 key 被丢弃并记录 warning；
+///   </li>
+///   <li>
+///     仅当 <code>SWDynamicProperty</code> 作为 key 的顶层 value 时生效，嵌套在数组/字典内不展开；
+///   </li>
+///   <li>
+///     SDK 不会捕获闭包内抛出的异常或崩溃。
+///   </li>
+/// </ul>
+SWIFT_CLASS("_TtC14SensorswaveSDK17SWDynamicProperty")
+@interface SWDynamicProperty : NSObject
+/// 创建动态公共属性
+/// \param closure 每次事件发送时调用的求值闭包
+/// ObjC: <code>[[SWDynamicProperty alloc] initWithClosure:^id { ... }]</code>
+///
+- (nonnull instancetype)initWithClosure:(id _Nullable (^ _Nonnull)(void))closure OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
 @class NSString;
 @class SensorswaveConfig;
 @class NSException;
@@ -474,6 +515,7 @@ SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
 - (void)profileDelete;
 /// 注册公共属性
 /// \param properties 公共属性
+/// value 为静态值（注册时快照），也可为 <code>SWDynamicProperty</code>（每次事件发送时求值）
 /// 合规：opt-out 期间仍允许注册（仅写入内存，不上报），
 /// 以便开启采集后首条事件即可携带。
 ///

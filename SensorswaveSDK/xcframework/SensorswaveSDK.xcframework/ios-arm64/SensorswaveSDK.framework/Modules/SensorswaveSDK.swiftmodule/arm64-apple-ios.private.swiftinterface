@@ -135,6 +135,10 @@ import _SwiftConcurrencyShims
   @objc override dynamic public init()
   @objc deinit
 }
+@objc @objcMembers final public class SWDynamicProperty : ObjectiveC.NSObject {
+  @objc(initWithClosure:) public init(_ closure: @escaping () -> Any?)
+  @objc deinit
+}
 extension Dispatch.DispatchQueue {
   public class func once(token: Swift.String, block: () -> Swift.Void)
 }

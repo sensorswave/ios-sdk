@@ -599,7 +599,32 @@ Sensorswave.getInstance().registerCommonProperties(properties: [
 }];
 ```
 
-**Note:** The iOS SDK currently only supports static properties. For dynamic properties, please update them before each event send.
+**Dynamic properties:** wrap a value in `SWDynamicProperty` to have it re-evaluated on every event send (instead of a snapshot at registration time). Suitable for frequently changing values such as timestamps, balances, or page context.
+
+```swift
+Sensorswave.getInstance().registerCommonProperties(properties: [
+    "app_version": "1.0.0",                       // Static: snapshot at registration
+    "current_time": SWDynamicProperty {           // Dynamic: evaluated per event
+        Int64(Date().timeIntervalSince1970 * 1000)
+    }
+])
+```
+
+```objc
+[[Sensorswave getInstance] registerCommonProperties:@{
+    @"app_version": @"1.0.0",
+    @"current_time": [[SWDynamicProperty alloc] initWithClosure:^id{
+        return @((long long)([[NSDate date] timeIntervalSince1970] * 1000));
+    }]
+}];
+```
+
+**Notes on dynamic properties:**
+- The closure runs synchronously on the event-sending path (caller thread); keep it fast and non-blocking.
+- Returning `nil` omits the key for that event (conditional properties).
+- Values must be JSON-serializable. Unserializable values (e.g. `Date`, `URL`, raw closures) are dropped with a warning — they never break the event itself. Convert dates to millisecond timestamps or ISO-8601 strings.
+- `SWDynamicProperty` only takes effect as the top-level value of a key; nested occurrences inside arrays/dictionaries are not evaluated.
+- The SDK does not catch exceptions or crashes thrown inside the closure.
 
 #### clearCommonProperties
 

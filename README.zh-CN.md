@@ -597,7 +597,32 @@ Sensorswave.getInstance().registerCommonProperties(properties: [
 }];
 ```
 
-**注意：** iOS SDK 目前只支持静态属性。如需动态属性，请在每次事件发送前手动更新。
+**动态属性：** 用 `SWDynamicProperty` 包裹一个求值闭包，该属性将在每次事件发送时重新求值（而非注册时快照），适合时间戳、余额、页面上下文等经常变化的值。
+
+```swift
+Sensorswave.getInstance().registerCommonProperties(properties: [
+    "app_version": "1.0.0",                       // 静态属性：注册时快照
+    "current_time": SWDynamicProperty {           // 动态属性：每次事件发送时求值
+        Int64(Date().timeIntervalSince1970 * 1000)
+    }
+])
+```
+
+```objc
+[[Sensorswave getInstance] registerCommonProperties:@{
+    @"app_version": @"1.0.0",
+    @"current_time": [[SWDynamicProperty alloc] initWithClosure:^id{
+        return @((long long)([[NSDate date] timeIntervalSince1970] * 1000));
+    }]
+}];
+```
+
+**动态属性注意事项：**
+- 闭包在事件发送路径上同步执行（调用方线程），必须快速返回、不得阻塞；
+- 返回 `nil` 表示本次事件省略该 key（可实现条件属性）；
+- 返回值必须可 JSON 序列化，不可序列化的值（如 `Date`、`URL`、裸闭包）会被丢弃并记录 warning，不会影响事件本身；日期请转为毫秒时间戳或 ISO-8601 字符串；
+- `SWDynamicProperty` 仅作为 key 的顶层 value 时生效，嵌套在数组/字典内不会被求值；
+- SDK 不会捕获闭包内抛出的异常或崩溃。
 
 #### clearCommonProperties
 
