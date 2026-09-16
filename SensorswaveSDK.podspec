@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SensorswaveSDK'
-  s.version          = '0.5.1'
+  s.version          = '0.6.0'
   s.summary          = 'Sensorswave Analytics SDK for iOS'
 
   s.description      = <<-DESC
@@ -22,7 +22,7 @@ Core Features:
   s.author           = { 'Sensorswave Team' => 'liulangyu@sensorsdata.com' }
   s.source           = { :git => 'https://github.com/sensorswave/ios-sdk.git', :tag => 'v' + s.version.to_s }
 
-  s.ios.deployment_target = '12.0'
+  s.ios.deployment_target = '15.0'
   s.swift_version = '5.9'
 
   # Source files - include all Swift and header files

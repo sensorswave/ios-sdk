@@ -1,165 +1,167 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.3.3 effective-5.10 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)
-// swift-module-flags: -target arm64-apple-ios13 -enable-objc-interop -enable-library-evolution -swift-version 5 -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name SensorswaveSDK
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.3
+// swift-compiler-version: Apple Swift version 6.4 effective-5.10 (swiftlang-6.4.0.34.1 clang-2100.3.34.1)
+// swift-module-flags: -target arm64-apple-ios15 -enable-objc-interop -enable-library-evolution -language-mode 5 -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name SensorswaveSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.4
 import CoreTelephony
 import Foundation
 import MachO
 import ObjectiveC
+import Security
 import Swift
 import UIKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-@objc public enum LogLevel : Swift.Int {
+@objc public enum LogLevel : Swift::Int {
   case verbose = 0
   case debug = 1
   case info = 2
   case warning = 3
   case error = 4
   case none = 5
-  public var description: Swift.String {
+  public var description: Swift::String {
     get
   }
-  public init?(rawValue: Swift.Int)
-  public typealias RawValue = Swift.Int
-  public var rawValue: Swift.Int {
+  public init?(rawValue: Swift::Int)
+  public typealias RawValue = Swift::Int
+  public var rawValue: Swift::Int {
     get
   }
 }
-@objc @_inheritsConvenienceInitializers @objcMembers public class SensorswaveLogger : ObjectiveC.NSObject {
-  @objc public static func setLogLevel(_ level: SensorswaveSDK.LogLevel)
+@objc @_inheritsConvenienceInitializers @objcMembers public class SensorswaveLogger : ObjectiveC::NSObject {
+  @objc public static func setLogLevel(_ level: SensorswaveSDK::LogLevel)
   @objc override dynamic public init()
   @objc deinit
 }
-@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class Sensorswave : ObjectiveC.NSObject {
-  public static let _shared: SensorswaveSDK.Sensorswave
-  @objc(getInstance) public static func getInstance() -> SensorswaveSDK.Sensorswave
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class Sensorswave : ObjectiveC::NSObject {
+  public static let _shared: SensorswaveSDK::Sensorswave
+  @objc(getInstance) public static func getInstance() -> SensorswaveSDK::Sensorswave
   @objc deinit
   @discardableResult
-  public func setup(sourceToken: Swift.String, config: SensorswaveSDK.SensorswaveConfig) -> SensorswaveSDK.Sensorswave
+  public func setup(sourceToken: Swift::String, config: SensorswaveSDK::SensorswaveConfig) -> SensorswaveSDK::Sensorswave
   @objc public func optOutCapturing()
   @objc public func optInCapturing()
-  @objc public func hasOptedOutCapturing() -> Swift.Bool
-  @objc public var isInited: Swift.Bool {
+  @objc public func hasOptedOutCapturing() -> Swift::Bool
+  @objc public var isInited: Swift::Bool {
     @objc get
   }
-  @objc(setup:config:) public func setup(_ sourceToken: Swift.String, config: SensorswaveSDK.SensorswaveConfig) -> SensorswaveSDK.Sensorswave
-  @objc(track:) public func track(eventData: [Swift.String : Any])
-  @objc(trackEvent:properties:) public func trackEvent(eventName: Swift.String, properties: [Swift.String : Any] = [:])
-  @objc(trackException:properties:) public func trackException(_ exception: Foundation.NSException, properties: [Swift.String : Any] = [:])
-  @objc(trackExceptionError:properties:) public func trackException(_ error: any Swift.Error, properties: [Swift.String : Any] = [:])
-  @objc(profileSet:) public func profileSet(properties: [Swift.String : Any])
-  @objc(profileSetOnce:) public func profileSetOnce(properties: [Swift.String : Any])
-  @objc(profileIncrement:) public func profileIncrement(properties: [Swift.String : Any])
-  @objc(profileAppend:) public func profileAppend(properties: [Swift.String : Any])
-  @objc(profileUnion:) public func profileUnion(properties: [Swift.String : Any])
-  @objc(profileUnsetKey:) public func profileUnset(key: Swift.String)
-  @objc(profileUnsetKeys:) public func profileUnset(keys: [Swift.String])
+  @objc(setup:config:) public func setup(_ sourceToken: Swift::String, config: SensorswaveSDK::SensorswaveConfig) -> SensorswaveSDK::Sensorswave
+  @objc(track:) public func track(eventData: [Swift::String : Any])
+  @objc(trackEvent:properties:) public func trackEvent(eventName: Swift::String, properties: [Swift::String : Any] = [:])
+  @objc(trackException:properties:) public func trackException(_ exception: Foundation::NSException, properties: [Swift::String : Any] = [:])
+  @objc(trackExceptionError:properties:) public func trackException(_ error: any Swift::Error, properties: [Swift::String : Any] = [:])
+  @objc(profileSet:) public func profileSet(properties: [Swift::String : Any])
+  @objc(profileSetOnce:) public func profileSetOnce(properties: [Swift::String : Any])
+  @objc(profileIncrement:) public func profileIncrement(properties: [Swift::String : Any])
+  @objc(profileAppend:) public func profileAppend(properties: [Swift::String : Any])
+  @objc(profileUnion:) public func profileUnion(properties: [Swift::String : Any])
+  @objc(profileUnsetKey:) public func profileUnset(key: Swift::String)
+  @objc(profileUnsetKeys:) public func profileUnset(keys: [Swift::String])
   @objc(profileDelete) public func profileDelete()
-  @objc(registerCommonProperties:) public func registerCommonProperties(properties: [Swift.String : Any])
-  @objc(clearCommonProperties:) public func clearCommonProperties(keys: [Swift.String])
-  @objc(identify:) public func identify(loginId: Swift.String)
-  @objc(setLoginId:) public func setLoginId(loginId: Swift.String)
-  @objc(getAnonId) public func getAnonId() -> Swift.String
-  @objc(getLoginId) public func getLoginId() -> Swift.String
-  @objc(reset:) public func reset(_ resetAnonId: Swift.Bool = false)
-  @objc(onFeatureFlags:) public func onFeatureFlags(callback: @escaping () -> Swift.Void)
-  @objc(setCurrentPageTitle:) public func setCurrentPageTitle(_ pageTitle: Swift.String)
-  @objc(setReferrerTitle:) public func setReferrerTitle(_ referrerTitle: Swift.String)
-  @objc(getCurrentPageTitle) public func getCurrentPageTitle() -> Swift.String
-  @objc(getReferrerTitle) public func getReferrerTitle() -> Swift.String
-  @objc(checkFeatureGate:callback:) public func checkFeatureGate(key: Swift.String, callback: @escaping (Swift.Bool) -> Swift.Void)
-  @objc(getExperiment:callback:) public func getExperiment(key: Swift.String, callback: @escaping ([Swift.String : Any]) -> Swift.Void)
-  @objc(getFeatureConfig:callback:) public func getFeatureConfig(key: Swift.String, callback: @escaping (Any) -> Swift.Void)
+  @objc(registerCommonProperties:) public func registerCommonProperties(properties: [Swift::String : Any])
+  @objc(clearCommonProperties:) public func clearCommonProperties(keys: [Swift::String])
+  @objc(identify:) public func identify(loginId: Swift::String)
+  @objc(setLoginId:) public func setLoginId(loginId: Swift::String)
+  @objc(getAnonId) public func getAnonId() -> Swift::String
+  @objc(getSessionId) public func getSessionId() -> Swift::String
+  @objc(getLoginId) public func getLoginId() -> Swift::String
+  @objc(reset:) public func reset(_ resetAnonId: Swift::Bool = false)
+  @objc(onFeatureFlags:) public func onFeatureFlags(callback: @escaping () -> Swift::Void)
+  @objc(setCurrentPageTitle:) public func setCurrentPageTitle(_ pageTitle: Swift::String)
+  @objc(setReferrerTitle:) public func setReferrerTitle(_ referrerTitle: Swift::String)
+  @objc(getCurrentPageTitle) public func getCurrentPageTitle() -> Swift::String
+  @objc(getReferrerTitle) public func getReferrerTitle() -> Swift::String
+  @objc(checkFeatureGate:callback:) public func checkFeatureGate(key: Swift::String, callback: @escaping (Swift::Bool) -> Swift::Void)
+  @objc(getExperiment:callback:) public func getExperiment(key: Swift::String, callback: @escaping ([Swift::String : Any]) -> Swift::Void)
+  @objc(getFeatureConfig:callback:) public func getFeatureConfig(key: Swift::String, callback: @escaping (Any) -> Swift::Void)
 }
-@_inheritsConvenienceInitializers @objc public class SensorswaveConfig : ObjectiveC.NSObject {
-  @objc public var debug: Swift.Bool {
+@_inheritsConvenienceInitializers @objc public class SensorswaveConfig : ObjectiveC::NSObject {
+  @objc public var debug: Swift::Bool {
     @objc get
     @objc set
   }
-  @objc public var sourceToken: Swift.String {
+  @objc public var sourceToken: Swift::String {
     @objc get
     @objc set
   }
-  @objc public var apiHost: Swift.String {
+  @objc public var apiHost: Swift::String {
     @objc get
     @objc set
   }
-  @objc public var autoCapture: Swift.Bool {
+  @objc public var autoCapture: Swift::Bool {
     @objc get
     @objc set
   }
-  @objc public var enableAB: Swift.Bool {
+  @objc public var enableAB: Swift::Bool {
     @objc get
     @objc set
   }
-  @objc public var abRefreshInterval: Foundation.TimeInterval {
+  @objc public var abRefreshInterval: Foundation::TimeInterval {
     @objc get
     @objc set
   }
-  @objc public var batchSend: Swift.Bool {
+  @objc public var batchSend: Swift::Bool {
     @objc get
     @objc set
   }
-  @objc public var enableCrashTrack: Swift.Bool {
+  @objc public var enableCrashTrack: Swift::Bool {
     @objc get
     @objc set
   }
-  @objc public var enableErrorTrack: Swift.Bool {
+  @objc public var enableErrorTrack: Swift::Bool {
     @objc get
     @objc set
   }
-  @objc public var enableClickTrack: Swift.Bool {
+  @objc public var enableClickTrack: Swift::Bool {
     @objc get
     @objc set
   }
-  @objc public var optOutCapturing: Swift.Bool {
+  @objc public var optOutCapturing: Swift::Bool {
     @objc get
     @objc set
   }
-  @objc public var persistOptOut: Swift.Bool {
+  @objc public var persistOptOut: Swift::Bool {
     @objc get
     @objc set
   }
-  @objc public var maxQueueSize: Swift.Int {
+  @objc public var maxQueueSize: Swift::Int {
     @objc get
     @objc set
   }
-  @objc public var requestTimeout: Swift.Double {
+  @objc public var requestTimeout: Swift::Double {
     @objc get
     @objc set
   }
-  @objc public func isValid() -> Swift.Bool
-  @objc public func getConfigSummary() -> [Swift.String : Any]
+  @objc public func isValid() -> Swift::Bool
+  @objc public func getConfigSummary() -> [Swift::String : Any]
   @objc override dynamic public init()
   @objc deinit
 }
-@objc @objcMembers final public class SWDynamicProperty : ObjectiveC.NSObject {
+@objc @objcMembers final public class SWDynamicProperty : ObjectiveC::NSObject {
   @objc(initWithClosure:) public init(_ closure: @escaping () -> Any?)
   @objc deinit
 }
-extension Dispatch.DispatchQueue {
-  public class func once(token: Swift.String, block: () -> Swift.Void)
+extension Dispatch::DispatchQueue {
+  public class func once(token: Swift::String, block: () -> Swift::Void)
 }
-@objc public protocol SensorswavePlugin : ObjectiveC.NSObjectProtocol {
-  @objc var name: Swift.String { get }
-  @objc func initialize(application: UIKit.UIApplication, config: SensorswaveSDK.SensorswaveConfig)
+@objc public protocol SensorswavePlugin : ObjectiveC::NSObjectProtocol {
+  @objc var name: Swift::String { get }
+  @objc func initialize(application: UIKit::UIApplication, config: SensorswaveSDK::SensorswaveConfig)
   @objc func enable()
   @objc func disable()
-  @objc var isEnabled: Swift.Bool { get }
-  @objc optional var isAutoCapture: Swift.Bool { get }
+  @objc var isEnabled: Swift::Bool { get }
+  @objc optional var isAutoCapture: Swift::Bool { get }
 }
-extension Foundation.NSNotification.Name {
-  public static let sensorswaveOpenURL: Foundation.Notification.Name
+extension Foundation::NSNotification.Foundation::Name {
+  public static let sensorswaveOpenURL: Foundation::Notification.Foundation::Name
 }
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class SensorswaveVersion : ObjectiveC.NSObject {
-  @objc public static let major: Swift.Int
-  @objc public static let minor: Swift.Int
-  @objc public static let patch: Swift.Int
-  @objc public static let string: Swift.String
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers public class SensorswaveVersion : ObjectiveC::NSObject {
+  @objc public static let major: Swift::Int
+  @objc public static let minor: Swift::Int
+  @objc public static let patch: Swift::Int
+  @objc public static let string: Swift::String
   @objc deinit
 }
-extension SensorswaveSDK.LogLevel : Swift.Equatable {}
-extension SensorswaveSDK.LogLevel : Swift.Hashable {}
-extension SensorswaveSDK.LogLevel : Swift.RawRepresentable {}
+extension SensorswaveSDK::LogLevel : Swift::Equatable {}
+extension SensorswaveSDK::LogLevel : Swift::Hashable {}
+extension SensorswaveSDK::LogLevel : Swift::RawRepresentable {}

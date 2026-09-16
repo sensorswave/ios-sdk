@@ -566,6 +566,24 @@ let anonId = Sensorswave.getInstance().getAnonId()
 NSString *anonId = [[Sensorswave getInstance] getAnonId];
 ```
 
+#### getSessionId
+
+获取当前会话 ID。会话在首次访问时生成并持久化保存，跨启动共享同一会话；30 分钟无事件或会话时长达到 12 小时后自动生成新会话（两个阈值为 SDK 内部固定值，不可配置）。该方法仅读取，不会刷新会话活跃时间。
+
+**参数：** 无
+
+**返回值：** `String` - 当前会话 ID（setup 之前或已 opt-out 时返回空字符串）
+
+**示例：**
+
+```swift
+let sessionId = Sensorswave.getInstance().getSessionId()
+```
+
+```objc
+NSString *sessionId = [[Sensorswave getInstance] getSessionId];
+```
+
 ### 公共属性
 
 #### registerCommonProperties
@@ -872,6 +890,20 @@ Sensorswave.getInstance().trackException(
 - **调试器挂载时不安装 crash hook**（避免干扰断点调试）。验证 crash 上报请脱离 Xcode 运行（例如直接从主屏幕启动 App）。
 - 用户已 opt-out（`optOutCapturing`）时，遗留崩溃报告只删除、不发送。
 - 已被其他 SDK 安装的 crash handler 会被保存并链式转发，不冲突。
+
+## 会话管理
+
+SDK 上报的每个事件都会携带 `$session_id` 预置属性。
+
+- 会话 ID 由 SDK 生成，为 **UUID v7**（内嵌毫秒时间戳，按时间递增且全局唯一）
+- 满足以下任一条件时生成新会话：
+  - 首次上报事件（首次访问）
+  - **30 分钟**内没有任何事件上报（无活动）
+  - 当前会话持续时长达到 **12 小时**
+- 30 分钟 / 12 小时为 SDK 内部固定阈值，不可配置
+- 会话状态本地持久化，跨启动共享：30 分钟内重新启动 App 会延续同一会话
+- 调用 [`reset`](#reset) 会立即开启新会话
+- 可通过 [`getSessionId`](#getsessionid) 读取当前会话 ID（仅读取，不会刷新会话活跃时间）
 
 ## 自动采集的事件
 
