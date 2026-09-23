@@ -132,8 +132,15 @@ import _SwiftConcurrencyShims
     @objc get
     @objc set
   }
+  @objc public var exceptionConfig: SensorswaveSDK::ExceptionConfig
   @objc public func isValid() -> Swift::Bool
   @objc public func getConfigSummary() -> [Swift::String : Any]
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class ExceptionConfig : ObjectiveC::NSObject {
+  @objc public var inAppIncludes: [Swift::String]
+  @objc public var inAppExcludes: [Swift::String]
   @objc override dynamic public init()
   @objc deinit
 }

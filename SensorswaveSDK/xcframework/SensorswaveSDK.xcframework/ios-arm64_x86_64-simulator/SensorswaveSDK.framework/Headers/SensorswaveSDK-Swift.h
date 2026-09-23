@@ -371,6 +371,23 @@ extern "C" {
 
 #if defined(__OBJC__)
 
+@class NSString;
+/// 异常采集配置
+/// 控制 $exception_frames 每帧 in_app 字段的判定规则（帧是否应用自身代码，
+/// 供服务端过滤无法还原符号的平台/运行时帧）。规则在 setup 时快照下发
+/// （见 ExceptionInAppDetector），setup 后修改不再生效。
+SWIFT_CLASS("_TtC14SensorswaveSDK15ExceptionConfig")
+@interface ExceptionConfig : NSObject
+/// 额外视为应用内代码的模块名前缀（优先级最高，可覆盖 excludes 与系统框架判定）
+/// 例：自有二方库的镜像名。前缀匹配、大小写敏感，对齐 posthog。
+/// 主工程 bundle identifier 与可执行文件名由 SDK 在快照时自动追加，无需配置。
+@property (nonatomic, copy) NSArray<NSString *> * _Nonnull inAppIncludes;
+/// 从应用内代码排除的模块名前缀（如第三方库；includes 命中时本项失效）
+/// 例：“Alamofire”、“SDWebImage”。前缀匹配、大小写敏感。
+@property (nonatomic, copy) NSArray<NSString *> * _Nonnull inAppExcludes;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
 /// 日志级别枚举
 typedef SWIFT_ENUM(NSInteger, LogLevel, open) {
   LogLevelVerbose = 0,
@@ -422,7 +439,6 @@ SWIFT_CLASS("_TtC14SensorswaveSDK17SWDynamicProperty")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
-@class NSString;
 @class SensorswaveConfig;
 @class NSException;
 /// Sensorswave iOS SDK 主类
@@ -618,6 +634,8 @@ SWIFT_CLASS("_TtC14SensorswaveSDK17SensorswaveConfig")
 @property (nonatomic) NSInteger maxQueueSize;
 /// 请求超时时间（毫秒）
 @property (nonatomic) NSTimeInterval requestTimeout;
+/// 异常采集配置（$exception_frames 的 in_app 帧判定规则，setup 时快照下发）
+@property (nonatomic, strong) ExceptionConfig * _Nonnull exceptionConfig;
 /// 验证配置是否有效
 ///
 /// returns:
@@ -1065,6 +1083,23 @@ extern "C" {
 
 #if defined(__OBJC__)
 
+@class NSString;
+/// 异常采集配置
+/// 控制 $exception_frames 每帧 in_app 字段的判定规则（帧是否应用自身代码，
+/// 供服务端过滤无法还原符号的平台/运行时帧）。规则在 setup 时快照下发
+/// （见 ExceptionInAppDetector），setup 后修改不再生效。
+SWIFT_CLASS("_TtC14SensorswaveSDK15ExceptionConfig")
+@interface ExceptionConfig : NSObject
+/// 额外视为应用内代码的模块名前缀（优先级最高，可覆盖 excludes 与系统框架判定）
+/// 例：自有二方库的镜像名。前缀匹配、大小写敏感，对齐 posthog。
+/// 主工程 bundle identifier 与可执行文件名由 SDK 在快照时自动追加，无需配置。
+@property (nonatomic, copy) NSArray<NSString *> * _Nonnull inAppIncludes;
+/// 从应用内代码排除的模块名前缀（如第三方库；includes 命中时本项失效）
+/// 例：“Alamofire”、“SDWebImage”。前缀匹配、大小写敏感。
+@property (nonatomic, copy) NSArray<NSString *> * _Nonnull inAppExcludes;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
 /// 日志级别枚举
 typedef SWIFT_ENUM(NSInteger, LogLevel, open) {
   LogLevelVerbose = 0,
@@ -1116,7 +1151,6 @@ SWIFT_CLASS("_TtC14SensorswaveSDK17SWDynamicProperty")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
-@class NSString;
 @class SensorswaveConfig;
 @class NSException;
 /// Sensorswave iOS SDK 主类
@@ -1312,6 +1346,8 @@ SWIFT_CLASS("_TtC14SensorswaveSDK17SensorswaveConfig")
 @property (nonatomic) NSInteger maxQueueSize;
 /// 请求超时时间（毫秒）
 @property (nonatomic) NSTimeInterval requestTimeout;
+/// 异常采集配置（$exception_frames 的 in_app 帧判定规则，setup 时快照下发）
+@property (nonatomic, strong) ExceptionConfig * _Nonnull exceptionConfig;
 /// 验证配置是否有效
 ///
 /// returns:

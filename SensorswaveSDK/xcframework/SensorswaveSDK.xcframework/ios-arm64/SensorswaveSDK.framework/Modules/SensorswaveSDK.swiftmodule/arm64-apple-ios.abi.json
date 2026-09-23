@@ -3297,6 +3297,100 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "exceptionConfig",
+            "printedName": "exceptionConfig",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ExceptionConfig",
+                "printedName": "SensorswaveSDK.ExceptionConfig",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)ExceptionConfig"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(py)exceptionConfig",
+            "mangledName": "$s14SensorswaveSDK0A6ConfigC09exceptionC0AA09ExceptionC0Cvp",
+            "moduleName": "SensorswaveSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ExceptionConfig",
+                    "printedName": "SensorswaveSDK.ExceptionConfig",
+                    "usr": "c:@M@SensorswaveSDK@objc(cs)ExceptionConfig"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)exceptionConfig",
+                "mangledName": "$s14SensorswaveSDK0A6ConfigC09exceptionC0AA09ExceptionC0Cvg",
+                "moduleName": "SensorswaveSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ExceptionConfig",
+                    "printedName": "SensorswaveSDK.ExceptionConfig",
+                    "usr": "c:@M@SensorswaveSDK@objc(cs)ExceptionConfig"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig(im)setExceptionConfig:",
+                "mangledName": "$s14SensorswaveSDK0A6ConfigC09exceptionC0AA09ExceptionC0Cvs",
+                "moduleName": "SensorswaveSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:14SensorswaveSDK0A6ConfigC09exceptionC0AA09ExceptionC0CvM",
+                "mangledName": "$s14SensorswaveSDK0A6ConfigC09exceptionC0AA09ExceptionC0CvM",
+                "moduleName": "SensorswaveSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
             "kind": "Function",
             "name": "isValid",
             "printedName": "isValid()",
@@ -3386,6 +3480,354 @@
         "declKind": "Class",
         "usr": "c:@M@SensorswaveSDK@objc(cs)SensorswaveConfig",
         "mangledName": "$s14SensorswaveSDK0A6ConfigC",
+        "moduleName": "SensorswaveSDK",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC",
+          "RawDocComment"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ExceptionConfig",
+        "printedName": "ExceptionConfig",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "inAppIncludes",
+            "printedName": "inAppIncludes",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.String]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)ExceptionConfig(py)inAppIncludes",
+            "mangledName": "$s14SensorswaveSDK15ExceptionConfigC13inAppIncludesSaySSGvp",
+            "moduleName": "SensorswaveSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.String]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)ExceptionConfig(im)inAppIncludes",
+                "mangledName": "$s14SensorswaveSDK15ExceptionConfigC13inAppIncludesSaySSGvg",
+                "moduleName": "SensorswaveSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.String]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)ExceptionConfig(im)setInAppIncludes:",
+                "mangledName": "$s14SensorswaveSDK15ExceptionConfigC13inAppIncludesSaySSGvs",
+                "moduleName": "SensorswaveSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:14SensorswaveSDK15ExceptionConfigC13inAppIncludesSaySSGvM",
+                "mangledName": "$s14SensorswaveSDK15ExceptionConfigC13inAppIncludesSaySSGvM",
+                "moduleName": "SensorswaveSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "inAppExcludes",
+            "printedName": "inAppExcludes",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.String]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)ExceptionConfig(py)inAppExcludes",
+            "mangledName": "$s14SensorswaveSDK15ExceptionConfigC13inAppExcludesSaySSGvp",
+            "moduleName": "SensorswaveSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.String]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)ExceptionConfig(im)inAppExcludes",
+                "mangledName": "$s14SensorswaveSDK15ExceptionConfigC13inAppExcludesSaySSGvg",
+                "moduleName": "SensorswaveSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.String]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)ExceptionConfig(im)setInAppExcludes:",
+                "mangledName": "$s14SensorswaveSDK15ExceptionConfigC13inAppExcludesSaySSGvs",
+                "moduleName": "SensorswaveSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:14SensorswaveSDK15ExceptionConfigC13inAppExcludesSaySSGvM",
+                "mangledName": "$s14SensorswaveSDK15ExceptionConfigC13inAppExcludesSaySSGvM",
+                "moduleName": "SensorswaveSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ExceptionConfig",
+                "printedName": "SensorswaveSDK.ExceptionConfig",
+                "usr": "c:@M@SensorswaveSDK@objc(cs)ExceptionConfig"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@SensorswaveSDK@objc(cs)ExceptionConfig(im)init",
+            "mangledName": "$s14SensorswaveSDK15ExceptionConfigCACycfc",
+            "moduleName": "SensorswaveSDK",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@SensorswaveSDK@objc(cs)ExceptionConfig",
+        "mangledName": "$s14SensorswaveSDK15ExceptionConfigC",
         "moduleName": "SensorswaveSDK",
         "declAttributes": [
           "AccessControl",
@@ -4165,6 +4607,16 @@
         "printedName": "MachO",
         "declKind": "Import",
         "moduleName": "SensorswaveSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "SensorswaveSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
       },
       {
         "kind": "Import",
@@ -5458,35 +5910,35 @@
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "StringLiteral",
-      "offset": 13366,
+      "offset": 13643,
       "length": 7,
       "value": "\"Value\""
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "Dictionary",
-      "offset": 14599,
+      "offset": 14876,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "Dictionary",
-      "offset": 15728,
+      "offset": 16005,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "Dictionary",
-      "offset": 16355,
+      "offset": 16632,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "BooleanLiteral",
-      "offset": 27754,
+      "offset": 28031,
       "length": 5,
       "value": "false"
     },
@@ -5657,6 +6109,20 @@
       "offset": 3649,
       "length": 5,
       "value": "30000"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
+      "kind": "Array",
+      "offset": 5851,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
+      "kind": "Array",
+      "offset": 6092,
+      "length": 2,
+      "value": "[]"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveSend.swift",
@@ -6382,23 +6848,44 @@
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/utils\/ExceptionImageProvider.swift",
       "kind": "IntegerLiteral",
-      "offset": 962,
+      "offset": 1081,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/utils\/ExceptionImageProvider.swift",
       "kind": "IntegerLiteral",
-      "offset": 968,
+      "offset": 1087,
       "length": 2,
       "value": "36"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/utils\/ExceptionImageProvider.swift",
       "kind": "StringLiteral",
-      "offset": 1070,
+      "offset": 1189,
       "length": 11,
       "value": "\"0x%016llx\""
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/utils\/ExceptionInAppDetector.swift",
+      "kind": "Array",
+      "offset": 1745,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/utils\/ExceptionInAppDetector.swift",
+      "kind": "Array",
+      "offset": 1759,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/utils\/ExceptionInAppDetector.swift",
+      "kind": "Array",
+      "offset": 4511,
+      "length": 1197,
+      "value": "[\"Foundation\", \"UIKit\", \"AppKit\", \"CoreFoundation\", \"CoreGraphics\", \"CoreData\", \"CoreLocation\", \"CoreMotion\", \"CoreServices\", \"CoreText\", \"AVFoundation\", \"Metal\", \"MetalKit\", \"SwiftUI\", \"SwiftUICore\", \"Combine\", \"QuartzCore\", \"Security\", \"SystemConfiguration\", \"CFNetwork\", \"WebKit\", \"GraphicsServices\", \"IOKit\", \"Gestures\", \"UIKitCore\", \"UIKitMacHelper\", \"Accessibility\", \"AccessibilityUtilities\", \"UpdateCycle\", \"TextInput\", \"UIFoundation\", \"BackBoardServices\", \"FrontBoardServices\", \"SpringBoardServices\", \"RunningBoardServices\", \"libsystem_kernel.dylib\", \"libsystem_pthread.dylib\", \"libsystem_c.dylib\", \"libsystem_malloc.dylib\", \"libdispatch.dylib\", \"libswift\", \"libobjc\", \"dyld\"]"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/utils\/ExceptionStackFormatter.swift",
@@ -6447,7 +6934,7 @@
       "kind": "IntegerLiteral",
       "offset": 417,
       "length": 1,
-      "value": "0"
+      "value": "1"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/Version.swift",

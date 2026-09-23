@@ -143,6 +143,7 @@ Sensorswave.getInstance().trackEvent(eventName: "button_click", properties: [
 | `enableAB` | Bool | false | Enable A/B testing functionality |
 | `enableCrashTrack` | Bool | false | Enable crash tracking (fatal `$Exception` events). Independent of `autoCapture`. Reports are sent on the next launch after a crash. Not installed while a debugger is attached |
 | `enableErrorTrack` | Bool | false | Enable error-level collection (enables the manual `trackException` API). Independent of `autoCapture` |
+| `exceptionConfig` | ExceptionConfig | empty | Rules for the per-frame `in_app` flag of `$exception_frames` (whether a frame belongs to the app's own code). `inAppIncludes` / `inAppExcludes` are case-sensitive module-name prefix lists; the main app's bundle identifier and executable name are always in-app. Snapshotted at `setup` — see [Exception Tracking](#exception-tracking) |
 | `abRefreshInterval` | TimeInterval | 600000 (10 minutes) | A/B test config refresh interval (ms), minimum 30 seconds |
 | `batchSend` | Bool | false | Enable batch sending (collect 10 events or send every 5 seconds) |
 | `optOutCapturing` | Bool | false | Disable data collection by default (compliance switch). The SDK will not collect, send, or persist any events |
@@ -841,7 +842,19 @@ The SDK reports exceptions via the preset `$Exception` event, which has the foll
 | `$exception_level` | String | `"fatal"` (uncaught exception/signal terminated the process) or `"error"` (a caught error, reported manually) |
 | `$exception_type` | String | Exception class name, e.g. `NSRangeException`, `SIGSEGV`, or an NSError domain |
 | `$exception_message` | String | Message only, no stack |
-| `$exception_frames` | Array&lt;Object&gt; | Structured stack frames (unified multi-platform format, max 30 frames). Each frame has `platform` (`cocoa`, fixed on iOS), `module` (binary image name), `function` (symbol name, `?` for anonymous frames) and `instruction_addr` (absolute runtime address, PAC-stripped, 16-digit zero-padded hex); frames that resolve to an image also carry `image_addr` (image load address) and `debug_id` (Mach-O UUID, uppercase hyphenated); `filename`/`lineno`/`colno` are included only when debug symbols provide them |
+| `$exception_frames` | Array&lt;Object&gt; | Structured stack frames (unified multi-platform format, max 30 frames). Each frame has `platform` (`cocoa`, fixed on iOS), `module` (binary image name), `function` (symbol name, `?` for anonymous frames), `instruction_addr` (absolute runtime address, PAC-stripped, 16-digit zero-padded hex) and `in_app` (Boolean, whether the frame belongs to the app's own code, see below); frames that resolve to an image also carry `image_addr` (image load address) and `debug_id` (Mach-O UUID, uppercase hyphenated); `filename`/`lineno`/`colno` are included only when debug symbols provide them |
+
+**`in_app` classification**: every frame carries `in_app`, marking whether it belongs to the app's own code — the server uses it to filter platform/runtime frames that cannot be symbolicated. Rules are case-sensitive module-name prefix matches applied in priority order: `exceptionConfig.inAppIncludes` (highest, can force system/third-party frames back to in-app) → `exceptionConfig.inAppExcludes` → known system frameworks → system binary paths → other unmatched frames default to in-app. Frames with no resolvable module are never in-app. The main app's bundle identifier and executable name are always treated as in-app. Rules are snapshotted at `setup` — later changes have no effect.
+
+```swift
+config.exceptionConfig.inAppExcludes = ["Alamofire", "SDWebImage"]  // third-party frames are not in-app
+config.exceptionConfig.inAppIncludes = ["MyCore"]                   // own framework back to in-app
+```
+
+```objc
+config.exceptionConfig.inAppExcludes = @[@"Alamofire", @"SDWebImage"];
+config.exceptionConfig.inAppIncludes = @[@"MyCore"];
+```
 
 **Server-side symbolication (dSYM)**: frames are self-contained — match the uploaded dSYM by `debug_id`, then `atos -arch arm64 -o <dSYM/DWARF/binary> -l <image_addr> <instruction_addr>` resolves file:line (offset = `instruction_addr - image_addr`; both are captured together — for fatal crashes, at crash time). ASLR changes every launch, so `image_addr` must never be recomputed across launches.
 
