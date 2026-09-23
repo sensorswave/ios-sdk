@@ -5447,8 +5447,22 @@
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/basic\/BatchSender.swift",
+      "kind": "Array",
+      "offset": 1417,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/basic\/BatchSender.swift",
       "kind": "BooleanLiteral",
-      "offset": 1134,
+      "offset": 1512,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/basic\/BatchSender.swift",
+      "kind": "BooleanLiteral",
+      "offset": 12547,
       "length": 5,
       "value": "false"
     },
@@ -5819,49 +5833,49 @@
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/PersistentQueue.swift",
       "kind": "IntegerLiteral",
-      "offset": 732,
+      "offset": 790,
       "length": 1,
       "value": "7"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/PersistentQueue.swift",
       "kind": "IntegerLiteral",
-      "offset": 736,
+      "offset": 794,
       "length": 2,
       "value": "24"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/PersistentQueue.swift",
       "kind": "IntegerLiteral",
-      "offset": 741,
+      "offset": 799,
       "length": 2,
       "value": "60"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/PersistentQueue.swift",
       "kind": "IntegerLiteral",
-      "offset": 746,
+      "offset": 804,
       "length": 2,
       "value": "60"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/PersistentQueue.swift",
       "kind": "IntegerLiteral",
-      "offset": 751,
+      "offset": 809,
       "length": 4,
       "value": "1000"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/PersistentQueue.swift",
       "kind": "StringLiteral",
-      "offset": 830,
+      "offset": 888,
       "length": 23,
       "value": "\"sol_sdk_request_queue\""
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/PersistentQueue.swift",
       "kind": "Array",
-      "offset": 4388,
+      "offset": 4501,
       "length": 2,
       "value": "[]"
     },
@@ -5910,35 +5924,35 @@
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "StringLiteral",
-      "offset": 13643,
+      "offset": 13820,
       "length": 7,
       "value": "\"Value\""
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "Dictionary",
-      "offset": 14876,
+      "offset": 15053,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "Dictionary",
-      "offset": 16005,
+      "offset": 16182,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "Dictionary",
-      "offset": 16632,
+      "offset": 16809,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/Sensorswave.swift",
       "kind": "BooleanLiteral",
-      "offset": 28031,
+      "offset": 28208,
       "length": 5,
       "value": "false"
     },
@@ -6190,21 +6204,21 @@
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveSend.swift",
       "kind": "Dictionary",
-      "offset": 19977,
+      "offset": 20608,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveSend.swift",
       "kind": "BooleanLiteral",
-      "offset": 24147,
+      "offset": 25134,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveSend.swift",
       "kind": "Dictionary",
-      "offset": 28771,
+      "offset": 29758,
       "length": 3,
       "value": "[]"
     },
@@ -6934,7 +6948,7 @@
       "kind": "IntegerLiteral",
       "offset": 417,
       "length": 1,
-      "value": "1"
+      "value": "2"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/Version.swift",
