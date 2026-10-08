@@ -380,7 +380,7 @@ SWIFT_CLASS("_TtC14SensorswaveSDK15ExceptionConfig")
 @interface ExceptionConfig : NSObject
 /// 额外视为应用内代码的模块名前缀（优先级最高，可覆盖 excludes 与系统框架判定）
 /// 例：自有二方库的镜像名。前缀匹配、大小写敏感，对齐 posthog。
-/// 主工程 bundle identifier 与可执行文件名由 SDK 在快照时自动追加，无需配置。
+/// 主工程可执行文件名由 SDK 在快照时自动追加，无需配置。
 @property (nonatomic, copy) NSArray<NSString *> * _Nonnull inAppIncludes;
 /// 从应用内代码排除的模块名前缀（如第三方库；includes 命中时本项失效）
 /// 例：“Alamofire”、“SDWebImage”。前缀匹配、大小写敏感。
@@ -478,6 +478,8 @@ SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
 - (Sensorswave * _Nonnull)setup:(NSString * _Nonnull)sourceToken config:(SensorswaveConfig * _Nonnull)config SWIFT_WARN_UNUSED_RESULT;
 /// 高级上报方式 - 完整事件对象
 /// \param eventData 完整的事件对象
+/// 统一走 sendEvent 单通道（内部自动区分批量/直发并补齐预置属性），
+/// 避免同一 API 在两种配置下产出不同形状的事件；公共属性同样合并（事件自带属性优先）。
 ///
 - (void)track:(NSDictionary<NSString *, id> * _Nonnull)eventData;
 /// 追踪自定义事件
@@ -573,7 +575,8 @@ SWIFT_CLASS("_TtC14SensorswaveSDK11Sensorswave")
 ///
 - (void)reset:(BOOL)resetAnonId;
 /// 确保功能标志准备就绪
-/// \param callback 功能标志就绪后的回调函数
+/// 始终回调（未 setup 时主线程兜底回调，不再静默吞掉）；AB 启用时等数据就绪后回调
+/// \param callback 功能标志就绪后的回调函数（始终主线程）
 ///
 - (void)onFeatureFlags:(void (^ _Nonnull)(void))callback;
 /// 手动设置当前页面标题
@@ -661,6 +664,7 @@ SWIFT_CLASS("_TtC14SensorswaveSDK17SensorswaveLogger")
 @end
 
 @class UIApplication;
+@class UIViewController;
 /// 插件协议，所有插件必须实现此协议
 SWIFT_PROTOCOL("_TtP14SensorswaveSDK17SensorswavePlugin_")
 @protocol SensorswavePlugin <NSObject>
@@ -681,6 +685,16 @@ SWIFT_PROTOCOL("_TtP14SensorswaveSDK17SensorswavePlugin_")
 @optional
 /// 是否为自动采集插件（opt-out 期间需要被禁用）
 @property (nonatomic, readonly) BOOL isAutoCapture;
+/// 页面出现（已完成系统容器过滤；替代插件各自监听通知/广播）
+- (void)onPageAppear:(UIViewController * _Nonnull)viewController;
+/// 页面消失（与 onPageAppear 同源同过滤，一一配对）
+- (void)onPageDisappear:(UIViewController * _Nonnull)viewController;
+/// 应用回到前台（didBecomeActive）
+- (void)onAppBecomeActive;
+/// 应用进入后台（didEnterBackground）
+- (void)onAppEnterBackground;
+/// 应用将要终止（willTerminate）
+- (void)onAppWillTerminate;
 @end
 
 /// Sensorswave SDK Version

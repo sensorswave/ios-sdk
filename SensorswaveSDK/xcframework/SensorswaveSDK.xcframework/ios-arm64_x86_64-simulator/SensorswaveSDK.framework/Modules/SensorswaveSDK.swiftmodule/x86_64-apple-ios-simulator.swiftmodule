@@ -5,6 +5,7 @@
 import CoreTelephony
 import Foundation
 import MachO
+import Network
 import ObjectiveC
 import Security
 import Swift
@@ -34,7 +35,6 @@ import _SwiftConcurrencyShims
   @objc deinit
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class Sensorswave : ObjectiveC::NSObject {
-  public static let _shared: SensorswaveSDK::Sensorswave
   @objc(getInstance) public static func getInstance() -> SensorswaveSDK::Sensorswave
   @objc deinit
   @discardableResult
@@ -148,9 +148,6 @@ import _SwiftConcurrencyShims
   @objc(initWithClosure:) public init(_ closure: @escaping () -> Any?)
   @objc deinit
 }
-extension Dispatch::DispatchQueue {
-  public class func once(token: Swift::String, block: () -> Swift::Void)
-}
 @objc public protocol SensorswavePlugin : ObjectiveC::NSObjectProtocol {
   @objc var name: Swift::String { get }
   @objc func initialize(application: UIKit::UIApplication, config: SensorswaveSDK::SensorswaveConfig)
@@ -158,6 +155,11 @@ extension Dispatch::DispatchQueue {
   @objc func disable()
   @objc var isEnabled: Swift::Bool { get }
   @objc optional var isAutoCapture: Swift::Bool { get }
+  @objc optional func onPageAppear(_ viewController: UIKit::UIViewController)
+  @objc optional func onPageDisappear(_ viewController: UIKit::UIViewController)
+  @objc optional func onAppBecomeActive()
+  @objc optional func onAppEnterBackground()
+  @objc optional func onAppWillTerminate()
 }
 extension Foundation::NSNotification.Foundation::Name {
   public static let sensorswaveOpenURL: Foundation::Notification.Foundation::Name

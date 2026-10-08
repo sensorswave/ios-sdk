@@ -51,7 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.enableClickTrack = true           // Enable click tracking
         config.enableAB = true                  // Enable A/B testing
         config.enableCrashTrack = true           // Enable crash tracking (fatal)
-        config.enableErrorTrack = true           // Enable error-level tracking
         config.abRefreshInterval = 5 * 60 * 1000  // 5 minute refresh interval
         config.batchSend = false                // Enable batch sending (disabled by default)
 
@@ -92,7 +91,6 @@ Initialize the SDK in the `application:didFinishLaunchingWithOptions:` method in
     config.enableClickTrack = YES;         // Enable click tracking
     config.enableAB = YES;                 // Enable A/B testing
     config.enableCrashTrack = YES;         // Enable crash tracking (fatal)
-    config.enableErrorTrack = YES;         // Enable error-level tracking
     config.abRefreshInterval = 5 * 60 * 1000;  // 5 minute refresh interval
     config.batchSend = NO;                // Enable batch sending (disabled by default)
 
@@ -142,8 +140,8 @@ Sensorswave.getInstance().trackEvent(eventName: "button_click", properties: [
 | `enableClickTrack` | Bool | false | Enable automatic click tracking |
 | `enableAB` | Bool | false | Enable A/B testing functionality |
 | `enableCrashTrack` | Bool | false | Enable crash tracking (fatal `$Exception` events). Independent of `autoCapture`. Reports are sent on the next launch after a crash. Not installed while a debugger is attached |
-| `enableErrorTrack` | Bool | false | Enable error-level collection (enables the manual `trackException` API). Independent of `autoCapture` |
-| `exceptionConfig` | ExceptionConfig | empty | Rules for the per-frame `in_app` flag of `$exception_frames` (whether a frame belongs to the app's own code). `inAppIncludes` / `inAppExcludes` are case-sensitive module-name prefix lists; the main app's bundle identifier and executable name are always in-app. Snapshotted at `setup` — see [Exception Tracking](#exception-tracking) |
+| `enableErrorTrack` | Bool | false | **Deprecated**: no longer controls any behavior — the manual `trackException` API always works. Kept for backward compatibility only |
+| `exceptionConfig` | ExceptionConfig | empty | Rules for the per-frame `in_app` flag of `$exception_frames` (whether a frame belongs to the app's own code). `inAppIncludes` / `inAppExcludes` are case-sensitive module-name prefix lists; the main app's executable name is always in-app, and frameworks embedded under the host `.app/Frameworks/` directory are by default not. Snapshotted at `setup` — see [Exception Tracking](#exception-tracking) |
 | `abRefreshInterval` | TimeInterval | 600000 (10 minutes) | A/B test config refresh interval (ms), minimum 30 seconds |
 | `batchSend` | Bool | false | Enable batch sending (collect 10 events or send every 5 seconds) |
 | `optOutCapturing` | Bool | false | Disable data collection by default (compliance switch). The SDK will not collect, send, or persist any events |
@@ -159,7 +157,6 @@ config.autoCapture = true
 config.enableClickTrack = true
 config.enableAB = true
 config.enableCrashTrack = true
-config.enableErrorTrack = true
 config.abRefreshInterval = 5 * 60 * 1000  // 5 minutes
 config.batchSend = false  // Disabled by default, set to true to enable
 ```
@@ -172,7 +169,6 @@ config.autoCapture = YES;
 config.enableClickTrack = YES;
 config.enableAB = YES;
 config.enableCrashTrack = YES;
-config.enableErrorTrack = YES;
 config.abRefreshInterval = 5 * 60 * 1000;  // 5 minutes
 config.batchSend = NO;  // Disabled by default, set to YES to enable
 ```
@@ -241,7 +237,7 @@ Track complete event object (advanced method).
 
 ```swift
 // Using complete event object
-Sensorswave.getInstance().track(event: [
+Sensorswave.getInstance().track(eventData: [
     "event": "custom_event",
     "properties": [
         "key1": "value1",
@@ -571,7 +567,7 @@ NSString *anonId = [[Sensorswave getInstance] getAnonId];
 
 #### getSessionId
 
-Get the current session ID. The session is generated on first access and persisted, so it is shared across app launches. A new session ID is generated automatically when no event has been reported for 30 minutes, or when the current session reaches 12 hours (both thresholds are fixed SDK constants and not configurable). This method is read-only: it does not extend session activity.
+Get the current session ID. The session is generated on first access and persisted, so it is shared across app launches. A new session ID is generated automatically when no event has been reported for 30 minutes, or when the current session reaches 12 hours (both thresholds are fixed SDK constants and not configurable). The rotation is **lazy**: if the stored session has already expired, calling this method generates and persists a new session instead of returning the stale one — the same behavior an event report would trigger. Beyond that, calling it does not extend session activity.
 
 **Parameters:** None
 
@@ -844,7 +840,7 @@ The SDK reports exceptions via the preset `$Exception` event, which has the foll
 | `$exception_message` | String | Message only, no stack |
 | `$exception_frames` | Array&lt;Object&gt; | Structured stack frames (unified multi-platform format, max 30 frames). Each frame has `platform` (`cocoa`, fixed on iOS), `module` (binary image name), `function` (symbol name, `?` for anonymous frames), `instruction_addr` (absolute runtime address, PAC-stripped, 16-digit zero-padded hex) and `in_app` (Boolean, whether the frame belongs to the app's own code, see below); frames that resolve to an image also carry `image_addr` (image load address) and `debug_id` (Mach-O UUID, uppercase hyphenated); `filename`/`lineno`/`colno` are included only when debug symbols provide them |
 
-**`in_app` classification**: every frame carries `in_app`, marking whether it belongs to the app's own code — the server uses it to filter platform/runtime frames that cannot be symbolicated. Rules are case-sensitive module-name prefix matches applied in priority order: `exceptionConfig.inAppIncludes` (highest, can force system/third-party frames back to in-app) → `exceptionConfig.inAppExcludes` → known system frameworks → system binary paths → other unmatched frames default to in-app. Frames with no resolvable module are never in-app. The main app's bundle identifier and executable name are always treated as in-app. Rules are snapshotted at `setup` — later changes have no effect.
+**`in_app` classification**: every frame carries `in_app`, marking whether it belongs to the app's own code — the server uses it to filter platform/runtime frames that cannot be symbolicated. Rules are case-sensitive module-name prefix matches applied in priority order: `exceptionConfig.inAppIncludes` (highest, can force system/third-party frames back to in-app) → `exceptionConfig.inAppExcludes` → known system frameworks → system binary paths → frames whose binary lives under the host `.app/Frameworks/` directory (embedded third-party frameworks) → other unmatched frames default to in-app. Frames with no resolvable module are never in-app. The main executable's name is auto-added to the includes at `setup`, so its frames are always in-app (the bundle identifier is not used — the image-name column never matches it). Rules are snapshotted at `setup` — later changes have no effect.
 
 ```swift
 config.exceptionConfig.inAppExcludes = ["Alamofire", "SDWebImage"]  // third-party frames are not in-app
@@ -858,21 +854,21 @@ config.exceptionConfig.inAppIncludes = @[@"MyCore"];
 
 **Server-side symbolication (dSYM)**: frames are self-contained — match the uploaded dSYM by `debug_id`, then `atos -arch arm64 -o <dSYM/DWARF/binary> -l <image_addr> <instruction_addr>` resolves file:line (offset = `instruction_addr - image_addr`; both are captured together — for fatal crashes, at crash time). ASLR changes every launch, so `image_addr` must never be recomputed across launches.
 
-Two independent switches control exception tracking (both default to `false` and neither is affected by `autoCapture`):
+Crash tracking is controlled by one switch (default `false`, not affected by `autoCapture`); the manual `trackException` API always works and needs no switch:
 
 ```swift
 config.enableCrashTrack = true  // fatal: uncaught NSException + fatal signals (SIGABRT/SIGSEGV/SIGFPE/SIGBUS/SIGILL/SIGTRAP, covering Swift fatalError)
-config.enableErrorTrack = true  // error: enables the manual trackException API
 ```
 
 ```objc
 config.enableCrashTrack = YES;
-config.enableErrorTrack = YES;
 ```
+
+> Note: `enableErrorTrack` is deprecated and no longer controls anything — it is kept only so existing configurations keep compiling.
 
 ### Manual Error Reporting
 
-Use `trackException` to report errors you have already caught (requires `enableErrorTrack = true`):
+Use `trackException` to report errors you have already caught (works out of the box; the old `enableErrorTrack` gate is no longer required):
 
 ```swift
 // Swift Error (or NSError)
@@ -920,7 +916,15 @@ When `enableClickTrack` is enabled, the SDK will also automatically collect:
 
 - **$AppClick** - Click event
 
-When `enableCrashTrack` / `enableErrorTrack` are enabled, the SDK also collects **$Exception** events (see [Exception Tracking](#exception-tracking)).
+When `enableCrashTrack` is enabled, the SDK also collects fatal **$Exception** events; manual `trackException` calls report error-level **$Exception** events regardless of configuration (see [Exception Tracking](#exception-tracking)).
+
+## UTM Attribution
+
+The SDK captures UTM parameters (`utm_source` / `utm_medium` / `utm_campaign` / `utm_content` / `utm_term`) for install-source attribution:
+
+- On `setup` the SDK reports the first-touch UTM **exactly once** as a `$UserSet` event (`initial_utm_source` … keys), even when no UTM was present at first launch (the properties are then empty) — it does not wait for a campaign URL.
+- URLs opened through the standard iOS open-URL flow (custom URL scheme or link with UTM query parameters) are intercepted automatically; the captured values update the current-session UTM (reported on subsequent events) and also fill the first-touch record if it is still empty. This works even while capturing is opted out — values are held in memory only, and the first-touch event is back-filled when collection is enabled.
+- Session UTM values are not persisted; they reset when the app process ends. The first-touch UTM is reported once and never overwritten.
 
 ## Session Management
 
@@ -934,15 +938,17 @@ Every event reported by the SDK carries a `$session_id` preset property.
 - The 30-minute / 12-hour thresholds are fixed SDK constants and are not configurable
 - The session is persisted locally, so it is shared across app launches: relaunching within the inactivity window continues the same session
 - [`reset`](#reset) starts a new session immediately
-- Use [`getSessionId`](#getsessionid) to read the current session ID (read-only; it does not extend session activity)
+- Use [`getSessionId`](#getsessionid) to read the current session ID (lazily rotates an expired session, exactly like reporting an event would; otherwise read-only)
 
 ## Thread Safety
 
-All SDK operations are thread-safe:
+The SDK is thread-safe within the following scope:
 
-- **PersistentQueue** - Uses `NSLock` to protect all queue operations
-- **Network Requests** - Supports multi-threaded concurrency
-- **User Properties** - Uses synchronization mechanisms to ensure data consistency
+- **Event reporting** — `track` / `trackEvent` / profile / identify APIs and the persistent queue may be called from any thread
+- **Internal state** — `Store` (identity/common properties), the SDK lifecycle state, `ABTestManager`, `BatchSender` start state and the logger level are internally synchronized
+- **A/B callbacks** — `checkFeatureGate` / `getExperiment` / `getFeatureConfig` callbacks are always delivered on the main thread
+
+Not covered: UIKit-backed automatic collection assumes the app runs its UI on the main thread (standard iOS practice); calling `setup` from the main thread is recommended.
 
 ## Batch Sending
 
@@ -979,7 +985,7 @@ The SDK has built-in intelligent error handling and retry mechanisms:
 ## Data Security
 
 - **HTTPS Encrypted Transfer** - All data is transmitted via HTTPS encryption
-- **Local Storage Security** - Sensitive data is stored in UserDefaults
+- **Local Storage** - Identity data (anonymous ID, login ID), the A/B cache and session state are stored unencrypted in `UserDefaults`; pending crash reports are stored in the app's `Application Support` directory. Do not put sensitive data (credentials, health info, etc.) into event properties or common properties — they are stored and sent as-is.
 
 ## Data Privacy & Opt-Out
 
