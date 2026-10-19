@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.enableAB = true                  // Enable A/B testing
         config.enableCrashTrack = true           // Enable crash tracking (fatal)
         config.abRefreshInterval = 5 * 60 * 1000  // 5 minute refresh interval
-        config.batchSend = false                // Enable batch sending (disabled by default)
+        config.batchSend = false                // Batch sending disabled (default); set true to enable
 
         // Initialize SDK
         Sensorswave.getInstance().setup(
@@ -92,7 +92,7 @@ Initialize the SDK in the `application:didFinishLaunchingWithOptions:` method in
     config.enableAB = YES;                 // Enable A/B testing
     config.enableCrashTrack = YES;         // Enable crash tracking (fatal)
     config.abRefreshInterval = 5 * 60 * 1000;  // 5 minute refresh interval
-    config.batchSend = NO;                // Enable batch sending (disabled by default)
+    config.batchSend = NO;                // Batch sending disabled (default); set YES to enable
 
     // Initialize SDK
     [[Sensorswave getInstance] setup:@"your-source-token" config:config];
