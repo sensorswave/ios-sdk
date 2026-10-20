@@ -6062,14 +6062,14 @@
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "Array",
-      "offset": 5888,
+      "offset": 5867,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/core\/SensorswaveConfig.swift",
       "kind": "Array",
-      "offset": 6129,
+      "offset": 6102,
       "length": 2,
       "value": "[]"
     },
@@ -6804,21 +6804,21 @@
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/utils\/ExceptionInAppDetector.swift",
       "kind": "Array",
-      "offset": 2118,
+      "offset": 2243,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/utils\/ExceptionInAppDetector.swift",
       "kind": "Array",
-      "offset": 2132,
+      "offset": 2257,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/utils\/ExceptionInAppDetector.swift",
       "kind": "Array",
-      "offset": 5525,
+      "offset": 5675,
       "length": 1197,
       "value": "[\"Foundation\", \"UIKit\", \"AppKit\", \"CoreFoundation\", \"CoreGraphics\", \"CoreData\", \"CoreLocation\", \"CoreMotion\", \"CoreServices\", \"CoreText\", \"AVFoundation\", \"Metal\", \"MetalKit\", \"SwiftUI\", \"SwiftUICore\", \"Combine\", \"QuartzCore\", \"Security\", \"SystemConfiguration\", \"CFNetwork\", \"WebKit\", \"GraphicsServices\", \"IOKit\", \"Gestures\", \"UIKitCore\", \"UIKitMacHelper\", \"Accessibility\", \"AccessibilityUtilities\", \"UpdateCycle\", \"TextInput\", \"UIFoundation\", \"BackBoardServices\", \"FrontBoardServices\", \"SpringBoardServices\", \"RunningBoardServices\", \"libsystem_kernel.dylib\", \"libsystem_pthread.dylib\", \"libsystem_c.dylib\", \"libsystem_malloc.dylib\", \"libdispatch.dylib\", \"libswift\", \"libobjc\", \"dyld\"]"
     },
@@ -6869,7 +6869,7 @@
       "kind": "IntegerLiteral",
       "offset": 417,
       "length": 1,
-      "value": "1"
+      "value": "2"
     },
     {
       "filePath": "\/Users\/liulangyu\/Development\/sol\/sol-ios\/SensorswaveSDK\/Version.swift",

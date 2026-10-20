@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SensorswaveSDK'
-  s.version          = '0.7.1'
+  s.version          = '0.7.2'
   s.summary          = 'Sensorswave Analytics SDK for iOS'
 
   s.description      = <<-DESC

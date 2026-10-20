@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.enableCrashTrack = true           // 启用 Crash 采集（fatal）
         config.enableErrorTrack = true           // 启用 error 级别采集
         config.abRefreshInterval = 5 * 60 * 1000  // 5 分钟刷新间隔
-        config.batchSend = false                // 启用批量发送（默认关闭）
+        config.batchSend = false                // 批量发送已关闭（默认）；设为 true 开启
 
         // 初始化 SDK
         Sensorswave.getInstance().setup(
@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     config.enableCrashTrack = YES;         // 启用 Crash 采集（fatal）
     config.enableErrorTrack = YES;         // 启用 error 级别采集
     config.abRefreshInterval = 5 * 60 * 1000;  // 5 分钟刷新间隔
-    config.batchSend = NO;                 // 启用批量发送（默认关闭）
+    config.batchSend = NO;                 // 批量发送已关闭（默认）；设为 YES 开启
 
     // 初始化 SDK
     [[Sensorswave getInstance] setup:@"your-source-token" config:config];
@@ -142,7 +142,7 @@ Sensorswave.getInstance().trackEvent(eventName: "ButtonClick", properties: [
 | `enableAB` | Bool | false | 是否启用 A/B 测试功能 |
 | `enableCrashTrack` | Bool | false | 是否启用 Crash 采集（fatal 级别 `$Exception` 事件）。独立于 `autoCapture`；崩溃后下次启动补报；调试器挂载时不安装 hook |
 | `enableErrorTrack` | Bool | false | 是否启用 error 级别采集（开通手动 `trackException` API）。独立于 `autoCapture` |
-| `exceptionConfig` | ExceptionConfig | 空 | `$exception_frames` 每帧 `in_app` 的判定规则（帧是否属于应用自身代码）。`inAppIncludes` / `inAppExcludes` 为大小写敏感的 module 名前缀列表；主工程 bundle identifier 与可执行文件名恒视为应用内。`setup` 时快照下发——见[异常捕获上报](#异常捕获上报) |
+| `exceptionConfig` | ExceptionConfig | 空 | `$exception_frames` 每帧 `in_app` 的判定规则（帧是否属于应用自身代码）。`inAppIncludes` / `inAppExcludes` 为大小写敏感的 module 名前缀列表（`inAppExcludes` 优先于 `inAppIncludes`）；主工程可执行文件名自动加入 includes。`setup` 时快照下发——见[异常捕获上报](#异常捕获上报) |
 | `abRefreshInterval` | TimeInterval | 600000 (10分钟) | A/B 测试配置刷新间隔（毫秒），最小 30 秒 |
 | `batchSend` | Bool | false | 是否启用批量发送（收集10条事件后发送或每5秒发送一次） |
 | `optOutCapturing` | Bool | false | 是否默认禁用采集（合规开关）。启用后 SDK 不会采集、发送或持久化任何事件 |
@@ -842,7 +842,7 @@ SDK 通过预置事件 `$Exception` 上报异常，属性如下：
 | `$exception_message` | String | 仅 message，不含堆栈 |
 | `$exception_frames` | Array&lt;Object&gt; | 结构化堆栈帧（多端统一格式，最多 30 帧）。每帧含 `platform`（`cocoa`，iOS 固定）、`module`（二进制镜像名）、`function`、`instruction_addr`（运行时绝对地址，PAC 已剥，16 位补零 hex）、`in_app`（Boolean，帧是否属于应用自身代码，见下文）；帧命中镜像时附 `image_addr`（镜像加载基址）、`debug_id`（Mach-O UUID，大写连字符）；`filename`/`lineno`/`colno` 仅调试符号带源码信息时包含 |
 
-**`in_app` 判定**：每帧均带 `in_app`，标记帧是否属于应用自身代码，供服务端过滤无法符号化的平台/运行时帧。规则为对 module 名做大小写敏感的前缀匹配，按优先级依次判定：`exceptionConfig.inAppIncludes`（最高，可把系统/第三方帧标回应用内）→ `exceptionConfig.inAppExcludes` → 已知系统框架 → 系统二进制路径 → 其余未命中帧默认视为应用内；module 缺失的帧恒为非应用内。主工程 bundle identifier 与可执行文件名恒视为应用内。规则在 `setup` 时快照下发，之后修改不再生效。
+**`in_app` 判定**：每帧均带 `in_app`，标记帧是否属于应用自身代码，供服务端过滤无法符号化的平台/运行时帧。规则为对 module 名做大小写敏感的前缀匹配，按优先级依次判定：`exceptionConfig.inAppExcludes`（最高）→ `exceptionConfig.inAppIncludes`（可把系统帧标回应用内）→ 已知系统框架 → 系统二进制路径 → 宿主 `.app/Frameworks/` 目录下的内嵌动态库 → 其余未命中帧默认视为应用内；module 缺失的帧恒为非应用内。主工程可执行文件名在 `setup` 时自动追加进 includes，其帧视为应用内（未被 excludes 排除时）；bundle identifier 不参与判定（module 列是镜像名，永远命中不了）。规则在 `setup` 时快照下发，之后修改不再生效。
 
 ```swift
 config.exceptionConfig.inAppExcludes = ["Alamofire", "SDWebImage"]  // 第三方帧不算应用内
@@ -1291,7 +1291,7 @@ Sensorswave.getInstance().trackEvent(eventName: "Event", properties: [
 // 生产环境配置
 let config = SensorswaveConfig()
 config.debug = false           // 关闭调试
-config.batchSend = false         // 启用批量发送（默认关闭）
+config.batchSend = false         // 批量发送已关闭（默认）；设为 true 开启
 ```
 
 **Objective-C：**
@@ -1300,7 +1300,7 @@ config.batchSend = false         // 启用批量发送（默认关闭）
 // 生产环境配置
 SensorswaveConfig *config = [[SensorswaveConfig alloc] init];
 config.debug = NO;           // 关闭调试
-config.batchSend = NO;         // 启用批量发送（默认关闭）
+config.batchSend = NO;         // 批量发送已关闭（默认）；设为 YES 开启
 ```
 
 ## 许可证

@@ -378,11 +378,11 @@ extern "C" {
 /// （见 ExceptionInAppDetector），setup 后修改不再生效。
 SWIFT_CLASS("_TtC14SensorswaveSDK15ExceptionConfig")
 @interface ExceptionConfig : NSObject
-/// 额外视为应用内代码的模块名前缀（优先级最高，可覆盖 excludes 与系统框架判定）
-/// 例：自有二方库的镜像名。前缀匹配、大小写敏感，对齐 posthog。
+/// 额外视为应用内代码的模块名前缀（可覆盖系统框架判定；excludes 优先于本项）
+/// 例：自有二方库的镜像名。前缀匹配、大小写敏感。
 /// 主工程可执行文件名由 SDK 在快照时自动追加，无需配置。
 @property (nonatomic, copy) NSArray<NSString *> * _Nonnull inAppIncludes;
-/// 从应用内代码排除的模块名前缀（如第三方库；includes 命中时本项失效）
+/// 从应用内代码排除的模块名前缀（如第三方库；优先级高于 includes）
 /// 例：“Alamofire”、“SDWebImage”。前缀匹配、大小写敏感。
 @property (nonatomic, copy) NSArray<NSString *> * _Nonnull inAppExcludes;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
@@ -1104,11 +1104,11 @@ extern "C" {
 /// （见 ExceptionInAppDetector），setup 后修改不再生效。
 SWIFT_CLASS("_TtC14SensorswaveSDK15ExceptionConfig")
 @interface ExceptionConfig : NSObject
-/// 额外视为应用内代码的模块名前缀（优先级最高，可覆盖 excludes 与系统框架判定）
-/// 例：自有二方库的镜像名。前缀匹配、大小写敏感，对齐 posthog。
+/// 额外视为应用内代码的模块名前缀（可覆盖系统框架判定；excludes 优先于本项）
+/// 例：自有二方库的镜像名。前缀匹配、大小写敏感。
 /// 主工程可执行文件名由 SDK 在快照时自动追加，无需配置。
 @property (nonatomic, copy) NSArray<NSString *> * _Nonnull inAppIncludes;
-/// 从应用内代码排除的模块名前缀（如第三方库；includes 命中时本项失效）
+/// 从应用内代码排除的模块名前缀（如第三方库；优先级高于 includes）
 /// 例：“Alamofire”、“SDWebImage”。前缀匹配、大小写敏感。
 @property (nonatomic, copy) NSArray<NSString *> * _Nonnull inAppExcludes;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
